@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="DOA - Gestión Educativa Inteligente. Contáctanos para más información.">
+    <title>Contáctanos | DOA - Gestión Educativa Inteligente</title>
+    <link rel="stylesheet" href="estilos.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+</head>
+
+<body>
+    <!-- ============ HEADER ============ -->
+    <header class="site-header">
+        <div class="header-container">
+            <!-- Logo -->
+            <a href="index.html" class="logo" aria-label="DOA - Inicio">
+                <img src="img/logo-gti.png" class="logo-icon" alt="GTI Logo">
+
+            </a>
+
+            <!-- Desktop nav -->
+            <nav class="main-nav" aria-label="Navegación principal">
+                <ul class="nav-list">
+                    <li><a href="funcionalidades.html" class="nav-link">Funcionalidades</a></li>
+                    <li><a href="testimonios.html" class="nav-link">Testimonios</a></li>
+                    <li><a href="contacto.html" class="nav-link nav-link--active" aria-current="page">Contáctanos</a>
+                    </li>
+                </ul>
+            </nav>
+
+            <a href="login.html" class="btn btn--primary btn--login">LOGIN</a>
+
+            <!-- Mobile hamburger -->
+            <button class="hamburger" aria-label="Abrir menú" aria-expanded="false" aria-controls="mobile-menu">
+                <span class="hamburger-line"></span>
+                <span class="hamburger-line"></span>
+                <span class="hamburger-line"></span>
+            </button>
+        </div>
+
+        <!-- Mobile menu (slides down) -->
+        <div id="mobile-menu" class="mobile-menu" hidden>
+            <ul class="mobile-nav-list">
+                <li><a href="funcionalidades.html" class="mobile-nav-link">Funcionalidades</a></li>
+                <li><a href="testimonios.html" class="mobile-nav-link">Testimonios</a></li>
+                <li><a href="contacto.html" class="mobile-nav-link mobile-nav-link--active"
+                        aria-current="page">Contáctanos</a></li>
+                <li><a href="login.html" class="mobile-nav-link mobile-nav-link--login">LOGIN</a></li>
+            </ul>
+        </div>
+    </header>
+
+    <!-- ============ MAIN ============ -->
+    <main class="main-content">
+        <div class="container">
+            <h1 class="page-title">Contacto</h1>
+
+            <div class="contact-card">
+                <form id="contact-form" class="contact-form" novalidate>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="nombre" class="form-label">Nombre</label>
+                            <input type="text" id="nombre" name="nombre" class="form-input" placeholder="Juan Perez"
+                                required minlength="2" maxlength="60" autocomplete="name"
+                                aria-describedby="nombre-error">
+                            <span class="form-error" id="nombre-error" role="alert"></span>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="email" class="form-label">Email</label>
+                            <input type="email" id="email" name="email" class="form-input"
+                                placeholder="jperez@gmail.com" required autocomplete="email"
+                                aria-describedby="email-error">
+                            <span class="form-error" id="email-error" role="alert"></span>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="centro" class="form-label">Centro Educativo</label>
+                        <input type="text" id="centro" name="centro" class="form-input" placeholder="Colegio Nombre"
+                            required minlength="2" maxlength="100" autocomplete="organization"
+                            aria-describedby="centro-error">
+                        <span class="form-error" id="centro-error" role="alert"></span>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="mensaje" class="form-label">Mensaje</label>
+                        <textarea id="mensaje" name="mensaje" class="form-input form-textarea"
+                            placeholder="Escribe tu mensaje aquí..." required minlength="10" maxlength="1000" rows="6"
+                            aria-describedby="mensaje-error mensaje-count"></textarea>
+                        <div class="textarea-meta">
+                            <span class="form-error" id="mensaje-error" role="alert"></span>
+                            <span class="char-counter" id="mensaje-count" aria-live="polite">0 / 1000</span>
+                        </div>
+                    </div>
+
+                    <div class="form-actions">
+                        <button type="submit" class="btn btn--primary btn--submit">
+                            <span class="btn-label">Enviar</span>
+                            <svg class="btn-spinner" viewBox="0 0 24 24" aria-hidden="true">
+                                <circle cx="12" cy="12" r="10" stroke-width="3" fill="none"></circle>
+                            </svg>
+                        </button>
+                    </div>
+                </form>
+
+                <!-- Success / error toast -->
+                <div id="form-feedback" class="form-feedback" role="status" aria-live="polite" hidden></div>
+            </div>
+        </div>
+    </main>
+
+    <!-- ============ FOOTER ============ -->
+    <footer class="site-footer">
+        <div class="footer-container">
+            <a href="index.html" class="footer-logo" aria-label="DOA - Inicio">
+                <img src="img/logo-gti.png" class="footer-logo-icon" alt="GTI Logo">
+            </a>
+            <p class="footer-text">Todos los derechos reservados 2026&copy;</p>
+        </div>
+    </footer>
+
+    <script src="script.js" defer></script>
+</body>
+
+</html>
