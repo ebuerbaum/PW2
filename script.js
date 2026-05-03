@@ -1,235 +1,107 @@
-/* ===========================================================
-   DOA - Página de Contacto
-   Validación frontend + interacciones (Sprint 3)
-   =========================================================== */
+/* =============================================
+   DOA – Scripts generales
+   ============================================= */
 
-(function () {
-    'use strict';
 
-    /* ---------- 1. Mobile menu toggle ---------- */
-    const hamburger = document.querySelector('.hamburger');
-    const mobileMenu = document.getElementById('mobile-menu');
+/* ---- 1. MENÚ MÓVIL ---- */
 
-    if (hamburger && mobileMenu) {
-        hamburger.addEventListener('click', () => {
-            const isOpen = hamburger.getAttribute('aria-expanded') === 'true';
-            hamburger.setAttribute('aria-expanded', String(!isOpen));
-            mobileMenu.hidden = isOpen;
-        });
+var botonMenu = document.querySelector('.hamburger');
+var menuMovil = document.getElementById('mobile-menu');
 
-        // Close menu on link click
-        mobileMenu.querySelectorAll('a').forEach(link => {
-            link.addEventListener('click', () => {
-                hamburger.setAttribute('aria-expanded', 'false');
-                mobileMenu.hidden = true;
-            });
-        });
+if (botonMenu && menuMovil) {
 
-        // Close menu when resizing to desktop
-        const mq = window.matchMedia('(min-width: 721px)');
-        mq.addEventListener('change', e => {
-            if (e.matches) {
-                hamburger.setAttribute('aria-expanded', 'false');
-                mobileMenu.hidden = true;
-            }
-        });
-    }
-
-    /* ---------- 2. Form validation ---------- */
-    const form = document.getElementById('contact-form');
-    if (!form) return;
-
-    const fields = {
-        nombre: {
-            el: document.getElementById('nombre'),
-            errorEl: document.getElementById('nombre-error'),
-            validate: (v) => {
-                if (!v.trim()) return 'El nombre es obligatorio.';
-                if (v.trim().length < 2) return 'El nombre debe tener al menos 2 caracteres.';
-                if (v.trim().length > 60) return 'El nombre no puede superar los 60 caracteres.';
-                if (!/^[A-Za-zÀ-ÿ\u00f1\u00d1\s'-]+$/.test(v.trim())) {
-                    return 'El nombre solo puede contener letras y espacios.';
-                }
-                return '';
-            }
-        },
-        email: {
-            el: document.getElementById('email'),
-            errorEl: document.getElementById('email-error'),
-            validate: (v) => {
-                if (!v.trim()) return 'El email es obligatorio.';
-                // Robust-ish email regex (RFC-5322 lite)
-                const re = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/;
-                if (!re.test(v.trim())) return 'Introduce un email válido (ej. nombre@dominio.com).';
-                return '';
-            }
-        },
-        centro: {
-            el: document.getElementById('centro'),
-            errorEl: document.getElementById('centro-error'),
-            validate: (v) => {
-                if (!v.trim()) return 'El centro educativo es obligatorio.';
-                if (v.trim().length < 2) return 'Indica al menos 2 caracteres.';
-                if (v.trim().length > 100) return 'No puede superar los 100 caracteres.';
-                return '';
-            }
-        },
-        mensaje: {
-            el: document.getElementById('mensaje'),
-            errorEl: document.getElementById('mensaje-error'),
-            validate: (v) => {
-                if (!v.trim()) return 'El mensaje es obligatorio.';
-                if (v.trim().length < 10) return 'El mensaje debe tener al menos 10 caracteres.';
-                if (v.trim().length > 1000) return 'El mensaje no puede superar los 1000 caracteres.';
-                return '';
-            }
-        }
-    };
-
-    /**
-     * Show error / valid state on a field.
-     */
-    function setFieldState(field, errorMsg) {
-        const { el, errorEl } = field;
-        if (errorMsg) {
-            el.classList.add('is-invalid');
-            el.classList.remove('is-valid');
-            el.setAttribute('aria-invalid', 'true');
-            errorEl.textContent = errorMsg;
+    // Abrir o cerrar el menú al pulsar el botón hamburguesa
+    botonMenu.addEventListener('click', function () {
+        if (menuMovil.hidden) {
+            menuMovil.hidden = false;   // mostrar menú
         } else {
-            el.classList.remove('is-invalid');
-            // Only mark valid if user has typed something
-            if (el.value.trim().length > 0) {
-                el.classList.add('is-valid');
-            } else {
-                el.classList.remove('is-valid');
-            }
-            el.setAttribute('aria-invalid', 'false');
-            errorEl.textContent = '';
+            menuMovil.hidden = true;    // ocultar menú
         }
-    }
-
-    /**
-     * Validate one field and update UI.
-     */
-    function validateField(name) {
-        const field = fields[name];
-        const errorMsg = field.validate(field.el.value);
-        setFieldState(field, errorMsg);
-        return errorMsg === '';
-    }
-
-    /**
-     * Validate all fields. Returns true if everything is OK.
-     */
-    function validateAll() {
-        let allValid = true;
-        Object.keys(fields).forEach(name => {
-            if (!validateField(name)) allValid = false;
-        });
-        return allValid;
-    }
-
-    /* ---------- 3. Live validation (on blur + on input after first error) ---------- */
-    Object.keys(fields).forEach(name => {
-        const field = fields[name];
-        if (!field.el) return;
-
-        // Validate on blur
-        field.el.addEventListener('blur', () => validateField(name));
-
-        // After the first invalid state, validate live on input to give immediate feedback
-        field.el.addEventListener('input', () => {
-            if (field.el.classList.contains('is-invalid')) {
-                validateField(name);
-            }
-        });
     });
 
-    /* ---------- 4. Character counter (mensaje) ---------- */
-    const mensajeEl = fields.mensaje.el;
-    const counterEl = document.getElementById('mensaje-count');
-    const MAX_CHARS = 1000;
-
-    function updateCounter() {
-        const len = mensajeEl.value.length;
-        counterEl.textContent = `${len} / ${MAX_CHARS}`;
-        counterEl.classList.toggle('is-warning', len >= MAX_CHARS * 0.85 && len < MAX_CHARS);
-        counterEl.classList.toggle('is-error', len >= MAX_CHARS);
+    // Cerrar el menú cuando el usuario pulsa un enlace
+    var enlacesMenu = menuMovil.querySelectorAll('a');
+    for (var i = 0; i < enlacesMenu.length; i++) {
+        enlacesMenu[i].addEventListener('click', function () {
+            menuMovil.hidden = true;
+        });
     }
+}
 
-    if (mensajeEl && counterEl) {
-        mensajeEl.addEventListener('input', updateCounter);
-        updateCounter();
-    }
 
-    /* ---------- 5. Submit handling ---------- */
-    const submitBtn = form.querySelector('.btn--submit');
-    const feedbackEl = document.getElementById('form-feedback');
+/* ---- 2. VALIDACIÓN DEL FORMULARIO DE CONTACTO ---- */
 
-    function showFeedback(message, type) {
-        feedbackEl.textContent = message;
-        feedbackEl.className = `form-feedback form-feedback--${type}`;
-        feedbackEl.hidden = false;
-        // Auto-hide success after 6s
-        if (type === 'success') {
-            setTimeout(() => { feedbackEl.hidden = true; }, 6000);
-        }
-    }
+var formulario = document.getElementById('contact-form');
 
-    form.addEventListener('submit', async (e) => {
-        e.preventDefault();
-        feedbackEl.hidden = true;
+if (formulario) {
 
-        const isValid = validateAll();
-        if (!isValid) {
-            // Focus first invalid field for accessibility
-            const firstInvalid = form.querySelector('.is-invalid');
-            if (firstInvalid) firstInvalid.focus();
-            showFeedback('Por favor, corrige los errores antes de enviar.', 'error');
+    formulario.addEventListener('submit', function (evento) {
+        // Evitar que la página se recargue al enviar
+        evento.preventDefault();
+
+        // Leer los valores de cada campo
+        var nombre  = document.getElementById('nombre').value.trim();
+        var email   = document.getElementById('email').value.trim();
+        var centro  = document.getElementById('centro').value.trim();
+        var mensaje = document.getElementById('mensaje').value.trim();
+
+        // Comprobar que ningún campo esté vacío
+        if (nombre === '' || email === '' || centro === '' || mensaje === '') {
+            mostrarFeedback('Por favor, rellena todos los campos.', 'error');
             return;
         }
 
-        // Simulate submit (preparado para conectar al backend luego)
-        submitBtn.classList.add('btn--loading');
-        submitBtn.disabled = true;
-
-        try {
-            // ===== Punto de integración con backend =====
-            // Cuando el endpoint esté listo, descomentar y ajustar:
-            //
-            // const formData = {
-            //     nombre:  fields.nombre.el.value.trim(),
-            //     email:   fields.email.el.value.trim(),
-            //     centro:  fields.centro.el.value.trim(),
-            //     mensaje: fields.mensaje.el.value.trim()
-            // };
-            // const response = await fetch('/api/contacto', {
-            //     method: 'POST',
-            //     headers: { 'Content-Type': 'application/json' },
-            //     body: JSON.stringify(formData)
-            // });
-            // if (!response.ok) throw new Error('Error en el servidor');
-
-            // Simulación de delay
-            await new Promise(resolve => setTimeout(resolve, 900));
-
-            showFeedback('¡Mensaje enviado con éxito! Nos pondremos en contacto contigo pronto.', 'success');
-            form.reset();
-            // Clear validation styles
-            Object.values(fields).forEach(({ el, errorEl }) => {
-                el.classList.remove('is-valid', 'is-invalid');
-                el.removeAttribute('aria-invalid');
-                errorEl.textContent = '';
-            });
-            updateCounter();
-        } catch (err) {
-            console.error(err);
-            showFeedback('Hubo un error al enviar el mensaje. Inténtalo de nuevo.', 'error');
-        } finally {
-            submitBtn.classList.remove('btn--loading');
-            submitBtn.disabled = false;
+        // Comprobar que el email tiene el símbolo @ y un punto
+        if (!email.includes('@') || !email.includes('.')) {
+            mostrarFeedback('Introduce un email válido (ej. nombre@dominio.com).', 'error');
+            return;
         }
-    });
 
-})();
+        // Comprobar longitud mínima del mensaje
+        if (mensaje.length < 10) {
+            mostrarFeedback('El mensaje debe tener al menos 10 caracteres.', 'error');
+            return;
+        }
+
+        // Si todo está bien, simulamos el envío y mostramos confirmación
+        mostrarFeedback('¡Mensaje enviado con éxito! Nos pondremos en contacto contigo pronto.', 'exito');
+        formulario.reset();
+        actualizarContador();
+    });
+}
+
+
+/* ---- 3. CONTADOR DE CARACTERES (campo mensaje) ---- */
+
+var campoMensaje = document.getElementById('mensaje');
+var contadorEl   = document.getElementById('mensaje-count');
+var MAXIMO       = 1000;
+
+function actualizarContador() {
+    if (!campoMensaje || !contadorEl) return;
+    contadorEl.textContent = campoMensaje.value.length + ' / ' + MAXIMO;
+}
+
+if (campoMensaje && contadorEl) {
+    campoMensaje.addEventListener('input', actualizarContador);
+    actualizarContador(); // mostrar 0 / 1000 al cargar la página
+}
+
+
+/* ---- 4. FUNCIÓN AUXILIAR: mostrar mensaje de respuesta ---- */
+
+function mostrarFeedback(texto, tipo) {
+    var caja = document.getElementById('form-feedback');
+    if (!caja) return;
+
+    caja.textContent = texto;
+    caja.className   = 'form-feedback form-feedback--' + tipo;
+    caja.hidden      = false;
+
+    // Si es un mensaje de éxito, ocultarlo automáticamente después de 6 segundos
+    if (tipo === 'exito') {
+        setTimeout(function () {
+            caja.hidden = true;
+        }, 6000);
+    }
+}

@@ -390,12 +390,14 @@ p {
 }
 
 .funcionalidades__cuadricula {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
+  display: flex;
+  flex-wrap: wrap;       /* si no caben, pasan a la fila siguiente */
   gap: var(--esp-lg);
 }
 
 .tarjeta-funcionalidad {
+  /* 3 columnas: ancho total menos los 2 huecos entre tarjetas, dividido entre 3 */
+  flex: 0 0 calc((100% - 2 * var(--esp-lg)) / 3);
   background-color: var(--color-blanco);
   border-radius: var(--radio-tarjeta);
   padding: var(--esp-md);
@@ -431,12 +433,14 @@ p {
 }
 
 .testimonios__cuadricula {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
+  display: flex;
+  flex-wrap: wrap;
   gap: var(--esp-lg);
 }
 
 .tarjeta-testimonio {
+  /* 3 columnas igual que las tarjetas de funcionalidades */
+  flex: 0 0 calc((100% - 2 * var(--esp-lg)) / 3);
   border: 1px solid #e4e6ea;
   border-radius: var(--radio-tarjeta);
   padding: var(--esp-md);
