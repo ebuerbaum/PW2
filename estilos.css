@@ -391,7 +391,8 @@ p {
 
 .funcionalidades__cuadricula {
   display: flex;
-  flex-wrap: wrap;       /* si no caben, pasan a la fila siguiente */
+  flex-wrap: wrap;
+  /* si no caben, pasan a la fila siguiente */
   gap: var(--esp-lg);
 }
 
@@ -1197,5 +1198,527 @@ p {
   *::after {
     animation-duration: 0.01ms !important;
     transition-duration: 0.01ms !important;
+  }
+}
+
+/* ===========================================================
+   RESUMEN DE TAREAS – Layout y componentes
+   =========================================================== */
+
+/* ----- Layout raíz ----- */
+.rt-body {
+  display: flex;
+  min-height: 100vh;
+  background-color: var(--color-blanco);
+}
+
+/* ----- Sidebar (escritorio) ----- */
+.rt-sidebar {
+  width: 200px;
+  flex-shrink: 0;
+  display: flex;
+  flex-direction: column;
+  background-color: var(--color-blanco);
+  border-right: 1px solid #e4e6ea;
+  padding: var(--esp-sm) 0 var(--esp-sm);
+  position: sticky;
+  top: 0;
+  height: 100vh;
+  overflow-y: auto;
+  z-index: 50;
+}
+
+.rt-sidebar__logo {
+  display: flex;
+  align-items: center;
+  padding: var(--esp-sm) var(--esp-sm);
+  margin-bottom: var(--esp-sm);
+  flex-shrink: 0;
+}
+
+.rt-sidebar__logo img {
+  height: 48px;
+  width: auto;
+  object-fit: contain;
+}
+
+.rt-sidebar__nav {
+  flex: 1;
+}
+
+.rt-sidebar__menu {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.rt-sidebar__link {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 11px var(--esp-sm);
+  font-family: var(--fuente-titular);
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: var(--color-texto);
+  border-radius: 0;
+  transition: background-color 0.18s, color 0.18s;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.rt-sidebar__link:hover {
+  background-color: var(--color-neutro);
+  color: var(--color-texto-oscuro);
+}
+
+.rt-sidebar__link--active {
+  background-color: var(--color-principal);
+  color: var(--color-blanco);
+  border-radius: 8px;
+  margin-inline: var(--esp-xs);
+}
+
+.rt-sidebar__link--active:hover {
+  background-color: #0670cc;
+  color: var(--color-blanco);
+}
+
+.rt-sidebar__icon {
+  width: 20px;
+  height: 20px;
+  flex-shrink: 0;
+}
+
+.rt-sidebar__footer {
+  padding: var(--esp-sm);
+  border-top: 1px solid #e4e6ea;
+  margin-top: auto;
+}
+
+.rt-sidebar__logout {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-family: var(--fuente-titular);
+  font-size: 0.875rem;
+  font-weight: 600;
+  color: var(--color-texto);
+  text-decoration: none;
+  transition: color 0.18s;
+}
+
+.rt-sidebar__logout:hover {
+  color: var(--color-texto-oscuro);
+}
+
+/* ----- Wrapper área principal ----- */
+.rt-main-wrapper {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+}
+
+/* ----- Topbar (cabecera superior) ----- */
+.rt-topbar {
+  display: flex;
+  align-items: center;
+  gap: var(--esp-md);
+  padding: 12px var(--esp-lg);
+  background-color: var(--color-blanco);
+  border-bottom: 1px solid #e4e6ea;
+  box-shadow: var(--sombra-nav);
+  position: sticky;
+  top: 0;
+  z-index: 40;
+}
+
+.rt-topbar__logo-mobile {
+  display: none;
+  /* solo en móvil */
+  flex-shrink: 0;
+}
+
+.rt-topbar__logo-mobile img {
+  height: 40px;
+  width: auto;
+  object-fit: contain;
+}
+
+.rt-topbar__titulo {
+  font-family: var(--fuente-titular);
+  font-weight: 800;
+  font-size: 1.5rem;
+  color: var(--color-texto-oscuro);
+  flex: 1;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.rt-topbar__acciones {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex-shrink: 0;
+}
+
+.rt-topbar__icono-btn {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  background: none;
+  border: 1.5px solid #dde1e7;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  color: var(--color-texto);
+  transition: background-color 0.18s, border-color 0.18s;
+  padding: 0;
+}
+
+.rt-topbar__icono-btn:hover {
+  background-color: var(--color-neutro);
+  border-color: #b5b9c1;
+}
+
+.rt-topbar__icono-btn svg {
+  width: 18px;
+  height: 18px;
+}
+
+.rt-topbar__usuario {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  cursor: pointer;
+}
+
+.rt-topbar__usuario-info {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  line-height: 1.2;
+}
+
+.rt-topbar__usuario-nombre {
+  font-family: var(--fuente-titular);
+  font-size: 0.825rem;
+  font-weight: 700;
+  color: var(--color-texto-oscuro);
+}
+
+.rt-topbar__usuario-rol {
+  font-size: 0.72rem;
+  color: var(--color-texto);
+  text-transform: lowercase;
+}
+
+.rt-topbar__avatar {
+  width: 34px;
+  height: 34px;
+  border-radius: 50%;
+  background-color: var(--color-neutro);
+  border: 1.5px solid #dde1e7;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--color-texto);
+  flex-shrink: 0;
+}
+
+.rt-topbar__avatar svg {
+  width: 20px;
+  height: 20px;
+}
+
+/* Hamburger solo móvil */
+.rt-hamburger {
+  display: none;
+  margin-left: auto;
+}
+
+/* ----- Menú móvil (hereda .mobile-menu de contacto) ----- */
+.rt-mobile-menu {
+  position: sticky;
+  top: 65px;
+  z-index: 39;
+  width: 100%;
+}
+
+/* ----- Contenido principal ----- */
+.rt-contenido {
+  flex: 1;
+  padding: var(--esp-md) var(--esp-lg);
+  max-width: 780px;
+}
+
+/* ----- Pestañas escritorio ----- */
+.rt-tabs {
+  display: flex;
+  gap: 0;
+  border-bottom: 2px solid #e4e6ea;
+  margin-bottom: var(--esp-lg);
+}
+
+.rt-tab {
+  background: none;
+  border: none;
+  padding: 10px var(--esp-sm);
+  font-family: var(--fuente-titular);
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: var(--color-texto);
+  cursor: pointer;
+  position: relative;
+  transition: color 0.18s;
+  letter-spacing: 0.01em;
+}
+
+.rt-tab:hover {
+  color: var(--color-principal);
+}
+
+.rt-tab--activo {
+  color: var(--color-principal);
+}
+
+.rt-tab--activo::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: -2px;
+  height: 2px;
+  background-color: var(--color-principal);
+  border-radius: 2px 2px 0 0;
+}
+
+/* ----- Paneles ----- */
+.rt-panel--oculto {
+  display: none;
+}
+
+.rt-panel__vacio {
+  color: var(--color-texto);
+  font-size: 0.9375rem;
+  padding: var(--esp-md) 0;
+}
+
+/* ----- Sección (Tareas / Recursos) ----- */
+.rt-seccion {
+  margin-bottom: var(--esp-lg);
+}
+
+.rt-seccion__titulo {
+  font-family: var(--fuente-titular);
+  font-weight: 700;
+  font-size: 1.1rem;
+  color: var(--color-texto-oscuro);
+  margin-bottom: 6px;
+}
+
+.rt-seccion__linea {
+  width: 40px;
+  height: 2px;
+  background-color: var(--color-texto-oscuro);
+  border-radius: 2px;
+  margin-bottom: var(--esp-sm);
+}
+
+/* ----- Lista ----- */
+.rt-lista {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+/* ----- Tarjeta de tarea / recurso ----- */
+.rt-tarjeta {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--esp-sm);
+  padding: 10px var(--esp-sm);
+  border: 1px solid #dde1e7;
+  border-radius: var(--radio-tarjeta);
+  background-color: var(--color-blanco);
+  text-decoration: none;
+  color: inherit;
+  transition: background-color 0.18s, box-shadow 0.18s;
+}
+
+.rt-tarjeta:hover {
+  background-color: var(--color-neutro);
+  box-shadow: var(--sombra-tarjeta);
+}
+
+.rt-tarjeta__info {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.rt-tarjeta__nombre {
+  font-family: var(--fuente-cuerpo);
+  font-weight: 700;
+  font-size: 0.875rem;
+  color: var(--color-texto-oscuro);
+  text-decoration: none;
+}
+
+/* Nombre de recurso: subrayado azul */
+.rt-tarjeta__nombre--recurso {
+  color: var(--color-principal);
+  text-decoration: underline;
+  text-underline-offset: 2px;
+}
+
+.rt-tarjeta__fecha {
+  font-size: 0.8rem;
+  color: var(--color-texto);
+  font-family: var(--fuente-cuerpo);
+}
+
+.rt-tarjeta__estado {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 2px;
+  flex-shrink: 0;
+}
+
+.rt-tarjeta__etiqueta {
+  font-size: 0.78rem;
+  color: var(--color-texto);
+  font-family: var(--fuente-cuerpo);
+}
+
+.rt-tarjeta__nota {
+  font-family: var(--fuente-titular);
+  font-weight: 700;
+  font-size: 0.9rem;
+  color: var(--color-exito);
+}
+
+/* ----- Footer en resumen de tareas ----- */
+.rt-footer {
+  margin-top: auto;
+}
+
+.footer-logo-icon {
+  width: 110px;
+  height: auto;
+}
+
+/* ----- Barra de pestañas inferior (solo móvil) ----- */
+.rt-bottom-tabs {
+  display: none;
+  /* oculta en escritorio */
+}
+
+/* ===========================================================
+   RESUMEN DE TAREAS – Responsive MÓVIL (≤ 720px)
+   =========================================================== */
+@media (max-width: 720px) {
+
+  /* Ocultar sidebar */
+  .rt-sidebar {
+    display: none;
+  }
+
+  /* Topbar en móvil */
+  .rt-topbar {
+    padding: 10px var(--esp-sm);
+    gap: 10px;
+  }
+
+  /* Mostrar logo en topbar móvil */
+  .rt-topbar__logo-mobile {
+    display: flex;
+  }
+
+  /* Título centrado */
+  .rt-topbar__titulo {
+    text-align: center;
+    font-size: 1.35rem;
+    flex: 1;
+  }
+
+  /* Ocultar acciones de escritorio */
+  .rt-topbar__acciones {
+    display: none;
+  }
+
+  /* Mostrar hamburguesa */
+  .rt-hamburger {
+    display: flex;
+    margin-left: 0;
+  }
+
+  /* Pestañas escritorio: ocultas en móvil */
+  .rt-tabs {
+    display: none;
+  }
+
+  /* Contenido ocupa todo */
+  .rt-contenido {
+    padding: var(--esp-sm);
+    max-width: 100%;
+    /* espacio para la barra inferior */
+    padding-bottom: 70px;
+  }
+
+  /* Barra inferior visible */
+  .rt-bottom-tabs {
+    display: flex;
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    z-index: 60;
+    background-color: var(--color-blanco);
+    border-top: 1px solid #dde1e7;
+    box-shadow: 0 -2px 8px rgba(0, 0, 0, 0.07);
+  }
+
+  .rt-bottom-tab {
+    flex: 1;
+    padding: 14px var(--esp-xs);
+    background: none;
+    border: none;
+    font-family: var(--fuente-titular);
+    font-size: 0.75rem;
+    font-weight: 700;
+    color: var(--color-texto);
+    cursor: pointer;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    transition: color 0.18s, background-color 0.18s;
+  }
+
+  .rt-bottom-tab:hover {
+    background-color: var(--color-neutro);
+  }
+
+  .rt-bottom-tab--activo {
+    color: var(--color-principal);
+    border-top: 2px solid var(--color-principal);
+  }
+
+  /* Ocultar footer en móvil (visible solo en escritorio) */
+  .rt-footer {
+    display: none;
+  }
+}
+
+@media (max-width: 400px) {
+  .rt-topbar__titulo {
+    font-size: 1.1rem;
   }
 }
