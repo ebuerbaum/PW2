@@ -37,17 +37,47 @@
                         stroke-linecap="round"/>
                 </svg>
             </button>
-            <div class="rt-topbar__usuario">
-                <div class="rt-topbar__usuario-info">
-                    <span class="rt-topbar__usuario-nombre">Alex Rivera</span>
-                    <span class="rt-topbar__usuario-rol">Docente</span>
-                </div>
-                <div class="rt-topbar__avatar" aria-hidden="true">
-                    <svg viewBox="0 0 24 24" fill="none">
-                        <circle cx="12" cy="8" r="4" stroke="currentColor" stroke-width="1.8"/>
-                        <path d="M4 20c0-4 3.6-7 8-7s8 3 8 7" stroke="currentColor" stroke-width="1.8"
-                            stroke-linecap="round"/>
-                    </svg>
+            <div class="rt-perfil-wrapper">
+                <button class="rt-topbar__usuario" id="rt-perfil-btn"
+                        aria-expanded="false" aria-controls="rt-perfil-popup">
+                    <div class="rt-topbar__usuario-info">
+                        <span class="rt-topbar__usuario-nombre">Carlos García</span>
+                        <span class="rt-topbar__usuario-rol">Profesor</span>
+                    </div>
+                    <div class="rt-topbar__avatar" aria-hidden="true">
+                        <svg viewBox="0 0 24 24" fill="none">
+                            <circle cx="12" cy="8" r="4" stroke="currentColor" stroke-width="1.8"/>
+                            <path d="M4 20c0-4 3.6-7 8-7s8 3 8 7" stroke="currentColor" stroke-width="1.8"
+                                stroke-linecap="round"/>
+                        </svg>
+                    </div>
+                </button>
+                <div class="rt-perfil-popup" id="rt-perfil-popup" hidden>
+                    <div class="rt-perfil-popup__cabecera">
+                        <div class="rt-perfil-popup__avatar-grande">
+                            <svg viewBox="0 0 24 24" fill="none">
+                                <circle cx="12" cy="8" r="4" stroke="currentColor" stroke-width="1.8"/>
+                                <path d="M4 20c0-4 3.6-7 8-7s8 3 8 7" stroke="currentColor" stroke-width="1.8"
+                                    stroke-linecap="round"/>
+                            </svg>
+                        </div>
+                        <div>
+                            <p class="rt-perfil-popup__nombre">Carlos García</p>
+                            <p class="rt-perfil-popup__rol">Profesor</p>
+                        </div>
+                    </div>
+                    <a href="recuperar-contrasena.html" class="rt-perfil-popup__cambiar">Cambiar contraseña</a>
+                    <a href="login_doa.html" class="rt-perfil-popup__logout">
+                        <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                            <path d="M9 21H5a2 2 0 01-2-2V5a2 2 0 012-2h4" stroke="currentColor" stroke-width="2"
+                                stroke-linecap="round" stroke-linejoin="round"/>
+                            <polyline points="16 17 21 12 16 7" stroke="currentColor" stroke-width="2"
+                                stroke-linecap="round" stroke-linejoin="round"/>
+                            <line x1="21" y1="12" x2="9" y2="12" stroke="currentColor" stroke-width="2"
+                                stroke-linecap="round"/>
+                        </svg>
+                        CERRAR SESIÓN
+                    </a>
                 </div>
             </div>
         </div>
@@ -65,7 +95,7 @@
         <ul class="mobile-nav-list">
             <li><a href="home_DOA.html" class="mobile-nav-link mobile-nav-link--active" aria-current="page">Clases</a></li>
             <li><a href="#" class="mobile-nav-link">Calendario</a></li>
-            <li><a href="login.html" class="mobile-nav-link mobile-nav-link--login">Logout</a></li>
+            <li><a href="login_doa.html" class="mobile-nav-link mobile-nav-link--login">Logout</a></li>
         </ul>
     </div>
 
@@ -101,7 +131,7 @@
             </nav>
 
             <div class="rt-sidebar__footer">
-                <a href="login.html" class="rt-sidebar__logout" id="ca-logout-btn">
+                <a href="login_doa.html" class="rt-sidebar__logout" id="ca-logout-btn">
                     <svg class="rt-sidebar__icon" viewBox="0 0 24 24" fill="none" aria-hidden="true">
                         <path d="M9 21H5a2 2 0 01-2-2V5a2 2 0 012-2h4" stroke="currentColor" stroke-width="2"
                             stroke-linecap="round" stroke-linejoin="round"/>
@@ -241,6 +271,23 @@
     <script src="script.js" defer></script>
     <script>
         (function () {
+            /* -- Perfil popup -- */
+            var perfilBtn   = document.getElementById('rt-perfil-btn');
+            var perfilPopup = document.getElementById('rt-perfil-popup');
+            if (perfilBtn && perfilPopup) {
+                perfilBtn.addEventListener('click', function (e) {
+                    e.stopPropagation();
+                    var abierto = !perfilPopup.hidden;
+                    perfilPopup.hidden = abierto;
+                    perfilBtn.setAttribute('aria-expanded', String(!abierto));
+                });
+                document.addEventListener('click', function () {
+                    perfilPopup.hidden = true;
+                    perfilBtn.setAttribute('aria-expanded', 'false');
+                });
+                perfilPopup.addEventListener('click', function (e) { e.stopPropagation(); });
+            }
+
             /* -- Hamburguesa -- */
             var hamburger = document.getElementById('ca-hamburger');
             var mobileMenu = document.getElementById('ca-mobile-menu');
