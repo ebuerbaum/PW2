@@ -12,11 +12,9 @@ if (botonMenu && menuMovil) {
 
     // Abrir o cerrar el menú al pulsar el botón hamburguesa
     botonMenu.addEventListener('click', function () {
-        if (menuMovil.hidden) {
-            menuMovil.hidden = false;   // mostrar menú
-        } else {
-            menuMovil.hidden = true;    // ocultar menú
-        }
+        var abierto = !menuMovil.hidden;
+        menuMovil.hidden = abierto;
+        botonMenu.setAttribute('aria-expanded', abierto ? 'false' : 'true');
     });
 
     // Cerrar el menú cuando el usuario pulsa un enlace
@@ -24,6 +22,7 @@ if (botonMenu && menuMovil) {
     for (var i = 0; i < enlacesMenu.length; i++) {
         enlacesMenu[i].addEventListener('click', function () {
             menuMovil.hidden = true;
+            botonMenu.setAttribute('aria-expanded', 'false');
         });
     }
 }

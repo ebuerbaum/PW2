@@ -1,245 +1,242 @@
 <!DOCTYPE html>
 <html lang="es">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="DOA – Calificar a los alumnos. Panel de notas.">
     <title>Notas | DOA – Gestión Educativa Inteligente</title>
     <link rel="stylesheet" href="estilos.css">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
 </head>
-
 <body class="rt-body">
 
-    <!-- ============ SIDEBAR (solo escritorio) ============ -->
-    <aside class="rt-sidebar" id="rt-sidebar" aria-label="Menú lateral">
-        <a href="index.html" class="rt-sidebar__logo" aria-label="DOA – Inicio">
+    <!-- ============================================================
+         TOPBAR – ancho completo
+         ============================================================ -->
+    <header class="rt-topbar">
+        <a href="home_DOA.html" class="rt-topbar__logo-mobile" aria-label="DOA – Inicio">
             <img src="img/logoPrincipal_monocromático.png" alt="DOA – Gestión Educativa Inteligente">
         </a>
-        <nav class="rt-sidebar__nav" aria-label="Secciones del aula">
-            <ul class="rt-sidebar__menu">
-                <li>
-                    <a href="#" class="rt-sidebar__link rt-sidebar__link--active" aria-current="page">
-                        <svg class="rt-sidebar__icon" viewBox="0 0 24 24" fill="none" aria-hidden="true">
-                            <rect x="3" y="4" width="18" height="16" rx="2" stroke="currentColor" stroke-width="2" />
-                            <path d="M7 8h10M7 12h6" stroke="currentColor" stroke-width="2" stroke-linecap="round" />
-                        </svg>
-                        Clases
-                    </a>
-                </li>
-                <li>
-                    <a href="#" class="rt-sidebar__link">
-                        <svg class="rt-sidebar__icon" viewBox="0 0 24 24" fill="none" aria-hidden="true">
-                            <rect x="3" y="5" width="18" height="16" rx="2" stroke="currentColor" stroke-width="2" />
-                            <path d="M3 10h18" stroke="currentColor" stroke-width="2" />
-                            <path d="M8 3v4M16 3v4" stroke="currentColor" stroke-width="2" stroke-linecap="round" />
-                        </svg>
-                        Calendario
-                    </a>
-                </li>
-            </ul>
-        </nav>
-        <div class="rt-sidebar__footer">
-            <a href="#" class="rt-sidebar__logout" id="ca-logout-btn">
-                <svg class="rt-sidebar__icon" viewBox="0 0 24 24" fill="none" aria-hidden="true">
-                    <path d="M9 21H5a2 2 0 01-2-2V5a2 2 0 012-2h4" stroke="currentColor" stroke-width="2"
-                        stroke-linecap="round" stroke-linejoin="round" />
-                    <polyline points="16 17 21 12 16 7" stroke="currentColor" stroke-width="2" stroke-linecap="round"
-                        stroke-linejoin="round" />
-                    <line x1="21" y1="12" x2="9" y2="12" stroke="currentColor" stroke-width="2"
-                        stroke-linecap="round" />
+
+        <h1 class="rt-topbar__titulo">Notas</h1>
+
+        <div class="rt-topbar__acciones">
+            <button class="rt-topbar__icono-btn" aria-label="Notificaciones" id="ca-btn-notif">
+                <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                    <path d="M18 8A6 6 0 006 8c0 7-3 9-3 9h18s-3-2-3-9" stroke="currentColor" stroke-width="2"
+                        stroke-linecap="round" stroke-linejoin="round"/>
+                    <path d="M13.73 21a2 2 0 01-3.46 0" stroke="currentColor" stroke-width="2"
+                        stroke-linecap="round" stroke-linejoin="round"/>
                 </svg>
-                Logout
-            </a>
-        </div>
-    </aside>
-
-    <!-- ============ ÁREA PRINCIPAL ============ -->
-    <div class="rt-main-wrapper">
-
-        <!-- HEADER -->
-        <header class="rt-topbar">
-            <a href="index.html" class="rt-topbar__logo-mobile" aria-label="DOA – Inicio">
-                <img src="img/logoPrincipal_monocromático.png" alt="DOA">
-            </a>
-            <h1 class="rt-topbar__titulo">Notas</h1>
-            <div class="rt-topbar__acciones">
-                <button class="rt-topbar__icono-btn" aria-label="Notificaciones" id="ca-btn-notif">
-                    <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
-                        <path d="M18 8A6 6 0 006 8c0 7-3 9-3 9h18s-3-2-3-9" stroke="currentColor" stroke-width="2"
-                            stroke-linecap="round" stroke-linejoin="round" />
-                        <path d="M13.73 21a2 2 0 01-3.46 0" stroke="currentColor" stroke-width="2"
-                            stroke-linecap="round" stroke-linejoin="round" />
+            </button>
+            <button class="rt-topbar__icono-btn" aria-label="Ayuda" id="ca-btn-ayuda">
+                <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                    <circle cx="12" cy="12" r="10" stroke="currentColor" stroke-width="2"/>
+                    <path d="M9.09 9a3 3 0 015.83 1c0 2-3 3-3 3" stroke="currentColor" stroke-width="2"
+                        stroke-linecap="round" stroke-linejoin="round"/>
+                    <line x1="12" y1="17" x2="12.01" y2="17" stroke="currentColor" stroke-width="2"
+                        stroke-linecap="round"/>
+                </svg>
+            </button>
+            <div class="rt-topbar__usuario">
+                <div class="rt-topbar__usuario-info">
+                    <span class="rt-topbar__usuario-nombre">Alex Rivera</span>
+                    <span class="rt-topbar__usuario-rol">Docente</span>
+                </div>
+                <div class="rt-topbar__avatar" aria-hidden="true">
+                    <svg viewBox="0 0 24 24" fill="none">
+                        <circle cx="12" cy="8" r="4" stroke="currentColor" stroke-width="1.8"/>
+                        <path d="M4 20c0-4 3.6-7 8-7s8 3 8 7" stroke="currentColor" stroke-width="1.8"
+                            stroke-linecap="round"/>
                     </svg>
-                </button>
-                <button class="rt-topbar__icono-btn" aria-label="Ayuda" id="ca-btn-ayuda">
-                    <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
-                        <circle cx="12" cy="12" r="10" stroke="currentColor" stroke-width="2" />
-                        <path d="M9.09 9a3 3 0 015.83 1c0 2-3 3-3 3" stroke="currentColor" stroke-width="2"
-                            stroke-linecap="round" stroke-linejoin="round" />
-                        <line x1="12" y1="17" x2="12.01" y2="17" stroke="currentColor" stroke-width="2"
-                            stroke-linecap="round" />
-                    </svg>
-                </button>
-                <div class="rt-topbar__usuario">
-                    <div class="rt-topbar__usuario-info">
-                        <span class="rt-topbar__usuario-nombre">Alex Rivera</span>
-                        <span class="rt-topbar__usuario-rol">Docente</span>
-                    </div>
-                    <div class="rt-topbar__avatar" aria-hidden="true">
-                        <svg viewBox="0 0 24 24" fill="none">
-                            <circle cx="12" cy="8" r="4" stroke="currentColor" stroke-width="1.8" />
-                            <path d="M4 20c0-4 3.6-7 8-7s8 3 8 7" stroke="currentColor" stroke-width="1.8"
-                                stroke-linecap="round" />
-                        </svg>
-                    </div>
                 </div>
             </div>
-            <button class="hamburger rt-hamburger" id="ca-hamburger" aria-label="Abrir menú" aria-expanded="false"
-                aria-controls="ca-mobile-menu">
-                <span class="hamburger-line"></span>
-                <span class="hamburger-line"></span>
-                <span class="hamburger-line"></span>
-            </button>
-        </header>
-
-        <!-- MENÚ MÓVIL -->
-        <div id="ca-mobile-menu" class="mobile-menu rt-mobile-menu" hidden>
-            <ul class="mobile-nav-list">
-                <li><a href="#" class="mobile-nav-link mobile-nav-link--active" aria-current="page">Clases</a></li>
-                <li><a href="#" class="mobile-nav-link">Calendario</a></li>
-                <li><a href="#" class="mobile-nav-link mobile-nav-link--login">Logout</a></li>
-            </ul>
         </div>
 
-        <!-- CONTENIDO -->
-        <main class="ca-contenido" id="ca-contenido">
+        <button class="hamburger rt-hamburger" id="ca-hamburger" aria-label="Abrir menú"
+                aria-expanded="false" aria-controls="ca-mobile-menu">
+            <span class="hamburger-line"></span>
+            <span class="hamburger-line"></span>
+            <span class="hamburger-line"></span>
+        </button>
+    </header>
 
-            <!-- Panel izquierdo: lista de alumnos -->
-            <div class="ca-lista-panel">
-                <ul class="ca-lista" aria-label="Lista de alumnos" id="ca-lista-alumnos">
+    <!-- MENÚ MÓVIL -->
+    <div id="ca-mobile-menu" class="mobile-menu rt-mobile-menu" hidden>
+        <ul class="mobile-nav-list">
+            <li><a href="home_DOA.html" class="mobile-nav-link mobile-nav-link--active" aria-current="page">Clases</a></li>
+            <li><a href="#" class="mobile-nav-link">Calendario</a></li>
+            <li><a href="login.html" class="mobile-nav-link mobile-nav-link--login">Logout</a></li>
+        </ul>
+    </div>
+
+    <!-- ============================================================
+         LAYOUT: SIDEBAR + CONTENIDO
+         ============================================================ -->
+    <div class="rt-page-wrapper">
+
+        <!-- SIDEBAR -->
+        <aside class="rt-sidebar" id="rt-sidebar" aria-label="Menú lateral">
+            <nav class="rt-sidebar__nav" aria-label="Secciones del aula">
+                <ul class="rt-sidebar__menu">
                     <li>
-                        <button class="ca-alumno ca-alumno--activo" data-alumno="0" id="ca-alumno-0">
-                            <span class="ca-alumno__nombre">Jose López</span>
-                            <span class="ca-alumno__nota">0/10</span>
-                        </button>
+                        <a href="home_DOA.html" class="rt-sidebar__link rt-sidebar__link--active" aria-current="page">
+                            <svg class="rt-sidebar__icon" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                                <rect x="3" y="4" width="18" height="16" rx="2" stroke="currentColor" stroke-width="2"/>
+                                <path d="M7 8h10M7 12h6" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                            </svg>
+                            Clases
+                        </a>
                     </li>
                     <li>
-                        <button class="ca-alumno" data-alumno="1" id="ca-alumno-1">
-                            <span class="ca-alumno__nombre">Pepe Martinez</span>
-                            <span class="ca-alumno__nota">0/10</span>
-                        </button>
-                    </li>
-                    <li>
-                        <button class="ca-alumno" data-alumno="2" id="ca-alumno-2">
-                            <span class="ca-alumno__nombre">Bea García</span>
-                            <span class="ca-alumno__nota">0/10</span>
-                        </button>
-                    </li>
-                    <li>
-                        <button class="ca-alumno" data-alumno="3" id="ca-alumno-3">
-                            <span class="ca-alumno__nombre">Carlos Rosas</span>
-                            <span class="ca-alumno__nota">0/10</span>
-                        </button>
-                    </li>
-                    <li>
-                        <button class="ca-alumno" data-alumno="4" id="ca-alumno-4">
-                            <span class="ca-alumno__nombre">Santiago Báez</span>
-                            <span class="ca-alumno__nota">0/10</span>
-                        </button>
-                    </li>
-                    <li>
-                        <button class="ca-alumno" data-alumno="5" id="ca-alumno-5">
-                            <span class="ca-alumno__nombre">Benjamin</span>
-                            <span class="ca-alumno__nota">0/10</span>
-                        </button>
-                    </li>
-                    <li>
-                        <button class="ca-alumno" data-alumno="6" id="ca-alumno-6">
-                            <span class="ca-alumno__nombre">Sara Navarro</span>
-                            <span class="ca-alumno__nota">0/10</span>
-                        </button>
-                    </li>
-                    <li>
-                        <button class="ca-alumno" data-alumno="7" id="ca-alumno-7">
-                            <span class="ca-alumno__nombre">Jose López</span>
-                            <span class="ca-alumno__nota">0/10</span>
-                        </button>
+                        <a href="#" class="rt-sidebar__link">
+                            <svg class="rt-sidebar__icon" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                                <rect x="3" y="5" width="18" height="16" rx="2" stroke="currentColor" stroke-width="2"/>
+                                <path d="M3 10h18" stroke="currentColor" stroke-width="2"/>
+                                <path d="M8 3v4M16 3v4" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                            </svg>
+                            Calendario
+                        </a>
                     </li>
                 </ul>
-            </div>
+            </nav>
 
-            <!-- Panel derecho: trabajo del alumno (escritorio) -->
-            <div class="ca-detalle-panel" id="ca-detalle-panel">
-                <h2 class="ca-detalle__titulo">Trabajo del Alumno</h2>
-                <div class="ca-detalle__contenido" id="ca-detalle-contenido">
-                    <textarea class="ca-detalle__textarea" id="ca-detalle-textarea"
-                        placeholder="Escribe aquí el contenido del trabajo..." rows="8"></textarea>
-                    <div class="ca-detalle__archivos" id="ca-archivos-desktop">
-                        <div class="ca-archivo-chip" data-nombre="Documento.pdf">
-                            <svg class="ca-archivo__icono" viewBox="0 0 24 24" fill="none" aria-hidden="true">
-                                <path
-                                    d="M21.44 11.05l-9.19 9.19a6 6 0 01-8.49-8.49l9.19-9.19a4 4 0 015.66 5.66l-9.2 9.19a2 2 0 01-2.83-2.83l8.49-8.48"
-                                    stroke="currentColor" stroke-width="2" stroke-linecap="round"
-                                    stroke-linejoin="round" />
-                            </svg>
-                            <span class="ca-archivo-chip__nombre">Documento.pdf</span>
-                            <button class="ca-archivo-chip__eliminar"
-                                aria-label="Eliminar Documento.pdf">&times;</button>
+            <div class="rt-sidebar__footer">
+                <a href="login.html" class="rt-sidebar__logout" id="ca-logout-btn">
+                    <svg class="rt-sidebar__icon" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                        <path d="M9 21H5a2 2 0 01-2-2V5a2 2 0 012-2h4" stroke="currentColor" stroke-width="2"
+                            stroke-linecap="round" stroke-linejoin="round"/>
+                        <polyline points="16 17 21 12 16 7" stroke="currentColor" stroke-width="2"
+                            stroke-linecap="round" stroke-linejoin="round"/>
+                        <line x1="21" y1="12" x2="9" y2="12" stroke="currentColor" stroke-width="2"
+                            stroke-linecap="round"/>
+                    </svg>
+                    Logout
+                </a>
+            </div>
+        </aside>
+
+        <!-- ÁREA PRINCIPAL -->
+        <div class="rt-main-wrapper">
+
+            <!-- CONTENIDO -->
+            <main class="ca-contenido" id="ca-contenido">
+
+                <!-- Panel izquierdo: lista de alumnos -->
+                <div class="ca-lista-panel">
+                    <ul class="ca-lista" aria-label="Lista de alumnos" id="ca-lista-alumnos">
+                        <li>
+                            <button class="ca-alumno ca-alumno--activo" data-alumno="0" id="ca-alumno-0">
+                                <span class="ca-alumno__nombre">Jose López</span>
+                                <span class="ca-alumno__nota">0/10</span>
+                            </button>
+                        </li>
+                        <li>
+                            <button class="ca-alumno" data-alumno="1" id="ca-alumno-1">
+                                <span class="ca-alumno__nombre">Pepe Martinez</span>
+                                <span class="ca-alumno__nota">0/10</span>
+                            </button>
+                        </li>
+                        <li>
+                            <button class="ca-alumno" data-alumno="2" id="ca-alumno-2">
+                                <span class="ca-alumno__nombre">Bea García</span>
+                                <span class="ca-alumno__nota">0/10</span>
+                            </button>
+                        </li>
+                        <li>
+                            <button class="ca-alumno" data-alumno="3" id="ca-alumno-3">
+                                <span class="ca-alumno__nombre">Carlos Rosas</span>
+                                <span class="ca-alumno__nota">0/10</span>
+                            </button>
+                        </li>
+                        <li>
+                            <button class="ca-alumno" data-alumno="4" id="ca-alumno-4">
+                                <span class="ca-alumno__nombre">Santiago Báez</span>
+                                <span class="ca-alumno__nota">0/10</span>
+                            </button>
+                        </li>
+                        <li>
+                            <button class="ca-alumno" data-alumno="5" id="ca-alumno-5">
+                                <span class="ca-alumno__nombre">Benjamin</span>
+                                <span class="ca-alumno__nota">0/10</span>
+                            </button>
+                        </li>
+                        <li>
+                            <button class="ca-alumno" data-alumno="6" id="ca-alumno-6">
+                                <span class="ca-alumno__nombre">Sara Navarro</span>
+                                <span class="ca-alumno__nota">0/10</span>
+                            </button>
+                        </li>
+                        <li>
+                            <button class="ca-alumno" data-alumno="7" id="ca-alumno-7">
+                                <span class="ca-alumno__nombre">Jose López</span>
+                                <span class="ca-alumno__nota">0/10</span>
+                            </button>
+                        </li>
+                    </ul>
+                </div>
+
+                <!-- Panel derecho: trabajo del alumno (escritorio) -->
+                <div class="ca-detalle-panel" id="ca-detalle-panel">
+                    <h2 class="ca-detalle__titulo">Trabajo del Alumno</h2>
+                    <div class="ca-detalle__contenido" id="ca-detalle-contenido">
+                        <textarea class="ca-detalle__textarea" id="ca-detalle-textarea"
+                            placeholder="Escribe aquí el contenido del trabajo..." rows="8"></textarea>
+                        <div class="ca-detalle__archivos" id="ca-archivos-desktop">
+                            <div class="ca-archivo-chip" data-nombre="Documento.pdf">
+                                <svg class="ca-archivo__icono" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                                    <path d="M21.44 11.05l-9.19 9.19a6 6 0 01-8.49-8.49l9.19-9.19a4 4 0 015.66 5.66l-9.2 9.19a2 2 0 01-2.83-2.83l8.49-8.48"
+                                        stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                </svg>
+                                <span class="ca-archivo-chip__nombre">Documento.pdf</span>
+                                <button class="ca-archivo-chip__eliminar" aria-label="Eliminar Documento.pdf">&times;</button>
+                            </div>
+                            <div class="ca-archivo-chip" data-nombre="Documento.pdf">
+                                <svg class="ca-archivo__icono" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                                    <path d="M21.44 11.05l-9.19 9.19a6 6 0 01-8.49-8.49l9.19-9.19a4 4 0 015.66 5.66l-9.2 9.19a2 2 0 01-2.83-2.83l8.49-8.48"
+                                        stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                </svg>
+                                <span class="ca-archivo-chip__nombre">Documento.pdf</span>
+                                <button class="ca-archivo-chip__eliminar" aria-label="Eliminar Documento.pdf">&times;</button>
+                            </div>
                         </div>
-                        <div class="ca-archivo-chip" data-nombre="Documento.pdf">
-                            <svg class="ca-archivo__icono" viewBox="0 0 24 24" fill="none" aria-hidden="true">
-                                <path
-                                    d="M21.44 11.05l-9.19 9.19a6 6 0 01-8.49-8.49l9.19-9.19a4 4 0 015.66 5.66l-9.2 9.19a2 2 0 01-2.83-2.83l8.49-8.48"
-                                    stroke="currentColor" stroke-width="2" stroke-linecap="round"
-                                    stroke-linejoin="round" />
-                            </svg>
-                            <span class="ca-archivo-chip__nombre">Documento.pdf</span>
-                            <button class="ca-archivo-chip__eliminar"
-                                aria-label="Eliminar Documento.pdf">&times;</button>
+                        <div class="ca-detalle__acciones">
+                            <label class="ca-btn-adjuntar" id="ca-btn-adjuntar">
+                                <svg class="ca-btn-adjuntar__icono" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                                    <path d="M21.44 11.05l-9.19 9.19a6 6 0 01-8.49-8.49l9.19-9.19a4 4 0 015.66 5.66l-9.2 9.19a2 2 0 01-2.83-2.83l8.49-8.48"
+                                        stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                </svg>
+                                Adjuntar archivo
+                                <input type="file" class="ca-input-archivo" id="ca-input-archivo" multiple hidden>
+                            </label>
                         </div>
-                    </div>
-                    <div class="ca-detalle__acciones">
-                        <label class="ca-btn-adjuntar" id="ca-btn-adjuntar">
-                            <svg class="ca-btn-adjuntar__icono" viewBox="0 0 24 24" fill="none" aria-hidden="true">
-                                <path
-                                    d="M21.44 11.05l-9.19 9.19a6 6 0 01-8.49-8.49l9.19-9.19a4 4 0 015.66 5.66l-9.2 9.19a2 2 0 01-2.83-2.83l8.49-8.48"
-                                    stroke="currentColor" stroke-width="2" stroke-linecap="round"
-                                    stroke-linejoin="round" />
-                            </svg>
-                            Adjuntar archivo
-                            <input type="file" class="ca-input-archivo" id="ca-input-archivo" multiple hidden>
-                        </label>
-                    </div>
-                    <!-- Calificar -->
-                    <div class="ca-calificar" id="ca-calificar-desktop">
-                        <label class="ca-calificar__label" for="ca-nota-input">Calificación</label>
-                        <div class="ca-calificar__fila">
-                            <input type="number" class="ca-calificar__input" id="ca-nota-input" min="0" max="10"
-                                step="0.1" value="0" placeholder="0">
-                            <span class="ca-calificar__sobre">/10</span>
-                            <button class="ca-calificar__btn" id="ca-btn-calificar" type="button">Calificar</button>
+                        <!-- Calificar -->
+                        <div class="ca-calificar" id="ca-calificar-desktop">
+                            <label class="ca-calificar__label" for="ca-nota-input">Calificación</label>
+                            <div class="ca-calificar__fila">
+                                <input type="number" class="ca-calificar__input" id="ca-nota-input"
+                                    min="0" max="10" step="0.1" value="0" placeholder="0">
+                                <span class="ca-calificar__sobre">/10</span>
+                                <button class="ca-calificar__btn" id="ca-btn-calificar" type="button">Calificar</button>
+                            </div>
                         </div>
                     </div>
                 </div>
-            </div>
 
-        </main>
+            </main>
 
-        <!-- FOOTER -->
-        <footer class="site-footer rt-footer">
-            <div class="footer-container">
-                <a href="index.html" class="footer-logo" aria-label="DOA – Inicio">
-                    <img src="img/solo_buho_negro.png" class="footer-logo-icon" alt="DOA Logo">
-                </a>
-                <p class="footer-text">Todos los derechos reservados 2026&copy;</p>
-            </div>
-        </footer>
+            <!-- FOOTER -->
+            <footer class="pie-pagina rt-footer">
+                <div class="contenedor pie-pagina__interior">
+                    <a href="index.html" class="pie-pagina__logo">
+                        <img src="img/logo-gti.png" alt="GTI – Grado en Tecnologías Interactivas">
+                    </a>
+                    <p class="pie-pagina__derechos">Todos los derechos reservados 2026&copy;</p>
+                </div>
+            </footer>
 
-    </div>
+        </div><!-- /rt-main-wrapper -->
+
+    </div><!-- /rt-page-wrapper -->
 
     <script src="script.js" defer></script>
     <script>
@@ -396,5 +393,4 @@
     </script>
 
 </body>
-
 </html>

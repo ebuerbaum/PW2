@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login | DOA – Gestión Educativa Inteligente</title>
+    <link rel="stylesheet" href="estilos.css">
+</head>
+<body class="login-body">
+
+    <a href="doa.html" class="login-volver">
+        <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
+            <path d="M19 12H5M5 12l7 7M5 12l7-7" stroke="currentColor" stroke-width="2"
+                  stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+        Volver
+    </a>
+
+    <main class="login-main">
+
+        <img src="img/solo_buho_negro.png" alt="DOA" class="login-logo">
+        <h1 class="login-titulo">Bienvenido a DOA</h1>
+        <p class="login-subtitulo">Gestión educativa inteligente</p>
+
+        <div class="login-card">
+            <form id="login-form" class="login-form" novalidate>
+
+                <div class="login-campo">
+                    <label for="login-email" class="login-label">Correo electrónico</label>
+                    <input
+                        type="email"
+                        id="login-email"
+                        name="email"
+                        class="login-input"
+                        placeholder=""
+                        autocomplete="email"
+                        required>
+                </div>
+
+                <div class="login-campo">
+                    <label for="login-password" class="login-label">Contraseña</label>
+                    <div class="login-input-wrapper">
+                        <input
+                            type="password"
+                            id="login-password"
+                            name="password"
+                            class="login-input"
+                            placeholder=""
+                            autocomplete="current-password"
+                            required>
+                        <button type="button" class="login-toggle-pwd" id="toggle-pwd" aria-label="Mostrar contraseña">
+                            <!-- Ojo abierto -->
+                            <svg id="icon-eye" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                                <ellipse cx="12" cy="12" rx="9" ry="5.5" stroke="currentColor" stroke-width="2"/>
+                                <circle cx="12" cy="12" r="2.5" stroke="currentColor" stroke-width="2"/>
+                            </svg>
+                            <!-- Ojo tachado (oculto por defecto) -->
+                            <svg id="icon-eye-off" viewBox="0 0 24 24" fill="none" aria-hidden="true" style="display:none">
+                                <path d="M17.94 17.94A10.07 10.07 0 0112 20c-7 0-11-8-11-8a18.45 18.45 0 015.06-5.94"
+                                      stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                                <path d="M9.9 4.24A9.12 9.12 0 0112 4c7 0 11 8 11 8a18.5 18.5 0 01-2.16 3.19"
+                                      stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                                <line x1="1" y1="1" x2="23" y2="23" stroke="currentColor" stroke-width="2"
+                                      stroke-linecap="round"/>
+                            </svg>
+                        </button>
+                    </div>
+                </div>
+
+                <a href="recuperar-contrasena.html" class="login-olvide">¿Olvidaste tu contraseña?</a>
+
+                <button type="submit" class="login-btn">LOGIN</button>
+
+                <div id="login-feedback" class="login-feedback" hidden role="alert"></div>
+
+            </form>
+        </div>
+
+    </main>
+
+    <footer class="pie-pagina">
+        <div class="contenedor pie-pagina__interior">
+            <a href="index.html" class="pie-pagina__logo">
+                <img src="img/logo-gti.png" alt="GTI – Grado en Tecnologías Interactivas">
+            </a>
+            <p class="pie-pagina__derechos">Todos los derechos reservados 2026&copy;</p>
+        </div>
+    </footer>
+
+    <script>
+        /* Toggle mostrar / ocultar contraseña */
+        var toggleBtn = document.getElementById('toggle-pwd');
+        var pwdInput  = document.getElementById('login-password');
+        var iconEye   = document.getElementById('icon-eye');
+        var iconOff   = document.getElementById('icon-eye-off');
+
+        if (toggleBtn && pwdInput) {
+            toggleBtn.addEventListener('click', function () {
+                var visible = pwdInput.type === 'text';
+                pwdInput.type = visible ? 'password' : 'text';
+                iconEye.style.display = visible ? '' : 'none';
+                iconOff.style.display = visible ? 'none' : '';
+                toggleBtn.setAttribute('aria-label', visible ? 'Mostrar contraseña' : 'Ocultar contraseña');
+            });
+        }
+
+        /* Validación básica del formulario */
+        var loginForm = document.getElementById('login-form');
+        var feedback  = document.getElementById('login-feedback');
+
+        if (loginForm) {
+            loginForm.addEventListener('submit', function (e) {
+                e.preventDefault();
+                var email = document.getElementById('login-email').value.trim();
+                var pwd   = document.getElementById('login-password').value;
+
+                if (!email || !pwd) {
+                    feedback.textContent = 'Por favor, rellena todos los campos.';
+                    feedback.hidden = false;
+                    return;
+                }
+                if (!email.includes('@') || !email.includes('.')) {
+                    feedback.textContent = 'Introduce un correo electrónico válido.';
+                    feedback.hidden = false;
+                    return;
+                }
+
+                /* Credenciales de demo → redirigir a home_DOA */
+                window.location.href = 'home_DOA.html';
+            });
+        }
+    </script>
+</body>
+</html>

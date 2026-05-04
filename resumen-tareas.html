@@ -1,289 +1,249 @@
 <!DOCTYPE html>
 <html lang="es">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="DOA – Resumen de tareas y recursos de la asignatura Matemáticas.">
     <title>Resumen de Tareas | DOA – Gestión Educativa Inteligente</title>
     <link rel="stylesheet" href="estilos.css">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
 </head>
-
 <body class="rt-body">
 
     <!-- ============================================================
-         SIDEBAR (solo escritorio)
+         TOPBAR – ancho completo
          ============================================================ -->
-    <aside class="rt-sidebar" id="rt-sidebar" aria-label="Menú lateral">
-
-        <!-- Logo -->
-        <a href="index.html" class="rt-sidebar__logo" aria-label="DOA – Inicio">
+    <header class="rt-topbar">
+        <a href="home_DOA.html" class="rt-topbar__logo-mobile" aria-label="DOA – Inicio">
             <img src="img/logoPrincipal_monocromático.png" alt="DOA – Gestión Educativa Inteligente">
         </a>
 
-        <!-- Navegación lateral -->
-        <nav class="rt-sidebar__nav" aria-label="Secciones del aula">
-            <ul class="rt-sidebar__menu">
-                <li>
-                    <a href="#" class="rt-sidebar__link rt-sidebar__link--active" aria-current="page">
-                        <!-- Icono Clases -->
-                        <svg class="rt-sidebar__icon" viewBox="0 0 24 24" fill="none" aria-hidden="true">
-                            <rect x="3" y="4" width="18" height="16" rx="2" stroke="currentColor" stroke-width="2" />
-                            <path d="M7 8h10M7 12h6" stroke="currentColor" stroke-width="2" stroke-linecap="round" />
-                        </svg>
-                        Clases
-                    </a>
-                </li>
-                <li>
-                    <a href="#" class="rt-sidebar__link">
-                        <!-- Icono Calendario -->
-                        <svg class="rt-sidebar__icon" viewBox="0 0 24 24" fill="none" aria-hidden="true">
-                            <rect x="3" y="5" width="18" height="16" rx="2" stroke="currentColor" stroke-width="2" />
-                            <path d="M3 10h18" stroke="currentColor" stroke-width="2" />
-                            <path d="M8 3v4M16 3v4" stroke="currentColor" stroke-width="2" stroke-linecap="round" />
-                        </svg>
-                        Calendario
-                    </a>
-                </li>
-            </ul>
-        </nav>
+        <h1 class="rt-topbar__titulo">Matemáticas</h1>
 
-        <!-- Logout -->
-        <div class="rt-sidebar__footer">
-            <a href="#" class="rt-sidebar__logout" id="rt-logout-btn">
-                <!-- Icono logout -->
-                <svg class="rt-sidebar__icon" viewBox="0 0 24 24" fill="none" aria-hidden="true">
-                    <path d="M9 21H5a2 2 0 01-2-2V5a2 2 0 012-2h4" stroke="currentColor" stroke-width="2"
-                        stroke-linecap="round" stroke-linejoin="round" />
-                    <polyline points="16 17 21 12 16 7" stroke="currentColor" stroke-width="2" stroke-linecap="round"
-                        stroke-linejoin="round" />
-                    <line x1="21" y1="12" x2="9" y2="12" stroke="currentColor" stroke-width="2"
-                        stroke-linecap="round" />
+        <div class="rt-topbar__acciones">
+            <button class="rt-topbar__icono-btn" aria-label="Notificaciones" id="rt-btn-notificaciones">
+                <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                    <path d="M18 8A6 6 0 006 8c0 7-3 9-3 9h18s-3-2-3-9" stroke="currentColor" stroke-width="2"
+                        stroke-linecap="round" stroke-linejoin="round"/>
+                    <path d="M13.73 21a2 2 0 01-3.46 0" stroke="currentColor" stroke-width="2"
+                        stroke-linecap="round" stroke-linejoin="round"/>
                 </svg>
-                Logout
-            </a>
-        </div>
-    </aside>
-
-    <!-- ============================================================
-         ÁREA PRINCIPAL
-         ============================================================ -->
-    <div class="rt-main-wrapper">
-
-        <!-- ---- HEADER SUPERIOR ---- -->
-        <header class="rt-topbar">
-
-            <!-- Logo solo en móvil -->
-            <a href="index.html" class="rt-topbar__logo-mobile" aria-label="DOA – Inicio">
-                <img src="img/logoPrincipal_monocromático.png" alt="DOA">
-            </a>
-
-            <!-- Título de la asignatura -->
-            <h1 class="rt-topbar__titulo">Matemáticas</h1>
-
-            <!-- Acciones de usuario (escritorio) -->
-            <div class="rt-topbar__acciones">
-                <!-- Notificaciones -->
-                <button class="rt-topbar__icono-btn" aria-label="Notificaciones" id="rt-btn-notificaciones">
-                    <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
-                        <path d="M18 8A6 6 0 006 8c0 7-3 9-3 9h18s-3-2-3-9" stroke="currentColor" stroke-width="2"
-                            stroke-linecap="round" stroke-linejoin="round" />
-                        <path d="M13.73 21a2 2 0 01-3.46 0" stroke="currentColor" stroke-width="2"
-                            stroke-linecap="round" stroke-linejoin="round" />
+            </button>
+            <button class="rt-topbar__icono-btn" aria-label="Ayuda" id="rt-btn-ayuda">
+                <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                    <circle cx="12" cy="12" r="10" stroke="currentColor" stroke-width="2"/>
+                    <path d="M9.09 9a3 3 0 015.83 1c0 2-3 3-3 3" stroke="currentColor" stroke-width="2"
+                        stroke-linecap="round" stroke-linejoin="round"/>
+                    <line x1="12" y1="17" x2="12.01" y2="17" stroke="currentColor" stroke-width="2"
+                        stroke-linecap="round"/>
+                </svg>
+            </button>
+            <div class="rt-topbar__usuario">
+                <div class="rt-topbar__usuario-info">
+                    <span class="rt-topbar__usuario-nombre">Alex Rivera</span>
+                    <span class="rt-topbar__usuario-rol">Estudiante</span>
+                </div>
+                <div class="rt-topbar__avatar" aria-hidden="true">
+                    <svg viewBox="0 0 24 24" fill="none">
+                        <circle cx="12" cy="8" r="4" stroke="currentColor" stroke-width="1.8"/>
+                        <path d="M4 20c0-4 3.6-7 8-7s8 3 8 7" stroke="currentColor" stroke-width="1.8"
+                            stroke-linecap="round"/>
                     </svg>
-                </button>
-                <!-- Ayuda -->
-                <button class="rt-topbar__icono-btn" aria-label="Ayuda" id="rt-btn-ayuda">
-                    <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
-                        <circle cx="12" cy="12" r="10" stroke="currentColor" stroke-width="2" />
-                        <path d="M9.09 9a3 3 0 015.83 1c0 2-3 3-3 3" stroke="currentColor" stroke-width="2"
-                            stroke-linecap="round" stroke-linejoin="round" />
-                        <line x1="12" y1="17" x2="12.01" y2="17" stroke="currentColor" stroke-width="2"
-                            stroke-linecap="round" />
-                    </svg>
-                </button>
-                <!-- Usuario -->
-                <div class="rt-topbar__usuario">
-                    <div class="rt-topbar__usuario-info">
-                        <span class="rt-topbar__usuario-nombre">Alex Rivera</span>
-                        <span class="rt-topbar__usuario-rol">Estudiante</span>
-                    </div>
-                    <div class="rt-topbar__avatar" aria-hidden="true">
-                        <svg viewBox="0 0 24 24" fill="none">
-                            <circle cx="12" cy="8" r="4" stroke="currentColor" stroke-width="1.8" />
-                            <path d="M4 20c0-4 3.6-7 8-7s8 3 8 7" stroke="currentColor" stroke-width="1.8"
-                                stroke-linecap="round" />
-                        </svg>
-                    </div>
                 </div>
             </div>
-
-            <!-- Hamburguesa solo en móvil -->
-            <button class="hamburger rt-hamburger" id="rt-hamburger" aria-label="Abrir menú" aria-expanded="false"
-                aria-controls="rt-mobile-menu">
-                <span class="hamburger-line"></span>
-                <span class="hamburger-line"></span>
-                <span class="hamburger-line"></span>
-            </button>
-        </header>
-
-        <!-- ---- MENÚ MÓVIL ---- -->
-        <div id="rt-mobile-menu" class="mobile-menu rt-mobile-menu" hidden>
-            <ul class="mobile-nav-list">
-                <li><a href="#" class="mobile-nav-link mobile-nav-link--active" aria-current="page">Clases</a></li>
-                <li><a href="#" class="mobile-nav-link">Calendario</a></li>
-                <li><a href="#" class="mobile-nav-link mobile-nav-link--login">Logout</a></li>
-            </ul>
         </div>
 
-        <!-- ---- CONTENIDO PRINCIPAL ---- -->
-        <main class="rt-contenido" id="rt-contenido">
+        <button class="hamburger rt-hamburger" id="rt-hamburger" aria-label="Abrir menú"
+                aria-expanded="false" aria-controls="rt-mobile-menu">
+            <span class="hamburger-line"></span>
+            <span class="hamburger-line"></span>
+            <span class="hamburger-line"></span>
+        </button>
+    </header>
 
-            <!-- Pestañas de navegación (escritorio) -->
-            <nav class="rt-tabs" aria-label="Secciones de la asignatura" id="rt-tabs-desktop">
-                <button class="rt-tab" id="rt-tab-tablon" aria-selected="false" role="tab"
-                    aria-controls="rt-panel-tablon">Tablón</button>
-                <button class="rt-tab rt-tab--activo" id="rt-tab-trabajo" aria-selected="true" role="tab"
-                    aria-controls="rt-panel-trabajo">Trabajo de clase</button>
+    <!-- MENÚ MÓVIL -->
+    <div id="rt-mobile-menu" class="mobile-menu rt-mobile-menu" hidden>
+        <ul class="mobile-nav-list">
+            <li><a href="home_DOA.html" class="mobile-nav-link mobile-nav-link--active" aria-current="page">Clases</a></li>
+            <li><a href="#" class="mobile-nav-link">Calendario</a></li>
+            <li><a href="login.html" class="mobile-nav-link mobile-nav-link--login">Logout</a></li>
+        </ul>
+    </div>
+
+    <!-- ============================================================
+         LAYOUT: SIDEBAR + CONTENIDO
+         ============================================================ -->
+    <div class="rt-page-wrapper">
+
+        <!-- SIDEBAR -->
+        <aside class="rt-sidebar" id="rt-sidebar" aria-label="Menú lateral">
+            <nav class="rt-sidebar__nav" aria-label="Secciones del aula">
+                <ul class="rt-sidebar__menu">
+                    <li>
+                        <a href="home_DOA.html" class="rt-sidebar__link rt-sidebar__link--active" aria-current="page">
+                            <svg class="rt-sidebar__icon" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                                <rect x="3" y="4" width="18" height="16" rx="2" stroke="currentColor" stroke-width="2"/>
+                                <path d="M7 8h10M7 12h6" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                            </svg>
+                            Clases
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#" class="rt-sidebar__link">
+                            <svg class="rt-sidebar__icon" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                                <rect x="3" y="5" width="18" height="16" rx="2" stroke="currentColor" stroke-width="2"/>
+                                <path d="M3 10h18" stroke="currentColor" stroke-width="2"/>
+                                <path d="M8 3v4M16 3v4" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                            </svg>
+                            Calendario
+                        </a>
+                    </li>
+                </ul>
             </nav>
 
-            <!-- Panel: Trabajo de clase -->
-            <section class="rt-panel" id="rt-panel-trabajo" role="tabpanel" aria-labelledby="rt-tab-trabajo">
-
-                <!-- === TAREAS === -->
-                <div class="rt-seccion">
-                    <h2 class="rt-seccion__titulo">Tareas</h2>
-                    <div class="rt-seccion__linea"></div>
-
-                    <ul class="rt-lista" aria-label="Lista de tareas">
-
-                        <!-- Tarea 2 -->
-                        <li>
-                            <a href="#" class="rt-tarjeta" id="rt-tarea-2">
-                                <div class="rt-tarjeta__info">
-                                    <span class="rt-tarjeta__nombre">Tarea 2</span>
-                                    <span class="rt-tarjeta__fecha">19/04 23:55</span>
-                                </div>
-                            </a>
-                        </li>
-
-                        <!-- Tarea 3 -->
-                        <li>
-                            <a href="#" class="rt-tarjeta" id="rt-tarea-3">
-                                <div class="rt-tarjeta__info">
-                                    <span class="rt-tarjeta__nombre">Tarea 3</span>
-                                    <span class="rt-tarjeta__fecha">20/04 08:30</span>
-                                </div>
-                            </a>
-                        </li>
-
-                        <!-- Tarea 1 – Entregada con nota -->
-                        <li>
-                            <a href="#" class="rt-tarjeta" id="rt-tarea-1">
-                                <div class="rt-tarjeta__info">
-                                    <span class="rt-tarjeta__nombre">Tarea 1</span>
-                                    <span class="rt-tarjeta__fecha">17/04 23:55</span>
-                                </div>
-                                <div class="rt-tarjeta__estado">
-                                    <span class="rt-tarjeta__etiqueta">Entregada</span>
-                                    <span class="rt-tarjeta__nota">8,4/10</span>
-                                </div>
-                            </a>
-                        </li>
-
-                    </ul>
-                </div><!-- /tareas -->
-
-                <!-- === RECURSOS === -->
-                <div class="rt-seccion">
-                    <h2 class="rt-seccion__titulo">Recursos</h2>
-                    <div class="rt-seccion__linea"></div>
-
-                    <ul class="rt-lista" aria-label="Lista de recursos">
-
-                        <!-- Tema 1 -->
-                        <li>
-                            <a href="#" class="rt-tarjeta rt-tarjeta--recurso" id="rt-tema-1">
-                                <div class="rt-tarjeta__info">
-                                    <span class="rt-tarjeta__nombre rt-tarjeta__nombre--recurso">Tema 1</span>
-                                    <span class="rt-tarjeta__fecha">17/04 23:55</span>
-                                </div>
-                            </a>
-                        </li>
-
-                        <!-- Tema 2 -->
-                        <li>
-                            <a href="#" class="rt-tarjeta rt-tarjeta--recurso" id="rt-tema-2">
-                                <div class="rt-tarjeta__info">
-                                    <span class="rt-tarjeta__nombre rt-tarjeta__nombre--recurso">Tema 2</span>
-                                    <span class="rt-tarjeta__fecha">19/04 23:55</span>
-                                </div>
-                            </a>
-                        </li>
-
-                        <!-- Tema 3 -->
-                        <li>
-                            <a href="#" class="rt-tarjeta rt-tarjeta--recurso" id="rt-tema-3">
-                                <div class="rt-tarjeta__info">
-                                    <span class="rt-tarjeta__nombre rt-tarjeta__nombre--recurso">Tema 3</span>
-                                    <span class="rt-tarjeta__fecha">20/04 08:30</span>
-                                </div>
-                            </a>
-                        </li>
-
-                    </ul>
-                </div><!-- /recursos -->
-
-            </section>
-
-            <!-- Panel: Tablón (oculto por defecto) -->
-            <section class="rt-panel rt-panel--oculto" id="rt-panel-tablon" role="tabpanel"
-                aria-labelledby="rt-tab-tablon">
-                <p class="rt-panel__vacio">No hay publicaciones en el tablón.</p>
-            </section>
-
-        </main><!-- /rt-contenido -->
-
-        <!-- ---- FOOTER ---- -->
-        <footer class="site-footer rt-footer">
-            <div class="footer-container">
-                <a href="index.html" class="footer-logo" aria-label="DOA – Inicio">
-                    <img src="img/solo_buho_negro.png" class="footer-logo-icon" alt="DOA Logo">
+            <div class="rt-sidebar__footer">
+                <a href="login.html" class="rt-sidebar__logout" id="rt-logout-btn">
+                    <svg class="rt-sidebar__icon" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                        <path d="M9 21H5a2 2 0 01-2-2V5a2 2 0 012-2h4" stroke="currentColor" stroke-width="2"
+                            stroke-linecap="round" stroke-linejoin="round"/>
+                        <polyline points="16 17 21 12 16 7" stroke="currentColor" stroke-width="2"
+                            stroke-linecap="round" stroke-linejoin="round"/>
+                        <line x1="21" y1="12" x2="9" y2="12" stroke="currentColor" stroke-width="2"
+                            stroke-linecap="round"/>
+                    </svg>
+                    Logout
                 </a>
-                <p class="footer-text">Todos los derechos reservados 2026&copy;</p>
             </div>
-        </footer>
+        </aside>
 
-        <!-- Barra de pestañas inferior (solo móvil) -->
-        <nav class="rt-bottom-tabs" aria-label="Secciones de la asignatura (móvil)" id="rt-bottom-tabs">
-            <button class="rt-bottom-tab" id="rt-mob-tab-tablon" aria-selected="false">TABLÓN</button>
-            <button class="rt-bottom-tab rt-bottom-tab--activo" id="rt-mob-tab-trabajo" aria-selected="true">TRABAJO DE
-                CLASE</button>
-        </nav>
+        <!-- ÁREA PRINCIPAL -->
+        <div class="rt-main-wrapper">
 
-    </div><!-- /rt-main-wrapper -->
+            <!-- CONTENIDO PRINCIPAL -->
+            <main class="rt-contenido" id="rt-contenido">
+
+                <nav class="rt-tabs" aria-label="Secciones de la asignatura" id="rt-tabs-desktop">
+                    <button class="rt-tab" id="rt-tab-tablon" aria-selected="false" role="tab"
+                        aria-controls="rt-panel-tablon">Tablón</button>
+                    <button class="rt-tab rt-tab--activo" id="rt-tab-trabajo" aria-selected="true" role="tab"
+                        aria-controls="rt-panel-trabajo">Trabajo de clase</button>
+                </nav>
+
+                <!-- Panel: Trabajo de clase -->
+                <section class="rt-panel" id="rt-panel-trabajo" role="tabpanel" aria-labelledby="rt-tab-trabajo">
+
+                    <!-- TAREAS -->
+                    <div class="rt-seccion">
+                        <h2 class="rt-seccion__titulo">Tareas</h2>
+                        <div class="rt-seccion__linea"></div>
+                        <ul class="rt-lista" aria-label="Lista de tareas">
+                            <li>
+                                <a href="#" class="rt-tarjeta" id="rt-tarea-2">
+                                    <div class="rt-tarjeta__info">
+                                        <span class="rt-tarjeta__nombre">Tarea 2</span>
+                                        <span class="rt-tarjeta__fecha">19/04 23:55</span>
+                                    </div>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="#" class="rt-tarjeta" id="rt-tarea-3">
+                                    <div class="rt-tarjeta__info">
+                                        <span class="rt-tarjeta__nombre">Tarea 3</span>
+                                        <span class="rt-tarjeta__fecha">20/04 08:30</span>
+                                    </div>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="calificar.html" class="rt-tarjeta" id="rt-tarea-1">
+                                    <div class="rt-tarjeta__info">
+                                        <span class="rt-tarjeta__nombre">Tarea 1</span>
+                                        <span class="rt-tarjeta__fecha">17/04 23:55</span>
+                                    </div>
+                                    <div class="rt-tarjeta__estado">
+                                        <span class="rt-tarjeta__etiqueta">Entregada</span>
+                                        <span class="rt-tarjeta__nota">8,4/10</span>
+                                    </div>
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+
+                    <!-- RECURSOS -->
+                    <div class="rt-seccion">
+                        <h2 class="rt-seccion__titulo">Recursos</h2>
+                        <div class="rt-seccion__linea"></div>
+                        <ul class="rt-lista" aria-label="Lista de recursos">
+                            <li>
+                                <a href="#" class="rt-tarjeta rt-tarjeta--recurso" id="rt-tema-1">
+                                    <div class="rt-tarjeta__info">
+                                        <span class="rt-tarjeta__nombre rt-tarjeta__nombre--recurso">Tema 1</span>
+                                        <span class="rt-tarjeta__fecha">17/04 23:55</span>
+                                    </div>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="#" class="rt-tarjeta rt-tarjeta--recurso" id="rt-tema-2">
+                                    <div class="rt-tarjeta__info">
+                                        <span class="rt-tarjeta__nombre rt-tarjeta__nombre--recurso">Tema 2</span>
+                                        <span class="rt-tarjeta__fecha">19/04 23:55</span>
+                                    </div>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="#" class="rt-tarjeta rt-tarjeta--recurso" id="rt-tema-3">
+                                    <div class="rt-tarjeta__info">
+                                        <span class="rt-tarjeta__nombre rt-tarjeta__nombre--recurso">Tema 3</span>
+                                        <span class="rt-tarjeta__fecha">20/04 08:30</span>
+                                    </div>
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+
+                </section>
+
+                <!-- Panel: Tablón -->
+                <section class="rt-panel rt-panel--oculto" id="rt-panel-tablon" role="tabpanel"
+                    aria-labelledby="rt-tab-tablon">
+                    <p class="rt-panel__vacio">No hay publicaciones en el tablón.</p>
+                </section>
+
+            </main>
+
+            <!-- FOOTER -->
+            <footer class="pie-pagina rt-footer">
+                <div class="contenedor pie-pagina__interior">
+                    <a href="index.html" class="pie-pagina__logo">
+                        <img src="img/logo-gti.png" alt="GTI – Grado en Tecnologías Interactivas">
+                    </a>
+                    <p class="pie-pagina__derechos">Todos los derechos reservados 2026&copy;</p>
+                </div>
+            </footer>
+
+            <!-- Barra de pestañas inferior (solo móvil) -->
+            <nav class="rt-bottom-tabs" aria-label="Secciones de la asignatura (móvil)" id="rt-bottom-tabs">
+                <button class="rt-bottom-tab" id="rt-mob-tab-tablon" aria-selected="false">TABLÓN</button>
+                <button class="rt-bottom-tab rt-bottom-tab--activo" id="rt-mob-tab-trabajo"
+                        aria-selected="true">TRABAJO DE CLASE</button>
+            </nav>
+
+        </div><!-- /rt-main-wrapper -->
+
+    </div><!-- /rt-page-wrapper -->
 
     <script src="script.js" defer></script>
     <script>
-        /* ============================================================
-           RESUMEN DE TAREAS – lógica de pestañas y menú hamburguesa
-           ============================================================ */
         (function () {
 
             /* -- Pestañas escritorio -- */
-            var tabTablon = document.getElementById('rt-tab-tablon');
+            var tabTablon  = document.getElementById('rt-tab-tablon');
             var tabTrabajo = document.getElementById('rt-tab-trabajo');
-            var panelTablon = document.getElementById('rt-panel-tablon');
+            var panelTablon  = document.getElementById('rt-panel-tablon');
             var panelTrabajo = document.getElementById('rt-panel-trabajo');
 
             function activarTab(tabActiva, panelActivo, tabInactiva, panelInactivo) {
                 tabActiva.classList.add('rt-tab--activo');
                 tabActiva.setAttribute('aria-selected', 'true');
                 panelActivo.classList.remove('rt-panel--oculto');
-
                 tabInactiva.classList.remove('rt-tab--activo');
                 tabInactiva.setAttribute('aria-selected', 'false');
                 panelInactivo.classList.add('rt-panel--oculto');
@@ -292,7 +252,6 @@
             if (tabTablon && tabTrabajo) {
                 tabTablon.addEventListener('click', function () {
                     activarTab(tabTablon, panelTablon, tabTrabajo, panelTrabajo);
-                    // sincronizar móvil
                     sincronizarMobTab('tablon');
                 });
                 tabTrabajo.addEventListener('click', function () {
@@ -301,8 +260,8 @@
                 });
             }
 
-            /* -- Pestañas móvil (barra inferior) -- */
-            var mobTablon = document.getElementById('rt-mob-tab-tablon');
+            /* -- Pestañas móvil -- */
+            var mobTablon  = document.getElementById('rt-mob-tab-tablon');
             var mobTrabajo = document.getElementById('rt-mob-tab-trabajo');
 
             function sincronizarMobTab(id) {
@@ -331,8 +290,8 @@
                 });
             }
 
-            /* -- Hamburguesa móvil (sidebar en móvil) -- */
-            var hamburger = document.getElementById('rt-hamburger');
+            /* -- Hamburguesa -- */
+            var hamburger  = document.getElementById('rt-hamburger');
             var mobileMenu = document.getElementById('rt-mobile-menu');
 
             if (hamburger && mobileMenu) {
@@ -341,7 +300,6 @@
                     mobileMenu.hidden = abierto;
                     hamburger.setAttribute('aria-expanded', String(!abierto));
                 });
-
                 var enlacesMob = mobileMenu.querySelectorAll('a');
                 for (var i = 0; i < enlacesMob.length; i++) {
                     enlacesMob[i].addEventListener('click', function () {
@@ -355,5 +313,4 @@
     </script>
 
 </body>
-
 </html>

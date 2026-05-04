@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Recuperar contraseña | DOA – Gestión Educativa Inteligente</title>
+    <link rel="stylesheet" href="estilos.css">
+</head>
+<body class="login-body">
+
+    <a href="login.html" class="login-volver">
+        <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
+            <path d="M19 12H5M5 12l7 7M5 12l7-7" stroke="currentColor" stroke-width="2"
+                  stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+        Volver
+    </a>
+
+    <main class="login-main">
+
+        <img src="img/solo_buho_negro.png" alt="DOA" class="login-logo">
+        <h1 class="login-titulo">Recuperar contraseña</h1>
+        <p class="login-subtitulo">
+            Introduce tu correo y te enviaremos un código de verificación.
+        </p>
+
+        <div class="login-card">
+            <form id="recuperar-form" class="login-form" novalidate>
+
+                <div class="login-campo">
+                    <label for="recuperar-email" class="login-label">Correo electrónico</label>
+                    <input
+                        type="email"
+                        id="recuperar-email"
+                        name="email"
+                        class="login-input"
+                        placeholder=""
+                        autocomplete="email"
+                        required>
+                </div>
+
+                <button type="submit" class="login-btn">Enviar código</button>
+
+                <div id="recuperar-feedback" class="login-feedback" hidden role="alert"></div>
+
+            </form>
+        </div>
+
+        <a href="login.html" class="recuperar-volver">← Volver al inicio de sesión</a>
+
+    </main>
+
+    <footer class="pie-pagina">
+        <div class="contenedor pie-pagina__interior">
+            <a href="index.html" class="pie-pagina__logo">
+                <img src="img/logo-gti.png" alt="GTI – Grado en Tecnologías Interactivas">
+            </a>
+            <p class="pie-pagina__derechos">Todos los derechos reservados 2026&copy;</p>
+        </div>
+    </footer>
+
+    <script>
+        var form     = document.getElementById('recuperar-form');
+        var feedback = document.getElementById('recuperar-feedback');
+
+        if (form) {
+            form.addEventListener('submit', function (e) {
+                e.preventDefault();
+                var email = document.getElementById('recuperar-email').value.trim();
+
+                if (!email) {
+                    mostrarError('Por favor, introduce tu correo electrónico.');
+                    return;
+                }
+                if (!email.includes('@') || !email.includes('.')) {
+                    mostrarError('Introduce un correo electrónico válido.');
+                    return;
+                }
+
+                /* Simular envío exitoso */
+                feedback.textContent = '¡Código enviado! Revisa tu bandeja de entrada.';
+                feedback.className = 'login-feedback login-feedback--exito';
+                feedback.hidden = false;
+                form.querySelector('button[type="submit"]').disabled = true;
+            });
+        }
+
+        function mostrarError(msg) {
+            feedback.textContent = msg;
+            feedback.className = 'login-feedback';
+            feedback.hidden = false;
+        }
+    </script>
+</body>
+</html>
