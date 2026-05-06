@@ -288,21 +288,25 @@
     </div><!-- /rt-page-wrapper -->
 
     <script>
+        /* IIFE: evita que las variables locales se filtren al ámbito global */
         (function () {
             /* -- Perfil popup -- */
             var perfilBtn   = document.getElementById('rt-perfil-btn');
             var perfilPopup = document.getElementById('rt-perfil-popup');
             if (perfilBtn && perfilPopup) {
                 perfilBtn.addEventListener('click', function (e) {
+                    /* Evita que el clic llegue al documento y cierre el popup recién abierto */
                     e.stopPropagation();
                     var abierto = !perfilPopup.hidden;
                     perfilPopup.hidden = abierto;
                     perfilBtn.setAttribute('aria-expanded', String(!abierto));
                 });
+                /* Patrón "clic fuera": cualquier clic en el documento cierra el popup */
                 document.addEventListener('click', function () {
                     perfilPopup.hidden = true;
                     perfilBtn.setAttribute('aria-expanded', 'false');
                 });
+                /* Evita que los clics dentro del popup propaguen y lo cierren */
                 perfilPopup.addEventListener('click', function (e) { e.stopPropagation(); });
             }
 

@@ -507,6 +507,7 @@
 
     <script src="script.js" defer></script>
     <script>
+        /* IIFE: aisla las variables de este módulo del ámbito global */
         (function () {
 
             /* -- Perfil popup -- */
@@ -514,11 +515,13 @@
             var perfilPopup = document.getElementById('rt-perfil-popup');
             if (perfilBtn && perfilPopup) {
                 perfilBtn.addEventListener('click', function (e) {
+                    /* Detiene la propagación para que el listener global no lo cierre inmediatamente */
                     e.stopPropagation();
                     var abierto = !perfilPopup.hidden;
                     perfilPopup.hidden = abierto;
                     perfilBtn.setAttribute('aria-expanded', String(!abierto));
                 });
+                /* Clic fuera del popup → cerrarlo */
                 document.addEventListener('click', function () {
                     perfilPopup.hidden = true;
                     perfilBtn.setAttribute('aria-expanded', 'false');
@@ -527,6 +530,7 @@
             }
 
             /* -- Botón Crear -- */
+            /* Mismo patrón de clic-fuera que el popup de perfil */
             var crearBtn  = document.getElementById('rt-crear-btn');
             var crearMenu = document.getElementById('rt-crear-menu');
             if (crearBtn && crearMenu) {
@@ -540,6 +544,7 @@
                     crearMenu.hidden = true;
                     crearBtn.setAttribute('aria-expanded', 'false');
                 });
+                /* Cierra el menú al seleccionar una opción */
                 crearMenu.querySelectorAll('.rt-crear-opcion').forEach(function (btn) {
                     btn.addEventListener('click', function () {
                         crearMenu.hidden = true;
@@ -549,12 +554,14 @@
             }
 
             /* -- Acordeones de recursos -- */
+            /* aria-controls apunta al id de la lista de archivos que se abre/cierra */
             document.querySelectorAll('.rt-acordeon__cabecera').forEach(function (btn) {
                 btn.addEventListener('click', function () {
                     var expanded = this.getAttribute('aria-expanded') === 'true';
                     var lista = document.getElementById(this.getAttribute('aria-controls'));
                     this.setAttribute('aria-expanded', String(!expanded));
                     lista.hidden = expanded;
+                    /* Rota la flecha CSS mediante clase en lugar de transformar inline */
                     this.querySelector('.rt-acordeon__flecha').classList.toggle('rt-acordeon__flecha--abierta', !expanded);
                 });
             });
@@ -565,6 +572,7 @@
             var panelTablon  = document.getElementById('rt-panel-tablon');
             var panelTrabajo = document.getElementById('rt-panel-trabajo');
 
+            /* Activa una pestaña y su panel; desactiva la otra */
             function activarTab(tabActiva, panelActivo, tabInactiva, panelInactivo) {
                 tabActiva.classList.add('rt-tab--activo');
                 tabActiva.setAttribute('aria-selected', 'true');
@@ -589,6 +597,7 @@
             var mobTablon  = document.getElementById('rt-mob-tab-tablon');
             var mobTrabajo = document.getElementById('rt-mob-tab-trabajo');
 
+            /* Mantiene en sincronía las pestañas de la barra inferior (móvil) con las de escritorio */
             function sincronizarMobTab(id) {
                 if (!mobTablon || !mobTrabajo) return;
                 if (id === 'tablon') {
@@ -633,6 +642,7 @@
                         '</div>' +
                         '<div class="tablon-comentario__contenido">' +
                             '<span class="tablon-comentario__autor">Alex Rivera</span>' +
+                            /* replace evita XSS: convierte "<" en entidad HTML antes de inyectar */
                             '<p class="tablon-comentario__texto">' + texto.replace(/</g, '&lt;') + '</p>' +
                         '</div>';
 
@@ -642,6 +652,7 @@
                 }
 
                 btn.addEventListener('click', enviarComentario);
+                /* Permite enviar el comentario pulsando Intro, igual que el botón */
                 input.addEventListener('keydown', function (e) {
                     if (e.key === 'Enter') enviarComentario();
                 });

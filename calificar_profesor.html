@@ -270,17 +270,20 @@
 
     <script src="script.js" defer></script>
     <script>
+        /* IIFE: aisla las variables de este módulo del ámbito global */
         (function () {
             /* -- Perfil popup -- */
             var perfilBtn   = document.getElementById('rt-perfil-btn');
             var perfilPopup = document.getElementById('rt-perfil-popup');
             if (perfilBtn && perfilPopup) {
                 perfilBtn.addEventListener('click', function (e) {
+                    /* Evita que el clic llegue al documento y cierre el popup recién abierto */
                     e.stopPropagation();
                     var abierto = !perfilPopup.hidden;
                     perfilPopup.hidden = abierto;
                     perfilBtn.setAttribute('aria-expanded', String(!abierto));
                 });
+                /* Clic fuera del popup → cerrarlo */
                 document.addEventListener('click', function () {
                     perfilPopup.hidden = true;
                     perfilBtn.setAttribute('aria-expanded', 'false');
@@ -308,9 +311,11 @@
 
             /* -- Seleccionar alumno -- */
             var alumnos = document.querySelectorAll('.ca-alumno');
+            /* matchMedia permite saber en tiempo real si estamos en móvil */
             var esMobil = window.matchMedia('(max-width: 720px)');
             var textoDemo = '';
 
+            /* Elimina cualquier detalle inline abierto previamente */
             function cerrarTodosInline() {
                 var abiertos = document.querySelectorAll('.ca-inline-detalle');
                 for (var j = 0; j < abiertos.length; j++) {
@@ -318,6 +323,8 @@
                 }
             }
 
+            /* En móvil, inserta el panel de trabajo del alumno justo después del <li> seleccionado
+               en lugar de mostrarlo en la columna derecha (que no existe en pantallas pequeñas) */
             function crearInlineDetalle(li) {
                 cerrarTodosInline();
                 var div = document.createElement('div');
@@ -339,6 +346,7 @@
                     '<span class="ca-calificar__sobre">/10</span>' +
                     '<button class="ca-calificar__btn ca-btn-calificar-inline" type="button">Calificar</button>' +
                     '</div></div>';
+                /* Inserta el div a continuación del <li> del alumno seleccionado */
                 li.parentNode.insertBefore(div, li.nextSibling);
                 div.querySelector('.ca-inline-detalle__cerrar').addEventListener('click', function () {
                     div.remove();
@@ -353,6 +361,7 @@
                         alumnos[k].classList.remove('ca-alumno--activo');
                     }
                     this.classList.add('ca-alumno--activo');
+                    /* En móvil no hay columna derecha, se inyecta el detalle en línea */
                     if (esMobil.matches) {
                         crearInlineDetalle(this.closest('li'));
                     }
@@ -360,6 +369,7 @@
             }
 
             /* -- Eliminar chips de archivo -- */
+            /* Usa delegación de eventos: un solo listener por contenedor en vez de uno por chip */
             function inicializarEliminaciones(contenedor) {
                 contenedor.addEventListener('click', function (e) {
                     var btn = e.target.closest('.ca-archivo-chip__eliminar');
@@ -374,12 +384,14 @@
                 var inputs = contenedor.querySelectorAll('.ca-input-archivo');
                 for (var f = 0; f < inputs.length; f++) {
                     inputs[f].addEventListener('change', function () {
+                        /* Soporta tanto el panel escritorio (.ca-detalle__contenido) como el inline */
                         var archivosDiv = this.closest('.ca-detalle__contenido, .ca-inline-detalle')
                             .querySelector('.ca-detalle__archivos, .ca-archivos-inline');
                         if (!archivosDiv) return;
                         for (var a = 0; a < this.files.length; a++) {
                             agregarChip(archivosDiv, this.files[a].name);
                         }
+                        /* Limpia el input para permitir seleccionar el mismo archivo de nuevo */
                         this.value = '';
                     });
                 }
@@ -393,6 +405,7 @@
                     '</div>';
             }
 
+            /* Usa un div temporal para convertir el HTML del chip en un nodo DOM real */
             function agregarChip(contenedor, nombre) {
                 var temp = document.createElement('div');
                 temp.innerHTML = crearChipHTML(nombre);
@@ -416,6 +429,7 @@
             }
 
             /* -- Calificar: inline (delegado) -- */
+            /* Se usa delegación al documento porque los botones inline se crean dinámicamente */
             document.addEventListener('click', function (e) {
                 var btn = e.target.closest('.ca-btn-calificar-inline');
                 if (!btn) return;
@@ -433,6 +447,7 @@
                 if (!activo) return;
                 var badge = activo.querySelector('.ca-alumno__nota');
                 if (badge) {
+                    /* toFixed(1) asegura un decimal; replace usa coma decimal (notación española) */
                     badge.textContent = nota.toFixed(1).replace('.', ',') + '/10';
                 }
             }

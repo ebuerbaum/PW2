@@ -96,8 +96,10 @@
 
         if (toggleBtn && pwdInput) {
             toggleBtn.addEventListener('click', function () {
+                /* Si ya es texto, volvemos a ocultarlo; si es password, lo mostramos */
                 var visible = pwdInput.type === 'text';
                 pwdInput.type = visible ? 'password' : 'text';
+                /* Intercambia el icono de ojo abierto / tachado según el estado */
                 iconEye.style.display = visible ? '' : 'none';
                 iconOff.style.display = visible ? 'none' : '';
                 toggleBtn.setAttribute('aria-label', visible ? 'Mostrar contraseña' : 'Ocultar contraseña');
@@ -125,7 +127,7 @@
                     return;
                 }
 
-                /* Credenciales de demo → redirigir a home_DOA */
+                /* Demo: cualquier credencial válida redirige directamente, sin autenticación real */
                 window.location.href = 'home_DOA.html';
             });
         }

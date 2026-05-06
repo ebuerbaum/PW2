@@ -844,6 +844,8 @@ p {
   transition: transform var(--transition), opacity var(--transition);
 }
 
+/* Animación "X" al abrir el menú: las líneas 1 y 3 se trasladan y rotan para formar una cruz,
+   la línea central desaparece */
 .hamburger[aria-expanded="true"] .hamburger-line:nth-child(1) {
   transform: translateY(9px) rotate(45deg);
 }
@@ -880,8 +882,9 @@ p {
 .mobile-nav-link {
   display: block;
   padding: var(--space-md) var(--space-lg);
+  font-family: var(--fuente-titular);
   font-size: 1rem;
-  font-weight: 500;
+  font-weight: 600;
   color: var(--color-text);
   border-bottom: 1px solid var(--color-border);
   transition: background-color var(--transition);
@@ -953,6 +956,7 @@ p {
   font-size: 1rem;
 }
 
+/* stroke-dasharray: 30 (trazo visible) / 60 (hueco) crea el arco animado del spinner */
 .btn-spinner {
   display: none;
   width: 18px;
@@ -1131,6 +1135,7 @@ p {
   animation: slide-in 0.3s ease-out;
 }
 
+/* Necesario porque algunos navegadores no aplican display:none al atributo "hidden" en todos los contextos */
 .form-feedback[hidden] {
   display: none;
 }
@@ -1737,6 +1742,8 @@ p {
 }
 
 /* ----- Sidebar (escritorio) ----- */
+/* position:sticky + height:calc(100vh - 65px) hace que el sidebar quede fijo
+   mientras el área principal hace scroll, sin salirse de la pantalla */
 .rt-sidebar {
   width: 200px;
   flex-shrink: 0;
@@ -2193,7 +2200,7 @@ p {
     padding-bottom: 70px;
   }
 
-  /* Barra inferior visible */
+  /* Barra inferior visible: reemplaza al sidebar en móvil, fijada al fondo de la pantalla */
   .rt-bottom-tabs {
     display: flex;
     position: fixed;
@@ -2421,12 +2428,12 @@ p {
     overflow-y: visible;
   }
 
-  /* Ocultar panel derecho en móvil */
+  /* En móvil no hay espacio para dos columnas: se oculta el panel derecho */
   .ca-detalle-panel {
     display: none;
   }
 
-  /* Mostrar detalle inline en móvil */
+  /* El detalle inline se inyecta por JS justo bajo el alumno seleccionado */
   .ca-inline-detalle {
     display: block;
     position: relative;
@@ -3440,6 +3447,7 @@ p {
   transition: transform 0.2s;
 }
 
+/* La clase se añade/elimina desde JS al abrir/cerrar; rota la flecha ▼ → ▲ */
 .rt-acordeon__flecha--abierta {
   transform: rotate(180deg);
 }
@@ -4222,7 +4230,7 @@ p {
 .menu-movil[hidden]   { display: none; }
 .rt-menu-movil        { position: fixed; top: 65px; left: 0; right: 0; z-index: 59; }
 .lista-nav-movil      { list-style: none; padding: var(--space-sm) 0; }
-.enlace-nav-movil     { display: block; padding: var(--space-md) var(--space-lg); font-size: 1rem; font-weight: 500; color: var(--color-text); border-bottom: 1px solid var(--color-border); transition: background-color var(--transition); }
+.enlace-nav-movil     { display: block; padding: var(--space-md) var(--space-lg); font-family: var(--fuente-titular); font-size: 1rem; font-weight: 600; color: var(--color-text); border-bottom: 1px solid var(--color-border); transition: background-color var(--transition); }
 .enlace-nav-movil:hover        { background-color: var(--color-bg-alt); }
 .enlace-nav-movil--activo      { color: var(--color-primary); font-weight: 600; background-color: var(--color-primary-light); }
 .enlace-nav-movil--sesion      { color: var(--color-primary); font-weight: 700; border-bottom: none; }
@@ -4288,6 +4296,181 @@ p {
 .gu-detalles-informacion  { flex: 1; display: flex; flex-direction: column; justify-content: center; }
 .activo-movil             { /* clase de estado, sin estilos base propios */ }
 
+/* ============================================================
+   ENTREGAR TAREA (et-) – página del alumno para entregar
+   ============================================================ */
+
+.et-contenido {
+  padding: 32px 40px;
+  max-width: 900px;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.et-tarjeta {
+  background: #ffffff;
+  border: 1px solid #e5e7eb;
+  border-radius: 12px;
+  overflow: hidden;
+}
+
+/* Cabecera de la tarjeta */
+.et-tarjeta__cabecera {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 20px 28px;
+  border-bottom: 1px solid #e5e7eb;
+}
+
+.et-tarjeta__titulo {
+  font-family: 'Nunito', sans-serif;
+  font-weight: 700;
+  font-size: 1.5rem;
+  color: #1f2937;
+  margin: 0;
+}
+
+.et-btn-cerrar {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 36px;
+  height: 36px;
+  color: #6b7280;
+  border-radius: 8px;
+  transition: color 0.2s, background 0.2s;
+  flex-shrink: 0;
+}
+
+.et-btn-cerrar:hover {
+  color: #1f2937;
+  background: #f3f4f6;
+}
+
+.et-btn-cerrar svg {
+  width: 22px;
+  height: 22px;
+}
+
+/* Cuerpo */
+.et-tarjeta__cuerpo {
+  padding: 28px 28px 24px;
+}
+
+.et-descripcion {
+  font-family: 'Roboto', sans-serif;
+  font-size: 0.95rem;
+  color: #374151;
+  line-height: 1.7;
+  margin: 0 0 20px;
+}
+
+/* Archivo adjunto del profesor */
+.et-archivo-adjunto {
+  display: inline-block;
+  font-family: 'Roboto', sans-serif;
+  font-size: 0.95rem;
+  color: var(--color-principal, #0787f0);
+  text-decoration: underline;
+  margin-bottom: 24px;
+}
+
+.et-archivo-adjunto:hover {
+  color: #0670cc;
+}
+
+/* Textarea de respuesta */
+.et-textarea {
+  display: block;
+  width: 100%;
+  box-sizing: border-box;
+  min-height: 120px;
+  border: 2px solid var(--color-principal, #0787f0);
+  border-radius: 8px;
+  padding: 14px 16px;
+  font-family: 'Roboto', sans-serif;
+  font-size: 0.95rem;
+  color: #374151;
+  resize: vertical;
+  outline: none;
+  transition: border-color 0.2s;
+  margin-bottom: 24px;
+  background: #ffffff;
+}
+
+.et-textarea::placeholder {
+  color: #9ca3af;
+}
+
+/* Fila de acciones */
+.et-acciones {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 12px;
+}
+
+/* Botones compartidos */
+.et-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: var(--color-principal, #0787f0);
+  color: #ffffff;
+  border: none;
+  border-radius: 24px;
+  padding: 12px 22px;
+  font-family: 'Nunito', sans-serif;
+  font-weight: 700;
+  font-size: 0.9rem;
+  letter-spacing: 0.04em;
+  cursor: pointer;
+  transition: background 0.2s, transform 0.1s;
+  text-decoration: none;
+  white-space: nowrap;
+}
+
+.et-btn:hover {
+  background: #0670cc;
+}
+
+.et-btn:active {
+  transform: scale(0.97);
+}
+
+.et-btn--adjuntar svg,
+.et-btn--entregar svg {
+  width: 18px;
+  height: 18px;
+  flex-shrink: 0;
+}
+
+/* Responsive mobile */
+@media (max-width: 900px) {
+  .et-contenido {
+    padding: 16px;
+  }
+
+  .et-tarjeta__cabecera {
+    padding: 16px 20px;
+  }
+
+  .et-tarjeta__cuerpo {
+    padding: 20px 20px 20px;
+  }
+
+  .et-acciones {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .et-btn {
+    justify-content: center;
+    width: 100%;
+  }
+}
+
 /* ── Alias responsive: hamburguesa y barra lateral en móvil ── */
 @media (max-width: 720px) {
   .rt-barra-lateral       { display: none; }
@@ -4302,5 +4485,6 @@ p {
   .gu-elemento            { padding: 10px 12px; }
   .gu-detalles-titulo-escritorio { display: none; }
   .gu-lista-columna.oculto-movil { display: none; }
+  /* En móvil el panel de detalles ocupa toda la pantalla como una modal a pantalla completa */
   .gu-detalles-columna.activo-movil { display: flex; position: fixed; top: 0; left: 0; right: 0; bottom: 0; z-index: 200; background: #ffffff; overflow-y: auto; width: 100%; box-sizing: border-box; flex-direction: column; }
 }

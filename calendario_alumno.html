@@ -10,7 +10,6 @@
            CALENDARIO ALUMNO – Estilos específicos
            ============================================================ */
 
-        /* ----- Contenido principal ----- */
         .cal-contenido {
             flex: 1;
             padding: var(--esp-lg);
@@ -18,7 +17,6 @@
             background-color: var(--color-neutro);
         }
 
-        /* ----- Tarjeta contenedora del calendario ----- */
         .cal-card {
             background: var(--color-blanco);
             border-radius: 16px;
@@ -29,7 +27,7 @@
             margin: 0 auto;
         }
 
-        /* ----- Cabecera del calendario ----- */
+        /* ----- Cabecera ----- */
         .cal-header {
             display: flex;
             align-items: center;
@@ -73,10 +71,7 @@
             border-color: #b5b9c1;
         }
 
-        .cal-nav-btn svg {
-            width: 14px;
-            height: 14px;
-        }
+        .cal-nav-btn svg { width: 14px; height: 14px; }
 
         .cal-header__der {
             display: flex;
@@ -84,7 +79,7 @@
             gap: var(--esp-md);
         }
 
-        /* Leyenda */
+        /* ----- Leyenda ----- */
         .cal-leyenda {
             display: flex;
             align-items: center;
@@ -110,106 +105,11 @@
             flex-shrink: 0;
         }
 
-        .cal-leyenda__punto--tarea {
-            background-color: var(--color-principal);
-        }
+        .cal-leyenda__punto--tarea   { background-color: var(--color-principal); }
+        .cal-leyenda__punto--examen  { background-color: var(--color-acento); }
+        .cal-leyenda__punto--evento  { background-color: var(--color-exito); }
 
-        .cal-leyenda__punto--examen {
-            background-color: var(--color-acento);
-        }
-
-        /* Toggle Mes / Semana */
-        .cal-toggle {
-            display: flex;
-            border: 1.5px solid #dde1e7;
-            border-radius: 8px;
-            overflow: hidden;
-        }
-
-        .cal-toggle__btn {
-            padding: 6px 14px;
-            background: none;
-            border: none;
-            font-family: var(--fuente-titular);
-            font-weight: 700;
-            font-size: 0.8rem;
-            color: var(--color-texto);
-            cursor: pointer;
-            transition: background 0.15s, color 0.15s;
-        }
-
-        .cal-toggle__btn--activo {
-            background: var(--color-texto-oscuro);
-            color: var(--color-blanco);
-        }
-
-        /* ----- Cuadrícula del mes ----- */
-        .cal-grid {
-            width: 100%;
-            border-collapse: collapse;
-        }
-
-        .cal-grid th {
-            font-family: var(--fuente-titular);
-            font-size: 0.72rem;
-            font-weight: 700;
-            letter-spacing: 0.06em;
-            text-transform: uppercase;
-            color: var(--color-texto);
-            padding: 0 6px 10px;
-            text-align: center;
-            border-bottom: 1px solid #e4e6ea;
-        }
-
-        /* Fin de semana: cabecera más suave */
-        .cal-grid th.cal-weekend {
-            color: #b0b4ba;
-        }
-
-        .cal-grid td {
-            border: 1px solid #f0f1f3;
-            vertical-align: top;
-            padding: 6px 6px 8px;
-            width: calc(100% / 7);
-            min-height: 90px;
-            height: 90px;
-        }
-
-        .cal-grid td.cal-weekend-cell {
-            background-color: #fafbfc;
-        }
-
-        .cal-grid td.cal-otro-mes {
-            background-color: #fafbfc;
-        }
-
-        /* Número del día */
-        .cal-dia-num {
-            font-family: var(--fuente-cuerpo);
-            font-size: 0.8rem;
-            font-weight: 500;
-            color: var(--color-texto);
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-            width: 24px;
-            height: 24px;
-            border-radius: 50%;
-            margin-bottom: 4px;
-            flex-shrink: 0;
-        }
-
-        .cal-grid td.cal-otro-mes .cal-dia-num {
-            color: #c8cdd4;
-        }
-
-        .cal-dia-num--hoy {
-            background-color: var(--color-principal);
-            color: var(--color-blanco) !important;
-            font-weight: 700;
-        }
-
-        /* Eventos */
+        /* ----- Eventos (pastillas) ----- */
         .cal-eventos {
             display: flex;
             flex-direction: column;
@@ -230,9 +130,7 @@
             transition: opacity 0.15s;
         }
 
-        .cal-evento:hover {
-            opacity: 0.8;
-        }
+        .cal-evento:hover { opacity: 0.8; }
 
         .cal-evento--tarea {
             background-color: #dbeafe;
@@ -246,26 +144,43 @@
             border-left: 3px solid var(--color-acento);
         }
 
-        /* ----- Vista semana (oculta por defecto) ----- */
-        .cal-semana {
-            display: none;
+        .cal-evento--evento {
+            background-color: #dcfce7;
+            color: #166534;
+            border-left: 3px solid var(--color-exito);
         }
 
-        .cal-semana.activa {
-            display: block;
+        /* ----- Número de día ----- */
+        .cal-dia-num {
+            font-family: var(--fuente-cuerpo);
+            font-size: 0.8rem;
+            font-weight: 500;
+            color: var(--color-texto);
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 24px;
+            height: 24px;
+            border-radius: 50%;
+            margin-bottom: 4px;
+            flex-shrink: 0;
         }
 
-        .cal-mes.oculto {
-            display: none;
+        .cal-dia-num--hoy {
+            background-color: var(--color-principal);
+            color: var(--color-blanco) !important;
+            font-weight: 700;
         }
 
-        /* ----- Vista semana ----- */
-        .cal-semana-grid {
+        /* ============================================================
+           VISTA MES (escritorio)
+           ============================================================ */
+        .cal-grid {
             width: 100%;
             border-collapse: collapse;
         }
 
-        .cal-semana-grid th {
+        .cal-grid th {
             font-family: var(--fuente-titular);
             font-size: 0.72rem;
             font-weight: 700;
@@ -277,24 +192,101 @@
             border-bottom: 1px solid #e4e6ea;
         }
 
-        .cal-semana-grid th.cal-weekend {
-            color: #b0b4ba;
-        }
+        .cal-grid th.cal-weekend { color: #b0b4ba; }
 
-        .cal-semana-grid td {
+        .cal-grid td {
             border: 1px solid #f0f1f3;
             vertical-align: top;
-            padding: 8px;
-            min-height: 140px;
-            height: 140px;
+            padding: 6px 6px 8px;
+            width: calc(100% / 7);
+            min-height: 90px;
+            height: 90px;
         }
 
-        .cal-semana-grid td.cal-weekend-cell {
+        .cal-grid td.cal-weekend-cell,
+        .cal-grid td.cal-otro-mes { background-color: #fafbfc; }
+
+        .cal-grid td.cal-otro-mes .cal-dia-num { color: #c8cdd4; }
+
+        /* La vista mes siempre visible en escritorio */
+        .cal-mes { display: block; }
+        .cal-mes.oculto-movil { display: none; }   /* oculta en móvil vía JS */
+
+        /* ============================================================
+           VISTA SEMANA VERTICAL (móvil)
+           ============================================================ */
+        .cal-semana-vertical {
+            display: none;          /* oculta en escritorio */
+        }
+
+        .cal-semana-vertical.activa {
+            display: flex;
+            flex-direction: column;
+            gap: 0;
+        }
+
+        /* Fila de cada día */
+        .cal-dia-fila {
+            display: flex;
+            align-items: flex-start;
+            gap: 12px;
+            padding: 10px 0;
+            border-bottom: 1px solid #f0f1f3;
+        }
+
+        .cal-dia-fila:last-child { border-bottom: none; }
+
+        /* Columna izquierda: nombre + número */
+        .cal-dia-fila__cabecera {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 2px;
+            min-width: 40px;
+            flex-shrink: 0;
+        }
+
+        .cal-dia-fila__nombre {
+            font-family: var(--fuente-titular);
+            font-size: 0.68rem;
+            font-weight: 700;
+            letter-spacing: 0.07em;
+            text-transform: uppercase;
+            color: var(--color-texto);
+        }
+
+        .cal-dia-fila__nombre--finde { color: #b0b4ba; }
+
+        /* El número del día reutiliza .cal-dia-num */
+        .cal-dia-fila .cal-dia-num {
+            margin-bottom: 0;
+            font-size: 0.85rem;
+        }
+
+        /* Columna derecha: eventos */
+        .cal-dia-fila__eventos {
+            flex: 1;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 4px;
+            padding-top: 2px;
+        }
+
+        /* En la vista vertical los eventos no truncan */
+        .cal-dia-fila__eventos .cal-evento {
+            white-space: normal;
+            font-size: 0.75rem;
+        }
+
+        /* Fila de fin de semana: fondo suave */
+        .cal-dia-fila--finde {
             background-color: #fafbfc;
+            margin-inline: -6px;
+            padding-inline: 6px;
         }
 
         /* ============================================================
-           RESPONSIVE CALENDARIO
+           RESPONSIVE
            ============================================================ */
         @media (max-width: 720px) {
             .cal-contenido {
@@ -313,33 +305,18 @@
 
             .cal-header__der {
                 width: 100%;
-                justify-content: space-between;
-            }
-
-            .cal-grid td {
-                padding: 4px 2px 6px;
-                height: 70px;
+                justify-content: flex-end;
             }
 
             .cal-titulo {
                 font-size: 1.1rem;
                 min-width: unset;
             }
-
-            .cal-evento {
-                font-size: 0.65rem;
-                padding: 1px 4px;
-            }
         }
 
         @media (max-width: 480px) {
-            .cal-leyenda {
-                display: none;
-            }
-
-            .cal-grid td {
-                height: 55px;
-            }
+            .cal-leyenda { gap: 8px; }
+            .cal-leyenda__item { font-size: 0.65rem; }
         }
     </style>
 </head>
@@ -491,14 +468,14 @@
                     <!-- Cabecera del calendario -->
                     <div class="cal-header">
                         <div class="cal-header__izq">
-                            <button class="cal-nav-btn" id="cal-prev" aria-label="Mes anterior">
+                            <button class="cal-nav-btn" id="cal-prev" aria-label="Anterior">
                                 <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
                                     <polyline points="15 18 9 12 15 6" stroke="currentColor" stroke-width="2"
                                               stroke-linecap="round" stroke-linejoin="round"/>
                                 </svg>
                             </button>
                             <span class="cal-titulo" id="cal-titulo">Mayo 2026</span>
-                            <button class="cal-nav-btn" id="cal-next" aria-label="Mes siguiente">
+                            <button class="cal-nav-btn" id="cal-next" aria-label="Siguiente">
                                 <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
                                     <polyline points="9 18 15 12 9 6" stroke="currentColor" stroke-width="2"
                                               stroke-linecap="round" stroke-linejoin="round"/>
@@ -506,6 +483,7 @@
                             </button>
                         </div>
 
+                        <!-- Leyenda (sin toggle) -->
                         <div class="cal-header__der">
                             <div class="cal-leyenda" aria-label="Leyenda">
                                 <span class="cal-leyenda__item">
@@ -516,17 +494,15 @@
                                     <span class="cal-leyenda__punto cal-leyenda__punto--examen"></span>
                                     Exámenes
                                 </span>
-                            </div>
-                            <div class="cal-toggle" role="group" aria-label="Vista del calendario">
-                                <button class="cal-toggle__btn cal-toggle__btn--activo" id="btn-mes"
-                                        aria-pressed="true">Mes</button>
-                                <button class="cal-toggle__btn" id="btn-semana"
-                                        aria-pressed="false">Semana</button>
+                                <span class="cal-leyenda__item">
+                                    <span class="cal-leyenda__punto cal-leyenda__punto--evento"></span>
+                                    Eventos
+                                </span>
                             </div>
                         </div>
                     </div>
 
-                    <!-- Vista MES -->
+                    <!-- Vista MES (escritorio) -->
                     <div class="cal-mes" id="cal-mes">
                         <table class="cal-grid" role="grid" aria-label="Calendario mensual">
                             <thead>
@@ -546,20 +522,9 @@
                         </table>
                     </div>
 
-                    <!-- Vista SEMANA -->
-                    <div class="cal-semana" id="cal-semana">
-                        <table class="cal-semana-grid" role="grid" aria-label="Calendario semanal">
-                            <thead>
-                                <tr id="cal-semana-cabecera">
-                                    <!-- Generado por JS -->
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr id="cal-semana-eventos">
-                                    <!-- Generado por JS -->
-                                </tr>
-                            </tbody>
-                        </table>
+                    <!-- Vista SEMANA VERTICAL (móvil, generada por JS) -->
+                    <div class="cal-semana-vertical" id="cal-semana-vertical">
+                        <!-- Generado por JS -->
                     </div>
 
                 </div><!-- /cal-card -->
@@ -586,17 +551,22 @@
     </nav>
 
     <script>
+        /* IIFE: aisla las variables del calendario del ámbito global */
         (function () {
             /* ─── Datos de eventos (Mayo 2026) ─── */
+            /* Clave del objeto: "AAAA-MM-DD" → facilita la búsqueda por fecha exacta */
             var EVENTS = {
                 '2026-05-04': [{ texto: 'Entrega Prov.', tipo: 'tarea' }],
+                '2026-05-07': [{ texto: 'Reunión equipo', tipo: 'evento' }],
                 '2026-05-08': [{ texto: 'Examen Mat.', tipo: 'examen' }],
                 '2026-05-12': [
                     { texto: 'Leer Cap 4 Lit.', tipo: 'tarea' },
                     { texto: 'Ejercicios Fís.', tipo: 'tarea' }
                 ],
+                '2026-05-14': [{ texto: 'Charla sobre IA', tipo: 'evento' }],
                 '2026-05-15': [{ texto: 'Control Lec.', tipo: 'examen' }],
                 '2026-05-19': [{ texto: 'Presentación', tipo: 'tarea' }],
+                '2026-05-20': [{ texto: 'Jornada puertas abiertas', tipo: 'evento' }],
                 '2026-05-28': [{ texto: 'Examen Final', tipo: 'examen' }]
             };
 
@@ -607,82 +577,101 @@
             var DIAS_SEMANA_CORTO = ['Lun','Mar','Mié','Jue','Vie','Sáb','Dom'];
 
             /* Estado */
-            var hoy = new Date(2026, 4, 6); /* 6 Mayo 2026 (fecha real del proyecto) */
-            var mesActual = new Date(hoy.getFullYear(), hoy.getMonth(), 1);
-            var vistaActual = 'mes'; /* 'mes' | 'semana' */
+            var hoy         = new Date(2026, 4, 6); /* 6 mayo 2026 */
+            var mesActual   = new Date(hoy.getFullYear(), hoy.getMonth(), 1);
+            var semanaActual = obtenerLunesDeSemana(hoy);
 
             /* ─── Helpers ─── */
+            /* Añade un cero a la izquierda si el número es de un solo dígito */
             function pad(n) { return n < 10 ? '0' + n : '' + n; }
+
+            /* Construye la clave "AAAA-MM-DD" usada en el objeto EVENTS */
             function claveEvento(y, m, d) {
                 return y + '-' + pad(m + 1) + '-' + pad(d);
             }
 
-            /* ─── Renderizar vista MES ─── */
+            /* Calcula el lunes de la semana a la que pertenece "fecha"
+               getDay() devuelve 0 (domingo)…6 (sábado); ajustamos para semana ISO (lunes=0) */
+            function obtenerLunesDeSemana(fecha) {
+                var d   = new Date(fecha);
+                var dow = d.getDay();
+                d.setDate(d.getDate() + ((dow === 0) ? -6 : 1 - dow));
+                return d;
+            }
+
+            function esHoy(fecha) {
+                return fecha.getFullYear() === hoy.getFullYear() &&
+                       fecha.getMonth()    === hoy.getMonth()    &&
+                       fecha.getDate()     === hoy.getDate();
+            }
+
+            function crearPastillaEvento(ev) {
+                var span = document.createElement('span');
+                span.className = 'cal-evento cal-evento--' + ev.tipo;
+                span.textContent = ev.texto;
+                span.title = ev.texto;
+                return span;
+            }
+
+            /* ─── Vista MES ─── */
             function renderizarMes() {
                 var anio = mesActual.getFullYear();
                 var mes  = mesActual.getMonth();
 
-                /* Actualizar título */
                 document.getElementById('cal-titulo').textContent =
                     NOMBRES_MESES[mes] + ' ' + anio;
 
-                /* Primer día del mes (0=Dom…6=Sáb → convertir a 0=Lun) */
+                /* getDay() devuelve 0=domingo; convertimos a índice lunes=0 … domingo=6 */
                 var primerDia = new Date(anio, mes, 1).getDay();
                 primerDia = (primerDia === 0) ? 6 : primerDia - 1;
 
-                /* Días en el mes */
-                var diasEnMes = new Date(anio, mes + 1, 0).getDate();
+                /* new Date(año, mes+1, 0) → último día del mes actual */
+                var diasEnMes      = new Date(anio, mes + 1, 0).getDate();
                 var diasMesAnterior = new Date(anio, mes, 0).getDate();
 
                 var cuerpo = document.getElementById('cal-cuerpo');
                 cuerpo.innerHTML = '';
 
-                var dia = 1;
-                var diaSig = 1;
+                var dia = 1, diaSig = 1;
+                /* Número total de celdas redondeado a múltiplo de 7 para filas completas */
                 var totalCeldas = Math.ceil((primerDia + diasEnMes) / 7) * 7;
 
                 for (var i = 0; i < totalCeldas; i++) {
-                    if (i % 7 === 0) {
-                        var fila = document.createElement('tr');
-                        cuerpo.appendChild(fila);
-                    }
+                    if (i % 7 === 0) cuerpo.appendChild(document.createElement('tr'));
+
                     var fila = cuerpo.lastElementChild;
-                    var td = document.createElement('td');
-                    var colIndex = i % 7; /* 0=Lun … 6=Dom */
-                    var esFinDeSemana = colIndex >= 5;
+                    var td   = document.createElement('td');
+                    var col  = i % 7;
+                    var finde = col >= 5; /* columnas 5 y 6 = sábado y domingo */
 
+                    /* Celdas del mes anterior (relleno izquierdo) */
                     if (i < primerDia) {
-                        /* Días del mes anterior */
-                        var numDia = diasMesAnterior - primerDia + i + 1;
+                        var numPrev = diasMesAnterior - primerDia + i + 1;
                         td.classList.add('cal-otro-mes');
-                        if (esFinDeSemana) td.classList.add('cal-weekend-cell');
-                        td.innerHTML = '<span class="cal-dia-num">' + numDia + '</span>';
-                    } else if (dia <= diasEnMes) {
-                        /* Días del mes actual */
-                        if (esFinDeSemana) td.classList.add('cal-weekend-cell');
-                        var esHoy = (anio === hoy.getFullYear() && mes === hoy.getMonth() && dia === hoy.getDate());
-                        var claseHoy = esHoy ? ' cal-dia-num--hoy' : '';
-                        td.innerHTML = '<span class="cal-dia-num' + claseHoy + '">' + dia + '</span>';
+                        if (finde) td.classList.add('cal-weekend-cell');
+                        td.innerHTML = '<span class="cal-dia-num">' + numPrev + '</span>';
 
-                        /* Eventos */
+                    /* Días del mes actual */
+                    } else if (dia <= diasEnMes) {
+                        if (finde) td.classList.add('cal-weekend-cell');
+                        var hoyAhora = (anio === hoy.getFullYear() && mes === hoy.getMonth() && dia === hoy.getDate());
+                        td.innerHTML = '<span class="cal-dia-num' + (hoyAhora ? ' cal-dia-num--hoy' : '') + '">' + dia + '</span>';
+
                         var clave = claveEvento(anio, mes, dia);
                         if (EVENTS[clave]) {
-                            var contenedorEventos = document.createElement('div');
-                            contenedorEventos.className = 'cal-eventos';
+                            var contenedor = document.createElement('div');
+                            contenedor.className = 'cal-eventos';
                             EVENTS[clave].forEach(function (ev) {
-                                var span = document.createElement('span');
-                                span.className = 'cal-evento cal-evento--' + ev.tipo;
-                                span.textContent = ev.texto;
-                                span.title = ev.texto;
-                                contenedorEventos.appendChild(span);
+                                contenedor.appendChild(crearPastillaEvento(ev));
                             });
-                            td.appendChild(contenedorEventos);
+                            td.appendChild(contenedor);
                         }
                         dia++;
+
+                    /* Celdas del mes siguiente (relleno derecho) */
                     } else {
-                        /* Días del mes siguiente */
                         td.classList.add('cal-otro-mes');
-                        if (esFinDeSemana) td.classList.add('cal-weekend-cell');
+                        if (finde) td.classList.add('cal-weekend-cell');
                         td.innerHTML = '<span class="cal-dia-num">' + diaSig + '</span>';
                         diaSig++;
                     }
@@ -691,118 +680,109 @@
                 }
             }
 
-            /* ─── Renderizar vista SEMANA ─── */
-            function obtenerLunesDeSemana(fecha) {
-                var d = new Date(fecha);
-                var dow = d.getDay(); /* 0=Dom */
-                var diff = (dow === 0) ? -6 : 1 - dow;
-                d.setDate(d.getDate() + diff);
-                return d;
-            }
-
-            var semanaActual = obtenerLunesDeSemana(hoy);
-
-            function renderizarSemana() {
-                var cabecera = document.getElementById('cal-semana-cabecera');
-                var eventosRow = document.getElementById('cal-semana-eventos');
-                cabecera.innerHTML = '';
-                eventosRow.innerHTML = '';
-
-                /* Calcular título (ej. "8 – 14 May 2026") */
+            /* ─── Vista SEMANA VERTICAL (móvil) ─── */
+            function renderizarSemanaVertical() {
                 var inicio = new Date(semanaActual);
                 var fin    = new Date(semanaActual);
                 fin.setDate(fin.getDate() + 6);
-                var tituloSemana = inicio.getDate() + ' – ' + fin.getDate() + ' ' +
+
+                /* Título: "5 – 11 May 2026" */
+                document.getElementById('cal-titulo').textContent =
+                    inicio.getDate() + ' – ' + fin.getDate() + ' ' +
                     NOMBRES_MESES[fin.getMonth()] + ' ' + fin.getFullYear();
-                document.getElementById('cal-titulo').textContent = tituloSemana;
 
+                var contenedor = document.getElementById('cal-semana-vertical');
+                contenedor.innerHTML = '';
+
+                /* Itera los 7 días de la semana a partir del lunes */
                 for (var i = 0; i < 7; i++) {
-                    var d = new Date(semanaActual);
+                    var d     = new Date(semanaActual);
                     d.setDate(d.getDate() + i);
-                    var esFinDeSemana = i >= 5;
-                    var esHoyS = (
-                        d.getFullYear() === hoy.getFullYear() &&
-                        d.getMonth()    === hoy.getMonth() &&
-                        d.getDate()     === hoy.getDate()
-                    );
+                    var finde = i >= 5;
 
-                    /* TH cabecera */
-                    var th = document.createElement('th');
-                    th.scope = 'col';
-                    if (esFinDeSemana) th.className = 'cal-weekend';
-                    var claseHoyS = esHoyS ? ' cal-dia-num--hoy' : '';
-                    th.innerHTML = DIAS_SEMANA_CORTO[i] +
-                        '<br><span class="cal-dia-num' + claseHoyS + '" style="margin:4px auto 0;display:flex;">' +
-                        d.getDate() + '</span>';
-                    cabecera.appendChild(th);
+                    /* Fila del día */
+                    var fila = document.createElement('div');
+                    fila.className = 'cal-dia-fila' + (finde ? ' cal-dia-fila--finde' : '');
 
-                    /* TD eventos */
-                    var td = document.createElement('td');
-                    if (esFinDeSemana) td.className = 'cal-weekend-cell';
+                    /* Cabecera izquierda: nombre + número */
+                    var cab = document.createElement('div');
+                    cab.className = 'cal-dia-fila__cabecera';
+
+                    var nombre = document.createElement('span');
+                    nombre.className = 'cal-dia-fila__nombre' + (finde ? ' cal-dia-fila__nombre--finde' : '');
+                    nombre.textContent = DIAS_SEMANA_CORTO[i];
+
+                    var num = document.createElement('span');
+                    num.className = 'cal-dia-num' + (esHoy(d) ? ' cal-dia-num--hoy' : '');
+                    num.textContent = d.getDate();
+
+                    cab.appendChild(nombre);
+                    cab.appendChild(num);
+
+                    /* Área de eventos */
+                    var areaEventos = document.createElement('div');
+                    areaEventos.className = 'cal-dia-fila__eventos';
+
                     var clave = claveEvento(d.getFullYear(), d.getMonth(), d.getDate());
                     if (EVENTS[clave]) {
-                        var contenedorEventos = document.createElement('div');
-                        contenedorEventos.className = 'cal-eventos';
                         EVENTS[clave].forEach(function (ev) {
-                            var span = document.createElement('span');
-                            span.className = 'cal-evento cal-evento--' + ev.tipo;
-                            span.textContent = ev.texto;
-                            span.title = ev.texto;
-                            contenedorEventos.appendChild(span);
+                            areaEventos.appendChild(crearPastillaEvento(ev));
                         });
-                        td.appendChild(contenedorEventos);
                     }
-                    eventosRow.appendChild(td);
+
+                    fila.appendChild(cab);
+                    fila.appendChild(areaEventos);
+                    contenedor.appendChild(fila);
                 }
             }
 
+            /* ─── Control de vista según viewport ─── */
+            /* matchMedia permite detectar y reaccionar a cambios de tamaño de pantalla */
+            var mq = window.matchMedia('(max-width: 720px)');
+
+            /* Muestra la vista de mes (escritorio) o semana vertical (móvil) según el viewport */
+            function actualizarVista(esMobil) {
+                var elMes     = document.getElementById('cal-mes');
+                var elSemanaV = document.getElementById('cal-semana-vertical');
+
+                if (esMobil) {
+                    elMes.classList.add('oculto-movil');
+                    elSemanaV.classList.add('activa');
+                    renderizarSemanaVertical();
+                } else {
+                    elMes.classList.remove('oculto-movil');
+                    elSemanaV.classList.remove('activa');
+                    renderizarMes();
+                }
+            }
+
+            /* Escuchar cambios de tamaño */
+            if (mq.addEventListener) {
+                mq.addEventListener('change', function (e) { actualizarVista(e.matches); });
+            } else {
+                mq.addListener(function (e) { actualizarVista(e.matches); }); /* fallback Safari antiguo */
+            }
+
             /* ─── Navegación ─── */
+            /* Los botones anterior/siguiente navegan semana o mes según la vista activa */
             document.getElementById('cal-prev').addEventListener('click', function () {
-                if (vistaActual === 'mes') {
+                if (mq.matches) {
+                    semanaActual.setDate(semanaActual.getDate() - 7);
+                    renderizarSemanaVertical();
+                } else {
                     mesActual.setMonth(mesActual.getMonth() - 1);
                     renderizarMes();
-                } else {
-                    semanaActual.setDate(semanaActual.getDate() - 7);
-                    renderizarSemana();
                 }
             });
 
             document.getElementById('cal-next').addEventListener('click', function () {
-                if (vistaActual === 'mes') {
+                if (mq.matches) {
+                    semanaActual.setDate(semanaActual.getDate() + 7);
+                    renderizarSemanaVertical();
+                } else {
                     mesActual.setMonth(mesActual.getMonth() + 1);
                     renderizarMes();
-                } else {
-                    semanaActual.setDate(semanaActual.getDate() + 7);
-                    renderizarSemana();
                 }
-            });
-
-            /* ─── Toggle Mes / Semana ─── */
-            var btnMes    = document.getElementById('btn-mes');
-            var btnSemana = document.getElementById('btn-semana');
-            var elMes     = document.getElementById('cal-mes');
-            var elSemana  = document.getElementById('cal-semana');
-
-            btnMes.addEventListener('click', function () {
-                vistaActual = 'mes';
-                btnMes.classList.add('cal-toggle__btn--activo');
-                btnMes.setAttribute('aria-pressed', 'true');
-                btnSemana.classList.remove('cal-toggle__btn--activo');
-                btnSemana.setAttribute('aria-pressed', 'false');
-                elMes.classList.remove('oculto');
-                elSemana.classList.remove('activa');
-                renderizarMes();
-            });
-
-            btnSemana.addEventListener('click', function () {
-                vistaActual = 'semana';
-                btnSemana.classList.add('cal-toggle__btn--activo');
-                btnSemana.setAttribute('aria-pressed', 'true');
-                btnMes.classList.remove('cal-toggle__btn--activo');
-                btnMes.setAttribute('aria-pressed', 'false');
-                elMes.classList.add('oculto');
-                elSemana.classList.add('activa');
-                renderizarSemana();
             });
 
             /* ─── Perfil popup ─── */
@@ -840,7 +820,8 @@
             }
 
             /* ─── Render inicial ─── */
-            renderizarMes();
+            actualizarVista(mq.matches);
+
         }());
     </script>
 </body>

@@ -111,6 +111,7 @@ function mostrarFeedback(texto, tipo) {
    Solo se ejecuta si existe el formulario de recuperar-contrasena.html
    ============================================= */
 
+/* IIFE: encapsula todo para evitar contaminar el ámbito global */
 (function () {
     var formEmail = document.getElementById('rc-form-email');
     if (!formEmail) return; /* No estamos en esa página → salir */
@@ -135,6 +136,7 @@ function mostrarFeedback(texto, tipo) {
 
     function cerrarOverlayRC(el, cb) {
         el.classList.remove('rc-overlay--visible');
+        /* Espera a que termine la transición CSS antes de ocultar el elemento */
         setTimeout(function () {
             el.setAttribute('hidden', '');
             if (typeof cb === 'function') cb();
@@ -144,6 +146,7 @@ function mostrarFeedback(texto, tipo) {
     /* ---- Helpers de validación ---- */
     function marcarErrorRC(input, msg) {
         input.classList.add('rc-input--error');
+        /* Reutiliza el span de error si ya existe, en vez de duplicarlo */
         var existente = input.parentElement.querySelector('.rc-campo-error');
         if (!existente) {
             var span = document.createElement('span');
@@ -238,6 +241,7 @@ function mostrarFeedback(texto, tipo) {
     }
 
     /* ---- Cerrar overlay pulsando fuera ---- */
+    /* Solo cierra si el clic fue en el fondo oscuro (overlay), no en el popup interior */
     [overlayExito, overlayError, overlayCambio].forEach(function (overlay) {
         if (!overlay) return;
         overlay.addEventListener('click', function (e) {
