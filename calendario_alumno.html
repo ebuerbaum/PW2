@@ -1,0 +1,847 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calendario | DOA – Gestión Educativa Inteligente</title>
+    <link rel="stylesheet" href="estilos.css">
+    <style>
+        /* ============================================================
+           CALENDARIO ALUMNO – Estilos específicos
+           ============================================================ */
+
+        /* ----- Contenido principal ----- */
+        .cal-contenido {
+            flex: 1;
+            padding: var(--esp-lg);
+            overflow-y: auto;
+            background-color: var(--color-neutro);
+        }
+
+        /* ----- Tarjeta contenedora del calendario ----- */
+        .cal-card {
+            background: var(--color-blanco);
+            border-radius: 16px;
+            box-shadow: var(--sombra-tarjeta);
+            border: 1px solid #e4e6ea;
+            padding: var(--esp-lg) var(--esp-lg) var(--esp-md);
+            max-width: 860px;
+            margin: 0 auto;
+        }
+
+        /* ----- Cabecera del calendario ----- */
+        .cal-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: var(--esp-md);
+            gap: var(--esp-sm);
+            flex-wrap: wrap;
+        }
+
+        .cal-header__izq {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .cal-titulo {
+            font-family: var(--fuente-titular);
+            font-weight: 800;
+            font-size: 1.35rem;
+            color: var(--color-texto-oscuro);
+            min-width: 140px;
+        }
+
+        .cal-nav-btn {
+            width: 30px;
+            height: 30px;
+            border: 1.5px solid #dde1e7;
+            border-radius: 50%;
+            background: none;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            color: var(--color-texto);
+            transition: background 0.15s, border-color 0.15s;
+            flex-shrink: 0;
+        }
+
+        .cal-nav-btn:hover {
+            background: var(--color-neutro);
+            border-color: #b5b9c1;
+        }
+
+        .cal-nav-btn svg {
+            width: 14px;
+            height: 14px;
+        }
+
+        .cal-header__der {
+            display: flex;
+            align-items: center;
+            gap: var(--esp-md);
+        }
+
+        /* Leyenda */
+        .cal-leyenda {
+            display: flex;
+            align-items: center;
+            gap: 14px;
+        }
+
+        .cal-leyenda__item {
+            display: flex;
+            align-items: center;
+            gap: 5px;
+            font-family: var(--fuente-titular);
+            font-size: 0.72rem;
+            font-weight: 700;
+            letter-spacing: 0.05em;
+            text-transform: uppercase;
+            color: var(--color-texto);
+        }
+
+        .cal-leyenda__punto {
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            flex-shrink: 0;
+        }
+
+        .cal-leyenda__punto--tarea {
+            background-color: var(--color-principal);
+        }
+
+        .cal-leyenda__punto--examen {
+            background-color: var(--color-acento);
+        }
+
+        /* Toggle Mes / Semana */
+        .cal-toggle {
+            display: flex;
+            border: 1.5px solid #dde1e7;
+            border-radius: 8px;
+            overflow: hidden;
+        }
+
+        .cal-toggle__btn {
+            padding: 6px 14px;
+            background: none;
+            border: none;
+            font-family: var(--fuente-titular);
+            font-weight: 700;
+            font-size: 0.8rem;
+            color: var(--color-texto);
+            cursor: pointer;
+            transition: background 0.15s, color 0.15s;
+        }
+
+        .cal-toggle__btn--activo {
+            background: var(--color-texto-oscuro);
+            color: var(--color-blanco);
+        }
+
+        /* ----- Cuadrícula del mes ----- */
+        .cal-grid {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        .cal-grid th {
+            font-family: var(--fuente-titular);
+            font-size: 0.72rem;
+            font-weight: 700;
+            letter-spacing: 0.06em;
+            text-transform: uppercase;
+            color: var(--color-texto);
+            padding: 0 6px 10px;
+            text-align: center;
+            border-bottom: 1px solid #e4e6ea;
+        }
+
+        /* Fin de semana: cabecera más suave */
+        .cal-grid th.cal-weekend {
+            color: #b0b4ba;
+        }
+
+        .cal-grid td {
+            border: 1px solid #f0f1f3;
+            vertical-align: top;
+            padding: 6px 6px 8px;
+            width: calc(100% / 7);
+            min-height: 90px;
+            height: 90px;
+        }
+
+        .cal-grid td.cal-weekend-cell {
+            background-color: #fafbfc;
+        }
+
+        .cal-grid td.cal-otro-mes {
+            background-color: #fafbfc;
+        }
+
+        /* Número del día */
+        .cal-dia-num {
+            font-family: var(--fuente-cuerpo);
+            font-size: 0.8rem;
+            font-weight: 500;
+            color: var(--color-texto);
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 24px;
+            height: 24px;
+            border-radius: 50%;
+            margin-bottom: 4px;
+            flex-shrink: 0;
+        }
+
+        .cal-grid td.cal-otro-mes .cal-dia-num {
+            color: #c8cdd4;
+        }
+
+        .cal-dia-num--hoy {
+            background-color: var(--color-principal);
+            color: var(--color-blanco) !important;
+            font-weight: 700;
+        }
+
+        /* Eventos */
+        .cal-eventos {
+            display: flex;
+            flex-direction: column;
+            gap: 3px;
+        }
+
+        .cal-evento {
+            display: block;
+            padding: 2px 6px;
+            border-radius: 4px;
+            font-family: var(--fuente-cuerpo);
+            font-size: 0.72rem;
+            font-weight: 500;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            cursor: pointer;
+            transition: opacity 0.15s;
+        }
+
+        .cal-evento:hover {
+            opacity: 0.8;
+        }
+
+        .cal-evento--tarea {
+            background-color: #dbeafe;
+            color: #1d4ed8;
+            border-left: 3px solid var(--color-principal);
+        }
+
+        .cal-evento--examen {
+            background-color: #fff3e0;
+            color: #c05621;
+            border-left: 3px solid var(--color-acento);
+        }
+
+        /* ----- Vista semana (oculta por defecto) ----- */
+        .cal-semana {
+            display: none;
+        }
+
+        .cal-semana.activa {
+            display: block;
+        }
+
+        .cal-mes.oculto {
+            display: none;
+        }
+
+        /* ----- Vista semana ----- */
+        .cal-semana-grid {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        .cal-semana-grid th {
+            font-family: var(--fuente-titular);
+            font-size: 0.72rem;
+            font-weight: 700;
+            letter-spacing: 0.06em;
+            text-transform: uppercase;
+            color: var(--color-texto);
+            padding: 0 6px 10px;
+            text-align: center;
+            border-bottom: 1px solid #e4e6ea;
+        }
+
+        .cal-semana-grid th.cal-weekend {
+            color: #b0b4ba;
+        }
+
+        .cal-semana-grid td {
+            border: 1px solid #f0f1f3;
+            vertical-align: top;
+            padding: 8px;
+            min-height: 140px;
+            height: 140px;
+        }
+
+        .cal-semana-grid td.cal-weekend-cell {
+            background-color: #fafbfc;
+        }
+
+        /* ============================================================
+           RESPONSIVE CALENDARIO
+           ============================================================ */
+        @media (max-width: 720px) {
+            .cal-contenido {
+                padding: var(--esp-sm);
+                padding-bottom: 70px;
+            }
+
+            .cal-card {
+                padding: var(--esp-sm);
+            }
+
+            .cal-header {
+                flex-wrap: wrap;
+                gap: 8px;
+            }
+
+            .cal-header__der {
+                width: 100%;
+                justify-content: space-between;
+            }
+
+            .cal-grid td {
+                padding: 4px 2px 6px;
+                height: 70px;
+            }
+
+            .cal-titulo {
+                font-size: 1.1rem;
+                min-width: unset;
+            }
+
+            .cal-evento {
+                font-size: 0.65rem;
+                padding: 1px 4px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .cal-leyenda {
+                display: none;
+            }
+
+            .cal-grid td {
+                height: 55px;
+            }
+        }
+    </style>
+</head>
+<body class="rt-body">
+
+    <!-- ============================================================
+         TOPBAR – ancho completo
+         ============================================================ -->
+    <header class="rt-topbar">
+        <a href="home_DOA.html" class="rt-topbar__logo-mobile" aria-label="DOA – Inicio">
+            <img src="img/logoPrincipal_monocromático.png" alt="DOA – Gestión Educativa Inteligente">
+        </a>
+
+        <div class="rt-topbar__spacer" aria-hidden="true"></div>
+
+        <div class="rt-topbar__acciones">
+            <button class="rt-topbar__icono-btn" aria-label="Notificaciones">
+                <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                    <path d="M18 8A6 6 0 006 8c0 7-3 9-3 9h18s-3-2-3-9" stroke="currentColor" stroke-width="2"
+                          stroke-linecap="round" stroke-linejoin="round"/>
+                    <path d="M13.73 21a2 2 0 01-3.46 0" stroke="currentColor" stroke-width="2"
+                          stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+            </button>
+            <button class="rt-topbar__icono-btn" aria-label="Ayuda">
+                <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                    <circle cx="12" cy="12" r="10" stroke="currentColor" stroke-width="2"/>
+                    <path d="M9.09 9a3 3 0 015.83 1c0 2-3 3-3 3" stroke="currentColor" stroke-width="2"
+                          stroke-linecap="round" stroke-linejoin="round"/>
+                    <line x1="12" y1="17" x2="12.01" y2="17" stroke="currentColor" stroke-width="2"
+                          stroke-linecap="round"/>
+                </svg>
+            </button>
+            <div class="rt-perfil-wrapper">
+                <button class="rt-topbar__usuario" id="rt-perfil-btn"
+                        aria-expanded="false" aria-controls="rt-perfil-popup">
+                    <div class="rt-topbar__usuario-info">
+                        <span class="rt-topbar__usuario-nombre">Alex Rivera</span>
+                        <span class="rt-topbar__usuario-rol">Estudiante</span>
+                    </div>
+                    <div class="rt-topbar__avatar" aria-hidden="true">
+                        <svg viewBox="0 0 24 24" fill="none">
+                            <circle cx="12" cy="8" r="4" stroke="currentColor" stroke-width="1.8"/>
+                            <path d="M4 20c0-4 3.6-7 8-7s8 3 8 7" stroke="currentColor" stroke-width="1.8"
+                                  stroke-linecap="round"/>
+                        </svg>
+                    </div>
+                </button>
+                <div class="rt-perfil-popup" id="rt-perfil-popup" hidden>
+                    <div class="rt-perfil-popup__cabecera">
+                        <div class="rt-perfil-popup__avatar-grande">
+                            <svg viewBox="0 0 24 24" fill="none">
+                                <circle cx="12" cy="8" r="4" stroke="currentColor" stroke-width="1.8"/>
+                                <path d="M4 20c0-4 3.6-7 8-7s8 3 8 7" stroke="currentColor" stroke-width="1.8"
+                                      stroke-linecap="round"/>
+                            </svg>
+                        </div>
+                        <div>
+                            <p class="rt-perfil-popup__nombre">Alex Rivera</p>
+                            <p class="rt-perfil-popup__rol">Estudiante</p>
+                        </div>
+                    </div>
+                    <a href="recuperar-contrasena.html" class="rt-perfil-popup__cambiar">Cambiar contraseña</a>
+                    <a href="login_doa.html" class="rt-perfil-popup__logout">
+                        <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                            <path d="M9 21H5a2 2 0 01-2-2V5a2 2 0 012-2h4" stroke="currentColor" stroke-width="2"
+                                  stroke-linecap="round" stroke-linejoin="round"/>
+                            <polyline points="16 17 21 12 16 7" stroke="currentColor" stroke-width="2"
+                                      stroke-linecap="round" stroke-linejoin="round"/>
+                            <line x1="21" y1="12" x2="9" y2="12" stroke="currentColor" stroke-width="2"
+                                  stroke-linecap="round"/>
+                        </svg>
+                        CERRAR SESIÓN
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <button class="hamburger rt-hamburger" id="rt-hamburger" aria-label="Abrir menú"
+                aria-expanded="false" aria-controls="rt-mobile-menu">
+            <span class="hamburger-line"></span>
+            <span class="hamburger-line"></span>
+            <span class="hamburger-line"></span>
+        </button>
+    </header>
+
+    <!-- MENÚ MÓVIL -->
+    <div id="rt-mobile-menu" class="mobile-menu rt-mobile-menu" hidden>
+        <ul class="mobile-nav-list">
+            <li><a href="home_DOA.html" class="mobile-nav-link">Clases</a></li>
+            <li><a href="calendario_alumno.html" class="mobile-nav-link mobile-nav-link--active" aria-current="page">Calendario</a></li>
+            <li><a href="login_doa.html" class="mobile-nav-link mobile-nav-link--login">Logout</a></li>
+        </ul>
+    </div>
+
+    <!-- ============================================================
+         LAYOUT: SIDEBAR + CONTENIDO
+         ============================================================ -->
+    <div class="rt-page-wrapper">
+
+        <!-- SIDEBAR -->
+        <aside class="rt-sidebar" id="rt-sidebar" aria-label="Menú lateral">
+            <nav class="rt-sidebar__nav" aria-label="Secciones del aula">
+                <ul class="rt-sidebar__menu">
+                    <li>
+                        <a href="home_DOA.html" class="rt-sidebar__link">
+                            <svg class="rt-sidebar__icon" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                                <rect x="3" y="4" width="18" height="16" rx="2" stroke="currentColor" stroke-width="2"/>
+                                <path d="M7 8h10M7 12h6" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                            </svg>
+                            Clases
+                        </a>
+                    </li>
+                    <li>
+                        <a href="calendario_alumno.html" class="rt-sidebar__link rt-sidebar__link--active" aria-current="page">
+                            <svg class="rt-sidebar__icon" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                                <rect x="3" y="5" width="18" height="16" rx="2" stroke="currentColor" stroke-width="2"/>
+                                <path d="M3 10h18" stroke="currentColor" stroke-width="2"/>
+                                <path d="M8 3v4M16 3v4" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                            </svg>
+                            Calendario
+                        </a>
+                    </li>
+                </ul>
+            </nav>
+
+            <div class="rt-sidebar__footer">
+                <a href="login_doa.html" class="rt-sidebar__logout">
+                    <svg class="rt-sidebar__icon" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                        <path d="M9 21H5a2 2 0 01-2-2V5a2 2 0 012-2h4" stroke="currentColor" stroke-width="2"
+                              stroke-linecap="round" stroke-linejoin="round"/>
+                        <polyline points="16 17 21 12 16 7" stroke="currentColor" stroke-width="2"
+                                  stroke-linecap="round" stroke-linejoin="round"/>
+                        <line x1="21" y1="12" x2="9" y2="12" stroke="currentColor" stroke-width="2"
+                              stroke-linecap="round"/>
+                    </svg>
+                    Logout
+                </a>
+            </div>
+        </aside>
+
+        <!-- ÁREA PRINCIPAL -->
+        <div class="rt-main-wrapper">
+
+            <main class="cal-contenido">
+
+                <div class="cal-card">
+
+                    <!-- Cabecera del calendario -->
+                    <div class="cal-header">
+                        <div class="cal-header__izq">
+                            <button class="cal-nav-btn" id="cal-prev" aria-label="Mes anterior">
+                                <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                                    <polyline points="15 18 9 12 15 6" stroke="currentColor" stroke-width="2"
+                                              stroke-linecap="round" stroke-linejoin="round"/>
+                                </svg>
+                            </button>
+                            <span class="cal-titulo" id="cal-titulo">Mayo 2026</span>
+                            <button class="cal-nav-btn" id="cal-next" aria-label="Mes siguiente">
+                                <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                                    <polyline points="9 18 15 12 9 6" stroke="currentColor" stroke-width="2"
+                                              stroke-linecap="round" stroke-linejoin="round"/>
+                                </svg>
+                            </button>
+                        </div>
+
+                        <div class="cal-header__der">
+                            <div class="cal-leyenda" aria-label="Leyenda">
+                                <span class="cal-leyenda__item">
+                                    <span class="cal-leyenda__punto cal-leyenda__punto--tarea"></span>
+                                    Tareas
+                                </span>
+                                <span class="cal-leyenda__item">
+                                    <span class="cal-leyenda__punto cal-leyenda__punto--examen"></span>
+                                    Exámenes
+                                </span>
+                            </div>
+                            <div class="cal-toggle" role="group" aria-label="Vista del calendario">
+                                <button class="cal-toggle__btn cal-toggle__btn--activo" id="btn-mes"
+                                        aria-pressed="true">Mes</button>
+                                <button class="cal-toggle__btn" id="btn-semana"
+                                        aria-pressed="false">Semana</button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Vista MES -->
+                    <div class="cal-mes" id="cal-mes">
+                        <table class="cal-grid" role="grid" aria-label="Calendario mensual">
+                            <thead>
+                                <tr>
+                                    <th scope="col">Lun</th>
+                                    <th scope="col">Mar</th>
+                                    <th scope="col">Mié</th>
+                                    <th scope="col">Jue</th>
+                                    <th scope="col">Vie</th>
+                                    <th scope="col" class="cal-weekend">Sáb</th>
+                                    <th scope="col" class="cal-weekend">Dom</th>
+                                </tr>
+                            </thead>
+                            <tbody id="cal-cuerpo">
+                                <!-- Generado por JS -->
+                            </tbody>
+                        </table>
+                    </div>
+
+                    <!-- Vista SEMANA -->
+                    <div class="cal-semana" id="cal-semana">
+                        <table class="cal-semana-grid" role="grid" aria-label="Calendario semanal">
+                            <thead>
+                                <tr id="cal-semana-cabecera">
+                                    <!-- Generado por JS -->
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr id="cal-semana-eventos">
+                                    <!-- Generado por JS -->
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+
+                </div><!-- /cal-card -->
+
+            </main>
+
+            <footer class="pie-pagina rt-footer">
+                <div class="contenedor pie-pagina__interior">
+                    <a href="index.html" class="pie-pagina__logo">
+                        <img src="img/logo-gti.png" alt="GTI – Grado en Tecnologías Interactivas">
+                    </a>
+                    <p class="pie-pagina__derechos">Todos los derechos reservados 2026&copy;</p>
+                </div>
+            </footer>
+
+        </div><!-- /rt-main-wrapper -->
+
+    </div><!-- /rt-page-wrapper -->
+
+    <!-- Barra inferior móvil -->
+    <nav class="rt-bottom-tabs" aria-label="Navegación inferior">
+        <a href="home_DOA.html" class="rt-bottom-tab">Clases</a>
+        <a href="calendario_alumno.html" class="rt-bottom-tab rt-bottom-tab--activo" aria-current="page">Calendario</a>
+    </nav>
+
+    <script>
+        (function () {
+            /* ─── Datos de eventos (Mayo 2026) ─── */
+            var EVENTS = {
+                '2026-05-04': [{ texto: 'Entrega Prov.', tipo: 'tarea' }],
+                '2026-05-08': [{ texto: 'Examen Mat.', tipo: 'examen' }],
+                '2026-05-12': [
+                    { texto: 'Leer Cap 4 Lit.', tipo: 'tarea' },
+                    { texto: 'Ejercicios Fís.', tipo: 'tarea' }
+                ],
+                '2026-05-15': [{ texto: 'Control Lec.', tipo: 'examen' }],
+                '2026-05-19': [{ texto: 'Presentación', tipo: 'tarea' }],
+                '2026-05-28': [{ texto: 'Examen Final', tipo: 'examen' }]
+            };
+
+            var NOMBRES_MESES = [
+                'Enero','Febrero','Marzo','Abril','Mayo','Junio',
+                'Julio','Agosto','Septiembre','Octubre','Noviembre','Diciembre'
+            ];
+            var DIAS_SEMANA_CORTO = ['Lun','Mar','Mié','Jue','Vie','Sáb','Dom'];
+
+            /* Estado */
+            var hoy = new Date(2026, 4, 6); /* 6 Mayo 2026 (fecha real del proyecto) */
+            var mesActual = new Date(hoy.getFullYear(), hoy.getMonth(), 1);
+            var vistaActual = 'mes'; /* 'mes' | 'semana' */
+
+            /* ─── Helpers ─── */
+            function pad(n) { return n < 10 ? '0' + n : '' + n; }
+            function claveEvento(y, m, d) {
+                return y + '-' + pad(m + 1) + '-' + pad(d);
+            }
+
+            /* ─── Renderizar vista MES ─── */
+            function renderizarMes() {
+                var anio = mesActual.getFullYear();
+                var mes  = mesActual.getMonth();
+
+                /* Actualizar título */
+                document.getElementById('cal-titulo').textContent =
+                    NOMBRES_MESES[mes] + ' ' + anio;
+
+                /* Primer día del mes (0=Dom…6=Sáb → convertir a 0=Lun) */
+                var primerDia = new Date(anio, mes, 1).getDay();
+                primerDia = (primerDia === 0) ? 6 : primerDia - 1;
+
+                /* Días en el mes */
+                var diasEnMes = new Date(anio, mes + 1, 0).getDate();
+                var diasMesAnterior = new Date(anio, mes, 0).getDate();
+
+                var cuerpo = document.getElementById('cal-cuerpo');
+                cuerpo.innerHTML = '';
+
+                var dia = 1;
+                var diaSig = 1;
+                var totalCeldas = Math.ceil((primerDia + diasEnMes) / 7) * 7;
+
+                for (var i = 0; i < totalCeldas; i++) {
+                    if (i % 7 === 0) {
+                        var fila = document.createElement('tr');
+                        cuerpo.appendChild(fila);
+                    }
+                    var fila = cuerpo.lastElementChild;
+                    var td = document.createElement('td');
+                    var colIndex = i % 7; /* 0=Lun … 6=Dom */
+                    var esFinDeSemana = colIndex >= 5;
+
+                    if (i < primerDia) {
+                        /* Días del mes anterior */
+                        var numDia = diasMesAnterior - primerDia + i + 1;
+                        td.classList.add('cal-otro-mes');
+                        if (esFinDeSemana) td.classList.add('cal-weekend-cell');
+                        td.innerHTML = '<span class="cal-dia-num">' + numDia + '</span>';
+                    } else if (dia <= diasEnMes) {
+                        /* Días del mes actual */
+                        if (esFinDeSemana) td.classList.add('cal-weekend-cell');
+                        var esHoy = (anio === hoy.getFullYear() && mes === hoy.getMonth() && dia === hoy.getDate());
+                        var claseHoy = esHoy ? ' cal-dia-num--hoy' : '';
+                        td.innerHTML = '<span class="cal-dia-num' + claseHoy + '">' + dia + '</span>';
+
+                        /* Eventos */
+                        var clave = claveEvento(anio, mes, dia);
+                        if (EVENTS[clave]) {
+                            var contenedorEventos = document.createElement('div');
+                            contenedorEventos.className = 'cal-eventos';
+                            EVENTS[clave].forEach(function (ev) {
+                                var span = document.createElement('span');
+                                span.className = 'cal-evento cal-evento--' + ev.tipo;
+                                span.textContent = ev.texto;
+                                span.title = ev.texto;
+                                contenedorEventos.appendChild(span);
+                            });
+                            td.appendChild(contenedorEventos);
+                        }
+                        dia++;
+                    } else {
+                        /* Días del mes siguiente */
+                        td.classList.add('cal-otro-mes');
+                        if (esFinDeSemana) td.classList.add('cal-weekend-cell');
+                        td.innerHTML = '<span class="cal-dia-num">' + diaSig + '</span>';
+                        diaSig++;
+                    }
+
+                    fila.appendChild(td);
+                }
+            }
+
+            /* ─── Renderizar vista SEMANA ─── */
+            function obtenerLunesDeSemana(fecha) {
+                var d = new Date(fecha);
+                var dow = d.getDay(); /* 0=Dom */
+                var diff = (dow === 0) ? -6 : 1 - dow;
+                d.setDate(d.getDate() + diff);
+                return d;
+            }
+
+            var semanaActual = obtenerLunesDeSemana(hoy);
+
+            function renderizarSemana() {
+                var cabecera = document.getElementById('cal-semana-cabecera');
+                var eventosRow = document.getElementById('cal-semana-eventos');
+                cabecera.innerHTML = '';
+                eventosRow.innerHTML = '';
+
+                /* Calcular título (ej. "8 – 14 May 2026") */
+                var inicio = new Date(semanaActual);
+                var fin    = new Date(semanaActual);
+                fin.setDate(fin.getDate() + 6);
+                var tituloSemana = inicio.getDate() + ' – ' + fin.getDate() + ' ' +
+                    NOMBRES_MESES[fin.getMonth()] + ' ' + fin.getFullYear();
+                document.getElementById('cal-titulo').textContent = tituloSemana;
+
+                for (var i = 0; i < 7; i++) {
+                    var d = new Date(semanaActual);
+                    d.setDate(d.getDate() + i);
+                    var esFinDeSemana = i >= 5;
+                    var esHoyS = (
+                        d.getFullYear() === hoy.getFullYear() &&
+                        d.getMonth()    === hoy.getMonth() &&
+                        d.getDate()     === hoy.getDate()
+                    );
+
+                    /* TH cabecera */
+                    var th = document.createElement('th');
+                    th.scope = 'col';
+                    if (esFinDeSemana) th.className = 'cal-weekend';
+                    var claseHoyS = esHoyS ? ' cal-dia-num--hoy' : '';
+                    th.innerHTML = DIAS_SEMANA_CORTO[i] +
+                        '<br><span class="cal-dia-num' + claseHoyS + '" style="margin:4px auto 0;display:flex;">' +
+                        d.getDate() + '</span>';
+                    cabecera.appendChild(th);
+
+                    /* TD eventos */
+                    var td = document.createElement('td');
+                    if (esFinDeSemana) td.className = 'cal-weekend-cell';
+                    var clave = claveEvento(d.getFullYear(), d.getMonth(), d.getDate());
+                    if (EVENTS[clave]) {
+                        var contenedorEventos = document.createElement('div');
+                        contenedorEventos.className = 'cal-eventos';
+                        EVENTS[clave].forEach(function (ev) {
+                            var span = document.createElement('span');
+                            span.className = 'cal-evento cal-evento--' + ev.tipo;
+                            span.textContent = ev.texto;
+                            span.title = ev.texto;
+                            contenedorEventos.appendChild(span);
+                        });
+                        td.appendChild(contenedorEventos);
+                    }
+                    eventosRow.appendChild(td);
+                }
+            }
+
+            /* ─── Navegación ─── */
+            document.getElementById('cal-prev').addEventListener('click', function () {
+                if (vistaActual === 'mes') {
+                    mesActual.setMonth(mesActual.getMonth() - 1);
+                    renderizarMes();
+                } else {
+                    semanaActual.setDate(semanaActual.getDate() - 7);
+                    renderizarSemana();
+                }
+            });
+
+            document.getElementById('cal-next').addEventListener('click', function () {
+                if (vistaActual === 'mes') {
+                    mesActual.setMonth(mesActual.getMonth() + 1);
+                    renderizarMes();
+                } else {
+                    semanaActual.setDate(semanaActual.getDate() + 7);
+                    renderizarSemana();
+                }
+            });
+
+            /* ─── Toggle Mes / Semana ─── */
+            var btnMes    = document.getElementById('btn-mes');
+            var btnSemana = document.getElementById('btn-semana');
+            var elMes     = document.getElementById('cal-mes');
+            var elSemana  = document.getElementById('cal-semana');
+
+            btnMes.addEventListener('click', function () {
+                vistaActual = 'mes';
+                btnMes.classList.add('cal-toggle__btn--activo');
+                btnMes.setAttribute('aria-pressed', 'true');
+                btnSemana.classList.remove('cal-toggle__btn--activo');
+                btnSemana.setAttribute('aria-pressed', 'false');
+                elMes.classList.remove('oculto');
+                elSemana.classList.remove('activa');
+                renderizarMes();
+            });
+
+            btnSemana.addEventListener('click', function () {
+                vistaActual = 'semana';
+                btnSemana.classList.add('cal-toggle__btn--activo');
+                btnSemana.setAttribute('aria-pressed', 'true');
+                btnMes.classList.remove('cal-toggle__btn--activo');
+                btnMes.setAttribute('aria-pressed', 'false');
+                elMes.classList.add('oculto');
+                elSemana.classList.add('activa');
+                renderizarSemana();
+            });
+
+            /* ─── Perfil popup ─── */
+            var perfilBtn   = document.getElementById('rt-perfil-btn');
+            var perfilPopup = document.getElementById('rt-perfil-popup');
+            if (perfilBtn && perfilPopup) {
+                perfilBtn.addEventListener('click', function (e) {
+                    e.stopPropagation();
+                    var abierto = !perfilPopup.hidden;
+                    perfilPopup.hidden = abierto;
+                    perfilBtn.setAttribute('aria-expanded', String(!abierto));
+                });
+                document.addEventListener('click', function () {
+                    perfilPopup.hidden = true;
+                    perfilBtn.setAttribute('aria-expanded', 'false');
+                });
+                perfilPopup.addEventListener('click', function (e) { e.stopPropagation(); });
+            }
+
+            /* ─── Hamburguesa ─── */
+            var hamburger  = document.getElementById('rt-hamburger');
+            var mobileMenu = document.getElementById('rt-mobile-menu');
+            if (hamburger && mobileMenu) {
+                hamburger.addEventListener('click', function () {
+                    var abierto = !mobileMenu.hidden;
+                    mobileMenu.hidden = abierto;
+                    hamburger.setAttribute('aria-expanded', String(!abierto));
+                });
+                mobileMenu.querySelectorAll('a').forEach(function (a) {
+                    a.addEventListener('click', function () {
+                        mobileMenu.hidden = true;
+                        hamburger.setAttribute('aria-expanded', 'false');
+                    });
+                });
+            }
+
+            /* ─── Render inicial ─── */
+            renderizarMes();
+        }());
+    </script>
+</body>
+</html>
