@@ -4185,3 +4185,329 @@ p {
     justify-content: center;
   }
 }
+
+/* =============================================
+   RECUPERAR CONTRASEÑA  (rc-*)
+   ============================================= */
+
+/* ---- Botón Volver (esquina superior izquierda) ---- */
+.rc-volver {
+  position: fixed;
+  top: 20px;
+  left: 24px;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-family: var(--fuente-titular);
+  font-weight: 600;
+  font-size: 0.875rem;
+  color: var(--color-texto-oscuro);
+  text-decoration: none;
+  padding: 6px 12px;
+  border-radius: 8px;
+  transition: background-color 0.18s, color 0.18s;
+  z-index: 50;
+}
+
+.rc-volver svg {
+  width: 18px;
+  height: 18px;
+  flex-shrink: 0;
+}
+
+.rc-volver:hover {
+  background-color: rgba(0, 0, 0, 0.06);
+  color: var(--color-principal);
+}
+
+/* ---- Layout página ---- */
+.rc-body {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  background-color: #eef0f4;
+  font-family: var(--fuente-titular);
+}
+
+
+.rc-main {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 48px var(--esp-sm) var(--esp-xl);
+}
+
+.rc-main--oculto {
+  display: none !important;
+}
+
+/* ---- Logo ---- */
+.rc-logo {
+  width: 300px;
+  height: auto;
+  margin-bottom: var(--esp-md);
+
+}
+
+/* ---- Título H1 ---- */
+.rc-titulo {
+  font-family: var(--fuente-titular);
+  font-weight: 800;
+  font-size: 1.65rem;
+  color: var(--color-texto-oscuro);
+  text-align: center;
+  margin-bottom: var(--esp-md);
+  letter-spacing: -0.01em;
+}
+
+/* ---- Tarjeta blanca ---- */
+.rc-card {
+  background-color: var(--color-blanco);
+  border-radius: var(--radio-tarjeta);
+  box-shadow: 0 2px 16px rgba(0, 0, 0, 0.09);
+  padding: 32px 32px 28px;
+  width: 100%;
+  max-width: 440px;
+}
+
+/* ---- Formulario ---- */
+.rc-form {
+  display: flex;
+  flex-direction: column;
+  gap: var(--esp-md);
+}
+
+/* ---- Campo ---- */
+.rc-campo {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+/* ---- Label — Roboto (H3) ---- */
+.rc-label {
+  font-family: var(--fuente-cuerpo);
+  font-weight: 500;
+  font-size: 0.78rem;
+  letter-spacing: 0.04em;
+  color: var(--color-texto);
+  text-transform: uppercase;
+}
+
+/* ---- Input ---- */
+.rc-input {
+  width: 100%;
+  height: 42px;
+  padding: 0 14px;
+  border: 1.5px solid #d1d5db;
+  border-radius: 8px;
+  font-family: var(--fuente-cuerpo);
+  font-size: 0.9375rem;
+  color: var(--color-texto-oscuro);
+  background-color: #f9fafb;
+  transition: border-color 0.18s, box-shadow 0.18s, background-color 0.18s;
+  outline: none;
+}
+
+.rc-input:focus {
+  border-color: var(--color-principal);
+  background-color: var(--color-blanco);
+  box-shadow: 0 0 0 3px rgba(7, 135, 240, 0.14);
+}
+
+.rc-input--error {
+  border-color: #dc2626;
+  box-shadow: 0 0 0 3px rgba(220, 38, 38, 0.12);
+}
+
+/* ---- Mensaje de error de campo ---- */
+.rc-campo-error {
+  font-family: var(--fuente-cuerpo);
+  font-size: 0.78rem;
+  color: #dc2626;
+  margin-top: 2px;
+}
+
+/* ---- Botón enviar / cambiar ---- */
+.rc-btn {
+  width: 100%;
+  padding: 13px 24px;
+  background-color: var(--color-principal);
+  color: var(--color-blanco);
+  border: none;
+  border-radius: 10px;
+  font-family: var(--fuente-titular);
+  font-weight: 700;
+  font-size: 0.9rem;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: background-color 0.2s, transform 0.1s;
+  margin-top: 4px;
+}
+
+.rc-btn:hover {
+  background-color: #0670cc;
+}
+
+.rc-btn:active {
+  transform: scale(0.98);
+}
+
+.rc-btn:disabled {
+  opacity: 0.55;
+  cursor: not-allowed;
+}
+
+/* =============================================
+   OVERLAYS / POPUPS
+   ============================================= */
+
+/* Asegurar que hidden siempre oculta, incluso si el CSS asigna display */
+.rc-overlay[hidden] {
+  display: none !important;
+}
+
+.rc-overlay {
+  display: flex;
+  position: fixed;
+  inset: 0;
+  background-color: rgba(0, 0, 0, 0.45);
+  align-items: center;
+  justify-content: center;
+  z-index: 900;
+  padding: var(--esp-sm);
+  opacity: 0;
+  transition: opacity 0.25s ease;
+}
+
+.rc-overlay--visible {
+  opacity: 1;
+}
+
+/* ---- Popup genérico ---- */
+.rc-popup {
+  background-color: var(--color-blanco);
+  border-radius: var(--radio-tarjeta);
+  box-shadow: 0 12px 48px rgba(0, 0, 0, 0.20);
+  padding: 36px 32px 28px;
+  width: 100%;
+  max-width: 340px;
+  text-align: center;
+  transform: translateY(8px);
+  transition: transform 0.25s ease;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--esp-sm);
+}
+
+.rc-overlay--visible .rc-popup {
+  transform: translateY(0);
+}
+
+/* ---- Título popup H2 — Nunito Bold ---- */
+.rc-popup__titulo {
+  font-family: var(--fuente-titular);
+  font-weight: 700;
+  font-size: 1.3rem;
+  color: var(--color-texto-oscuro);
+  margin: 0;
+}
+
+/* ---- Mensaje popup ---- */
+.rc-popup__mensaje {
+  font-family: var(--fuente-cuerpo);
+  font-size: 0.9rem;
+  color: var(--color-texto);
+  line-height: 1.55;
+  margin: 0;
+}
+
+.rc-popup__mensaje--error {
+  color: var(--color-principal);
+}
+
+/* ---- Botón cerrar popup ---- */
+.rc-popup__btn {
+  margin-top: 8px;
+  padding: 9px 28px;
+  background-color: #6b7280;
+  color: var(--color-blanco);
+  border: none;
+  border-radius: 8px;
+  font-family: var(--fuente-titular);
+  font-weight: 600;
+  font-size: 0.875rem;
+  cursor: pointer;
+  transition: background-color 0.18s;
+  text-decoration: none;
+  display: inline-block;
+}
+
+.rc-popup__btn:hover {
+  background-color: #4b5563;
+}
+
+/* Botón variante éxito (link) */
+.rc-popup__btn--link {
+  background-color: var(--color-principal);
+}
+
+.rc-popup__btn--link:hover {
+  background-color: #0670cc;
+}
+
+/* ---- Icono check éxito ---- */
+.rc-popup__icono-check {
+  width: 52px;
+  height: 52px;
+  color: #22c55e;
+  margin-bottom: 4px;
+}
+
+.rc-popup__icono-check svg {
+  width: 100%;
+  height: 100%;
+}
+
+/* =============================================
+   RECUPERAR CONTRASEÑA — RESPONSIVE
+   ============================================= */
+
+/* Tablet */
+@media (max-width: 600px) {
+  .rc-logo {
+    width: 68px;
+  }
+
+  .rc-titulo {
+    font-size: 1.45rem;
+  }
+
+  .rc-card {
+    padding: 24px 20px 20px;
+    border-radius: 14px;
+  }
+
+  .rc-btn {
+    padding: 12px 20px;
+  }
+}
+
+/* Móvil pequeño */
+@media (max-width: 380px) {
+  .rc-titulo {
+    font-size: 1.25rem;
+  }
+
+  .rc-card {
+    padding: 20px 16px 18px;
+  }
+
+  .rc-popup {
+    padding: 28px 20px 22px;
+  }
+}
