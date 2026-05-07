@@ -4,8 +4,9 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="DOA – Calificar a los alumnos. Panel de notas.">
-    <title>Notas | DOA – Gestión Educativa Inteligente</title>
+    <title>Detalle Tarea | DOA – Gestión Educativa Inteligente</title>
     <link rel="stylesheet" href="estilos.css">
+    <link rel="stylesheet" href="crear_tarea_profesor.css">
 </head>
 <body class="rt-body">
 
@@ -149,7 +150,71 @@
         <div class="rt-main-wrapper">
 
             <!-- CONTENIDO -->
-            <main class="ca-contenido" id="ca-contenido">
+            
+            <main class="rt-contenido" id="rt-contenido" style="padding-top: 30px;">
+                <div class="ct-cabecera">
+                    <button class="ct-btn-volver" onclick="window.location.href='tablon_profesor.html'" aria-label="Volver">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" width="24" height="24">
+                            <line x1="19" y1="12" x2="5" y2="12"/>
+                            <polyline points="12 19 5 12 12 5"/>
+                        </svg>
+                    </button>
+                    <h2 class="ct-titulo-pagina">Tarea 1</h2>
+                </div>
+
+                <nav class="rt-tabs" aria-label="Secciones de detalle de tarea" id="dt-tabs" style="margin-bottom: 24px;">
+                    <button class="rt-tab rt-tab--activo" id="dt-tab-tarea" aria-selected="true" role="tab" aria-controls="dt-panel-tarea">Detalles</button>
+                    <button class="rt-tab" id="dt-tab-notas" aria-selected="false" role="tab" aria-controls="dt-panel-notas">Notas</button>
+                </nav>
+
+                <section class="rt-panel" id="dt-panel-tarea" role="tabpanel" aria-labelledby="dt-tab-tarea">
+                    <form class="ct-layout" action="tablon_profesor.html">
+                        
+                    
+                    <!-- Columna Izquierda -->
+                    <div class="ct-tarjeta">
+                        <div class="ct-campo">
+                            <input type="text" class="ct-input" placeholder="Título (Obligatorio)" value="Tarea 1" required>
+                        </div>
+                        <div class="ct-campo">
+                            <textarea class="ct-textarea" placeholder="Instrucciones (Opcional)">Resuelve los ejercicios del PDF adjunto.</textarea>
+                        </div>
+                        <div>
+                            <label class="ct-btn-adjuntar">
+                                Adjuntar
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="20" height="20" aria-hidden="true">
+                                    <path d="M21.44 11.05l-9.19 9.19a6 6 0 01-8.49-8.49l9.19-9.19a4 4 0 015.66 5.66l-9.2 9.19a2 2 0 01-2.83-2.83l8.49-8.48" stroke-linecap="round" stroke-linejoin="round"/>
+                                </svg>
+                                <input type="file" id="ct-input-archivos" hidden multiple>
+                            </label>
+                            <div id="ct-lista-archivos" class="ct-lista-archivos">
+                                <div class="ct-archivo-chip">
+                                    <svg viewBox="0 0 24 24" fill="none" width="16" height="16" aria-hidden="true">
+                                        <path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                        <polyline points="14 2 14 8 20 8" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                    </svg>
+                                    <span class="ct-archivo-chip__nombre" title="ejercicios.pdf">ejercicios.pdf</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Columna Derecha -->
+                    <div class="ct-panel-der">
+                        <div>
+                            <label class="ct-etiqueta">Fecha y hora de entrega:</label>
+                            <input type="datetime-local" class="ct-input" value="2026-04-17T23:55" required>
+                        </div>
+                        <button type="submit" class="ct-btn-crear">Guardar cambios</button>
+                    </div>
+
+                
+                    </form>
+                </section>
+
+                <section class="rt-panel rt-panel--oculto" id="dt-panel-notas" role="tabpanel" aria-labelledby="dt-tab-notas">
+                    <div class="ca-contenido" style="padding: 0; min-height: 600px; margin: 0;">
+                        
 
                 <!-- Panel izquierdo: lista de alumnos -->
                 <div class="ca-lista-panel">
@@ -243,7 +308,11 @@
                     </div>
                 </div>
 
+            
+                    </div>
+                </section>
             </main>
+
 
             <!-- FOOTER -->
             <footer class="pie-pagina rt-footer">
@@ -439,6 +508,56 @@
                     badge.textContent = nota.toFixed(1).replace('.', ',') + '/10';
                 }
             }
+        
+            /* -- Funcionalidad de pestañas -- */
+            var btnTarea = document.getElementById('dt-tab-tarea');
+            var btnNotas = document.getElementById('dt-tab-notas');
+            var panelTarea = document.getElementById('dt-panel-tarea');
+            var panelNotas = document.getElementById('dt-panel-notas');
+
+            if (btnTarea && btnNotas) {
+                btnTarea.addEventListener('click', function() {
+                    btnTarea.classList.add('rt-tab--activo');
+                    btnTarea.setAttribute('aria-selected', 'true');
+                    btnNotas.classList.remove('rt-tab--activo');
+                    btnNotas.setAttribute('aria-selected', 'false');
+                    
+                    panelTarea.classList.remove('rt-panel--oculto');
+                    panelNotas.classList.add('rt-panel--oculto');
+                });
+                
+                btnNotas.addEventListener('click', function() {
+                    btnNotas.classList.add('rt-tab--activo');
+                    btnNotas.setAttribute('aria-selected', 'true');
+                    btnTarea.classList.remove('rt-tab--activo');
+                    btnTarea.setAttribute('aria-selected', 'false');
+                    
+                    panelNotas.classList.remove('rt-panel--oculto');
+                    panelTarea.classList.add('rt-panel--oculto');
+                });
+            }
+
+            /* Funcionalidad de adjuntar archivos en Detalles */
+            var fileInput = document.getElementById('ct-input-archivos');
+            var fileListContainer = document.getElementById('ct-lista-archivos');
+            if (fileInput && fileListContainer) {
+                fileInput.addEventListener('change', function(e) {
+                    fileListContainer.innerHTML = '';
+                    var files = e.target.files;
+                    for (var i = 0; i < files.length; i++) {
+                        var chip = document.createElement('div');
+                        chip.className = 'ct-archivo-chip';
+                        chip.innerHTML = 
+                            '<svg viewBox="0 0 24 24" fill="none" width="16" height="16" aria-hidden="true">' +
+                                '<path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>' +
+                                '<polyline points="14 2 14 8 20 8" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>' +
+                            '</svg>' +
+                            '<span class="ct-archivo-chip__nombre" title="' + files[i].name + '">' + files[i].name + '</span>';
+                        fileListContainer.appendChild(chip);
+                    }
+                });
+            }
+
         }());
     </script>
 

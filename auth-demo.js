@@ -41,6 +41,70 @@
             rol:      'secretaria',
             rolTexto: 'Secretaría',
             inicio:   'gestion_usuarios_secretaria.html'
+        },
+        {
+            email:    'l.simdre@epsg.upv.es',
+            password: '9218611',
+            nombre:   'Lief Simants Dredge',
+            rol:      'alumno',
+            rolTexto: 'Estudiante',
+            inicio:   'home_DOA.html'
+        },
+        {
+            email:    'm.kirkam@epsg.upv.es',
+            password: '1320191',
+            nombre:   'Merline Kirdsch Kampshell',
+            rol:      'alumno',
+            rolTexto: 'Estudiante',
+            inicio:   'home_DOA.html'
+        },
+        {
+            email:    'd.rawabc@epsg.upv.es',
+            password: '9971924',
+            nombre:   'Debora Rawstorne',
+            rol:      'alumno',
+            rolTexto: 'Estudiante',
+            inicio:   'home_DOA.html'
+        },
+        {
+            email:    'k.poumai@upv.es',
+            password: '4525956',
+            nombre:   'Kevan Pounds Mainston',
+            rol:      'profesor',
+            rolTexto: 'Profesor',
+            inicio:   'home_DOA.html'
+        },
+        {
+            email:    'l.prista@upv.es',
+            password: '6055365',
+            nombre:   'Luelle Pridmore Starsmeare',
+            rol:      'profesor',
+            rolTexto: 'Profesora',
+            inicio:   'home_DOA.html'
+        },
+        {
+            email:    'e.mermiz@upv.es',
+            password: '6738133',
+            nombre:   'Eolande Merriton Mizzi',
+            rol:      'profesor',
+            rolTexto: 'Profesora',
+            inicio:   'home_DOA.html'
+        },
+        {
+            email:    'o.breshe@upv.es',
+            password: '1316390',
+            nombre:   'Ondrea Brezlaw Sherwill',
+            rol:      'secretaria',
+            rolTexto: 'PAS',
+            inicio:   'gestion_usuarios_secretaria.html'
+        },
+        {
+            email:    'b.maltho@upv.es',
+            password: '1970980',
+            nombre:   'Brooke Malimoe Thomerson',
+            rol:      'secretaria',
+            rolTexto: 'PAS',
+            inicio:   'gestion_usuarios_secretaria.html'
         }
     ];
 

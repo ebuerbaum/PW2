@@ -306,22 +306,11 @@
             }
 
             if (u.rol === 'profesor') {
-                /* ── Sidebar: sustituye "Calendario" por "Calificar" ── */
-                var sidebarItems = document.querySelectorAll('.rt-sidebar__menu > li');
-                if (sidebarItems[1]) {
-                    sidebarItems[1].innerHTML =
-                        '<a href="calificar_profesor.html" class="rt-sidebar__link">' +
-                        '<svg class="rt-sidebar__icon" viewBox="0 0 24 24" fill="none" aria-hidden="true">' +
-                        '<path d="M9 11l3 3L22 4" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>' +
-                        '<path d="M21 12v7a2 2 0 01-2 2H5a2 2 0 01-2-2V5a2 2 0 012-2h11" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>' +
-                        '</svg>Calificar</a>';
-                }
 
-                /* ── Menú móvil: igual ── */
-                var mobileItems = document.querySelectorAll('.mobile-nav-list > li');
-                if (mobileItems[1]) {
-                    mobileItems[1].innerHTML =
-                        '<a href="calificar_profesor.html" class="mobile-nav-link">Calificar</a>';
+                /* ── Actualizar enlaces de Calendario para profesor ── */
+                var enlacesCalendario = document.querySelectorAll('a[href="calendario_alumno.html"]');
+                for (var j = 0; j < enlacesCalendario.length; j++) {
+                    enlacesCalendario[j].setAttribute('href', 'calendario_profesor.html');
                 }
 
                 /* ── Título y subtítulo de la página ── */
