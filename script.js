@@ -1,23 +1,17 @@
-/* =============================================
-   DOA – Scripts generales
-   ============================================= */
+// Página de contacto y recuperar contraseña (recuperar-contrasena.html comparte parte de este archivo).
 
-
-/* ---- 1. MENÚ MÓVIL ---- */
-
+// — Menú móvil (GTI) —
 var botonMenu = document.querySelector('.hamburger');
 var menuMovil = document.getElementById('mobile-menu');
 
 if (botonMenu && menuMovil) {
 
-    // Abrir o cerrar el menú al pulsar el botón hamburguesa
     botonMenu.addEventListener('click', function () {
         var abierto = !menuMovil.hidden;
         menuMovil.hidden = abierto;
         botonMenu.setAttribute('aria-expanded', abierto ? 'false' : 'true');
     });
 
-    // Cerrar el menú cuando el usuario pulsa un enlace
     var enlacesMenu = menuMovil.querySelectorAll('a');
     for (var i = 0; i < enlacesMenu.length; i++) {
         enlacesMenu[i].addEventListener('click', function () {
@@ -28,41 +22,34 @@ if (botonMenu && menuMovil) {
 }
 
 
-/* ---- 2. VALIDACIÓN DEL FORMULARIO DE CONTACTO ---- */
-
+// — Formulario de contacto —
 var formulario = document.getElementById('contact-form');
 
 if (formulario) {
 
     formulario.addEventListener('submit', function (evento) {
-        // Evitar que la página se recargue al enviar
         evento.preventDefault();
 
-        // Leer los valores de cada campo
         var nombre  = document.getElementById('nombre').value.trim();
         var email   = document.getElementById('email').value.trim();
         var centro  = document.getElementById('centro').value.trim();
         var mensaje = document.getElementById('mensaje').value.trim();
 
-        // Comprobar que ningún campo esté vacío
         if (nombre === '' || email === '' || centro === '' || mensaje === '') {
             mostrarFeedback('Por favor, rellena todos los campos.', 'error');
             return;
         }
 
-        // Comprobar que el email tiene el símbolo @ y un punto
         if (!email.includes('@') || !email.includes('.')) {
             mostrarFeedback('Introduce un email válido (ej. nombre@dominio.com).', 'error');
             return;
         }
 
-        // Comprobar longitud mínima del mensaje
         if (mensaje.length < 10) {
             mostrarFeedback('El mensaje debe tener al menos 10 caracteres.', 'error');
             return;
         }
 
-        // Si todo está bien, simulamos el envío y mostramos confirmación
         mostrarFeedback('¡Mensaje enviado con éxito! Nos pondremos en contacto contigo pronto.', 'exito');
         formulario.reset();
         actualizarContador();
@@ -70,8 +57,7 @@ if (formulario) {
 }
 
 
-/* ---- 3. CONTADOR DE CARACTERES (campo mensaje) ---- */
-
+// — Contador del textarea del mensaje —
 var campoMensaje = document.getElementById('mensaje');
 var contadorEl   = document.getElementById('mensaje-count');
 var MAXIMO       = 1000;
@@ -83,11 +69,9 @@ function actualizarContador() {
 
 if (campoMensaje && contadorEl) {
     campoMensaje.addEventListener('input', actualizarContador);
-    actualizarContador(); // mostrar 0 / 1000 al cargar la página
+    actualizarContador();
 }
 
-
-/* ---- 4. FUNCIÓN AUXILIAR: mostrar mensaje de respuesta ---- */
 
 function mostrarFeedback(texto, tipo) {
     var caja = document.getElementById('form-feedback');
@@ -97,7 +81,6 @@ function mostrarFeedback(texto, tipo) {
     caja.className   = 'form-feedback form-feedback--' + tipo;
     caja.hidden      = false;
 
-    // Si es un mensaje de éxito, ocultarlo automáticamente después de 6 segundos
     if (tipo === 'exito') {
         setTimeout(function () {
             caja.hidden = true;
@@ -106,20 +89,13 @@ function mostrarFeedback(texto, tipo) {
 }
 
 
-/* =============================================
-   5. RECUPERAR CONTRASEÑA  (rc-*)
-   Solo se ejecuta si existe el formulario de recuperar-contrasena.html
-   ============================================= */
-
-/* IIFE: encapsula todo para evitar contaminar el ámbito global */
+// — Recuperar contraseña (solo si estamos en esa página) —
 (function () {
     var formEmail = document.getElementById('rc-form-email');
-    if (!formEmail) return; /* No estamos en esa página → salir */
+    if (!formEmail) return;
 
-    /* ---- Código simulado para demo ---- */
     var CODIGO_DEMO = '123456';
 
-    /* ---- Referencias DOM ---- */
     var paso1         = document.getElementById('rc-paso1');
     var paso2         = document.getElementById('rc-paso2');
     var formCambio    = document.getElementById('rc-form-cambio');
@@ -127,26 +103,22 @@ function mostrarFeedback(texto, tipo) {
     var overlayError  = document.getElementById('rc-overlay-error');
     var overlayCambio = document.getElementById('rc-overlay-cambio-ok');
 
-    /* ---- Mostrar / ocultar overlay ---- */
     function mostrarOverlayRC(el) {
         el.removeAttribute('hidden');
-        void el.offsetWidth; /* forzar reflow para activar transición CSS */
+        void el.offsetWidth;
         el.classList.add('rc-overlay--visible');
     }
 
     function cerrarOverlayRC(el, cb) {
         el.classList.remove('rc-overlay--visible');
-        /* Espera a que termine la transición CSS antes de ocultar el elemento */
         setTimeout(function () {
             el.setAttribute('hidden', '');
             if (typeof cb === 'function') cb();
         }, 260);
     }
 
-    /* ---- Helpers de validación ---- */
     function marcarErrorRC(input, msg) {
         input.classList.add('rc-input--error');
-        /* Reutiliza el span de error si ya existe, en vez de duplicarlo */
         var existente = input.parentElement.querySelector('.rc-campo-error');
         if (!existente) {
             var span = document.createElement('span');
@@ -165,7 +137,6 @@ function mostrarFeedback(texto, tipo) {
         if (existente) existente.remove();
     }
 
-    /* ---- Botón cerrar: Éxito → pasar a Paso 2 ---- */
     var btnExitoCerrar = document.getElementById('rc-popup-exito-cerrar');
     if (btnExitoCerrar) {
         btnExitoCerrar.addEventListener('click', function () {
@@ -176,7 +147,6 @@ function mostrarFeedback(texto, tipo) {
         });
     }
 
-    /* ---- Botón cerrar: Error ---- */
     var btnErrorCerrar = document.getElementById('rc-popup-error-cerrar');
     if (btnErrorCerrar) {
         btnErrorCerrar.addEventListener('click', function () {
@@ -184,7 +154,6 @@ function mostrarFeedback(texto, tipo) {
         });
     }
 
-    /* ---- PASO 1: Enviar código ---- */
     formEmail.addEventListener('submit', function (e) {
         e.preventDefault();
         var email = document.getElementById('rc-email').value.trim();
@@ -202,7 +171,6 @@ function mostrarFeedback(texto, tipo) {
         mostrarOverlayRC(overlayExito);
     });
 
-    /* ---- PASO 2: Cambiar contraseña ---- */
     if (formCambio) {
         formCambio.addEventListener('submit', function (e) {
             e.preventDefault();
@@ -240,8 +208,6 @@ function mostrarFeedback(texto, tipo) {
         });
     }
 
-    /* ---- Cerrar overlay pulsando fuera ---- */
-    /* Solo cierra si el clic fue en el fondo oscuro (overlay), no en el popup interior */
     [overlayExito, overlayError, overlayCambio].forEach(function (overlay) {
         if (!overlay) return;
         overlay.addEventListener('click', function (e) {

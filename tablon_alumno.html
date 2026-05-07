@@ -470,21 +470,19 @@
 
     <script src="script.js" defer></script>
     <script>
-        /* IIFE: aisla las variables de este módulo del ámbito global */
+    <script>
+        // Menú usuario, acordeones de recursos y pestañas (móvil y escritorio).
         (function () {
 
-            /* -- Perfil popup -- */
             var perfilBtn   = document.getElementById('rt-perfil-btn');
             var perfilPopup = document.getElementById('rt-perfil-popup');
             if (perfilBtn && perfilPopup) {
                 perfilBtn.addEventListener('click', function (e) {
-                    /* Detiene la propagación para que el listener global no lo cierre inmediatamente */
                     e.stopPropagation();
                     var abierto = !perfilPopup.hidden;
                     perfilPopup.hidden = abierto;
                     perfilBtn.setAttribute('aria-expanded', String(!abierto));
                 });
-                /* Clic fuera del popup → cerrarlo */
                 document.addEventListener('click', function () {
                     perfilPopup.hidden = true;
                     perfilBtn.setAttribute('aria-expanded', 'false');
@@ -492,26 +490,21 @@
                 perfilPopup.addEventListener('click', function (e) { e.stopPropagation(); });
             }
 
-            /* -- Acordeones de recursos -- */
-            /* aria-controls apunta al id de la lista de archivos que se abre/cierra */
             document.querySelectorAll('.rt-acordeon__cabecera').forEach(function (btn) {
                 btn.addEventListener('click', function () {
                     var expanded = this.getAttribute('aria-expanded') === 'true';
                     var lista = document.getElementById(this.getAttribute('aria-controls'));
                     this.setAttribute('aria-expanded', String(!expanded));
                     lista.hidden = expanded;
-                    /* Rota la flecha CSS mediante clase en lugar de transformar inline */
                     this.querySelector('.rt-acordeon__flecha').classList.toggle('rt-acordeon__flecha--abierta', !expanded);
                 });
             });
 
-            /* -- Pestañas escritorio -- */
             var tabTablon  = document.getElementById('rt-tab-tablon');
             var tabTrabajo = document.getElementById('rt-tab-trabajo');
             var panelTablon  = document.getElementById('rt-panel-tablon');
             var panelTrabajo = document.getElementById('rt-panel-trabajo');
 
-            /* Activa una pestaña y su panel; desactiva la otra */
             function activarTab(tabActiva, panelActivo, tabInactiva, panelInactivo) {
                 tabActiva.classList.add('rt-tab--activo');
                 tabActiva.setAttribute('aria-selected', 'true');
@@ -532,11 +525,9 @@
                 });
             }
 
-            /* -- Pestañas móvil -- */
             var mobTablon  = document.getElementById('rt-mob-tab-tablon');
             var mobTrabajo = document.getElementById('rt-mob-tab-trabajo');
 
-            /* Mantiene en sincronía las pestañas de la barra inferior (móvil) con las de escritorio */
             function sincronizarMobTab(id) {
                 if (!mobTablon || !mobTrabajo) return;
                 if (id === 'tablon') {
@@ -563,7 +554,6 @@
                 });
             }
 
-            /* -- Comentarios del tablón -- */
             document.querySelectorAll('.tablon-comentarios').forEach(function (bloque) {
                 var input = bloque.querySelector('.tablon-comentar__input');
                 var btn   = bloque.querySelector('.tablon-comentar__btn');
@@ -575,13 +565,13 @@
 
                     var li = document.createElement('li');
                     li.className = 'tablon-comentario';
+                    // Escapamos < para que no se cuelen etiquetas si el usuario las escribe.
                     li.innerHTML =
                         '<div class="tablon-comentario__avatar" aria-hidden="true">' +
                             '<svg viewBox="0 0 24 24" fill="none"><circle cx="12" cy="8" r="4" stroke="currentColor" stroke-width="1.8"/><path d="M4 20c0-4 3.6-7 8-7s8 3 8 7" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg>' +
                         '</div>' +
                         '<div class="tablon-comentario__contenido">' +
                             '<span class="tablon-comentario__autor">Alex Rivera</span>' +
-                            /* replace evita XSS: convierte "<" en entidad HTML antes de inyectar */
                             '<p class="tablon-comentario__texto">' + texto.replace(/</g, '&lt;') + '</p>' +
                         '</div>';
 
@@ -591,13 +581,11 @@
                 }
 
                 btn.addEventListener('click', enviarComentario);
-                /* Permite enviar el comentario pulsando Intro, igual que el botón */
                 input.addEventListener('keydown', function (e) {
                     if (e.key === 'Enter') enviarComentario();
                 });
             });
 
-            /* -- Hamburguesa -- */
             var hamburger  = document.getElementById('rt-hamburger');
             var mobileMenu = document.getElementById('rt-mobile-menu');
 
@@ -619,10 +607,9 @@
         }());
     </script>
 
-    <!-- ══ [DEMO AUTH] ─ borrar junto con auth-demo.js cuando se implemente la BD ══ -->
+    <!-- auth-demo: quitar cuando haya login real -->
     <script src="auth-demo.js"></script>
     <script>AuthDemo.inicializar({ rol: 'alumno' });</script>
-    <!-- ══════════════════════════════════════════════════════════════════════════ -->
 
 </body>
 </html>
