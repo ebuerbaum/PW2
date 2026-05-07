@@ -2511,6 +2511,13 @@ p {
   box-shadow: 0 0 0 3px rgba(7, 135, 240, 0.12);
 }
 
+.ca-detalle__textarea[readonly] {
+  background-color: #f3f4f6;
+  cursor: default;
+  color: #4b5563;
+  resize: none;
+}
+
 /* ----- Chip de archivo (removable) ----- */
 .ca-archivo-chip {
   display: inline-flex;
@@ -2661,6 +2668,45 @@ p {
 
 .ca-calificar--inline {
   margin-top: var(--esp-sm);
+}
+
+.ca-calificar__label--comentario {
+  margin-top: 16px;
+}
+
+.ca-calificar__comentario {
+  display: block;
+  width: 100%;
+  box-sizing: border-box;
+  min-height: 100px;
+  border: 1.5px solid #dde1e7;
+  border-radius: 10px;
+  padding: 10px 12px;
+  font-family: var(--fuente-texto);
+  font-size: 0.95rem;
+  color: var(--color-texto-oscuro);
+  resize: vertical;
+  outline: none;
+  transition: border-color 0.18s, box-shadow 0.18s;
+  background: #ffffff;
+  margin-bottom: 16px;
+}
+
+.ca-calificar__comentario:focus {
+  border-color: var(--color-principal);
+  box-shadow: 0 0 0 3px rgba(7, 135, 240, 0.12);
+}
+
+.ca-calificar__comentario::placeholder {
+  color: #9ca3af;
+}
+
+.ca-calificar__btn--publicar {
+  width: 100%;
+  padding: 12px;
+  border-radius: 24px;
+  font-size: 1rem;
+  margin-top: 4px;
 }
 
 /* ===========================================================
@@ -2883,6 +2929,232 @@ p {
 .recuperar-volver:hover {
   opacity: 0.7;
 }
+
+/* ===========================================================
+   RECUPERAR CONTRASEÑA
+   Misma estructura visual que login_doa.
+   =========================================================== */
+
+/* Cuerpo */
+.rc-body {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  background-color: var(--color-blanco);
+}
+
+/* Botón volver (fijo arriba a la izquierda) */
+.rc-volver {
+  position: fixed;
+  top: var(--esp-md);
+  left: var(--esp-md);
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-family: var(--fuente-titular);
+  font-weight: 700;
+  font-size: 0.875rem;
+  color: var(--color-texto-oscuro);
+  text-decoration: none;
+  transition: opacity 0.18s;
+  z-index: 10;
+}
+
+.rc-volver:hover { opacity: 0.6; }
+
+.rc-volver svg {
+  width: 18px;
+  height: 18px;
+  flex-shrink: 0;
+}
+
+/* Área principal centrada */
+.rc-main {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  padding: 48px var(--esp-md) var(--esp-xl);
+}
+
+.rc-main--oculto { display: none; }
+
+/* Logo */
+.rc-logo {
+  width: 220px;
+  height: auto;
+  margin-bottom: 20px;
+  filter: brightness(0);
+}
+
+/* Título */
+.rc-titulo {
+  font-family: var(--fuente-titular);
+  font-weight: 800;
+  font-size: 1.5rem;
+  color: var(--color-texto-oscuro);
+  margin-bottom: var(--esp-lg);
+  text-align: center;
+}
+
+/* Tarjeta del formulario */
+.rc-card {
+  background-color: var(--color-blanco);
+  border-radius: var(--radio-tarjeta);
+  box-shadow: var(--sombra-tarjeta);
+  padding: var(--esp-lg);
+  width: 100%;
+  max-width: 420px;
+}
+
+/* Formulario */
+.rc-form {
+  display: flex;
+  flex-direction: column;
+  gap: var(--esp-sm);
+}
+
+/* Campo de formulario */
+.rc-campo {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+/* Etiqueta */
+.rc-label {
+  font-family: var(--fuente-titular);
+  font-weight: 700;
+  font-size: 0.75rem;
+  letter-spacing: 0.07em;
+  text-transform: uppercase;
+  color: var(--color-texto);
+}
+
+/* Input */
+.rc-input {
+  width: 100%;
+  padding: 12px var(--esp-sm);
+  background-color: var(--color-neutro);
+  border: 1.5px solid transparent;
+  border-radius: 8px;
+  font-family: var(--fuente-cuerpo);
+  font-size: 0.9375rem;
+  color: var(--color-texto-oscuro);
+  transition: border-color 0.18s, box-shadow 0.18s;
+}
+
+.rc-input:focus {
+  outline: none;
+  border-color: var(--color-principal);
+  box-shadow: 0 0 0 3px rgba(7, 135, 240, 0.12);
+  background-color: var(--color-blanco);
+}
+
+/* Botón de envío */
+.rc-btn {
+  width: 100%;
+  padding: 14px;
+  margin-top: var(--esp-xs);
+  background-color: var(--color-principal);
+  color: var(--color-blanco);
+  border: none;
+  border-radius: 8px;
+  font-family: var(--fuente-titular);
+  font-weight: 700;
+  font-size: 0.9375rem;
+  letter-spacing: 0.06em;
+  cursor: pointer;
+  transition: background-color 0.18s, transform 0.1s;
+}
+
+.rc-btn:hover { background-color: #0670cc; }
+.rc-btn:active { transform: scale(0.98); }
+
+/* ── Overlay / Popup ── */
+.rc-overlay {
+  position: fixed;
+  inset: 0;
+  background-color: rgba(0, 0, 0, 0.45);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 500;
+  padding: var(--esp-md);
+}
+
+.rc-overlay[hidden] { display: none; }
+
+.rc-popup {
+  background-color: var(--color-blanco);
+  border-radius: var(--radio-tarjeta);
+  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.18);
+  padding: var(--esp-lg);
+  width: 100%;
+  max-width: 380px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--esp-sm);
+  text-align: center;
+}
+
+/* Borde de color según tipo */
+.rc-popup--exito { border-top: 4px solid var(--color-exito); }
+.rc-popup--error { border-top: 4px solid #dc2626; }
+
+.rc-popup__titulo {
+  font-family: var(--fuente-titular);
+  font-weight: 800;
+  font-size: 1.25rem;
+  color: var(--color-texto-oscuro);
+  margin: 0;
+}
+
+.rc-popup__mensaje {
+  font-size: 0.9rem;
+  color: var(--color-texto);
+  line-height: 1.6;
+  margin: 0;
+}
+
+.rc-popup__mensaje--error { color: #dc2626; }
+
+/* Icono de check */
+.rc-popup__icono-check {
+  width: 56px;
+  height: 56px;
+  color: var(--color-exito);
+}
+
+.rc-popup__icono-check svg { width: 100%; height: 100%; }
+
+/* Botón del popup */
+.rc-popup__btn {
+  margin-top: var(--esp-xs);
+  padding: 10px 28px;
+  background-color: var(--color-principal);
+  color: var(--color-blanco);
+  border: none;
+  border-radius: 8px;
+  font-family: var(--fuente-titular);
+  font-weight: 700;
+  font-size: 0.875rem;
+  letter-spacing: 0.04em;
+  cursor: pointer;
+  transition: background-color 0.18s, transform 0.1s;
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.rc-popup__btn:hover { background-color: #0670cc; }
+.rc-popup__btn:active { transform: scale(0.98); }
+
+/* Variante link (mismo aspecto que el botón) */
+.rc-popup__btn--link { display: inline-flex; }
 
 /* ===========================================================
    MIS CURSOS – Grid de asignaturas
@@ -4294,7 +4566,7 @@ p {
 .gu-detalles-titulo-movil    { font-family: 'Nunito', sans-serif; font-weight: 700; font-size: 1.4rem; color: #1f2937; margin: 0; }
 .gu-detalles-titulo-escritorio { font-family: 'Nunito', sans-serif; font-weight: 700; font-size: 1.4rem; color: #1f2937; margin-bottom: 20px; text-align: center; }
 .gu-detalles-informacion  { flex: 1; display: flex; flex-direction: column; justify-content: center; }
-.activo-movil             { /* clase de estado, sin estilos base propios */ }
+.activo-movil             { display: block; }
 
 /* ============================================================
    ENTREGAR TAREA (et-) – página del alumno para entregar

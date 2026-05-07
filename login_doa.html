@@ -87,6 +87,10 @@
         </div>
     </footer>
 
+    <!-- ══ [DEMO AUTH] ─ borrar junto con auth-demo.js cuando se implemente la BD ══ -->
+    <script src="auth-demo.js"></script>
+    <!-- ══════════════════════════════════════════════════════════════════════════ -->
+
     <script>
         /* Toggle mostrar / ocultar contraseña */
         var toggleBtn = document.getElementById('toggle-pwd');
@@ -127,8 +131,20 @@
                     return;
                 }
 
-                /* Demo: cualquier credencial válida redirige directamente, sin autenticación real */
-                window.location.href = 'home_DOA.html';
+                /* [DEMO AUTH] ── reemplazar con llamada a la API real ──────────
+                   Borrar este bloque y <script src="auth-demo.js"> cuando
+                   se implemente la BD. Restaurar: window.location.href = '...'; */
+                var usuario = (window.AuthDemo)
+                    ? AuthDemo.validar(email, pwd)
+                    : null;
+                if (usuario) {
+                    AuthDemo.guardar(usuario);
+                    window.location.href = usuario.inicio;
+                } else {
+                    feedback.textContent = 'Correo o contraseña incorrectos.';
+                    feedback.hidden = false;
+                }
+                /* ── fin [DEMO AUTH] ──────────────────────────────────────── */
             });
         }
     </script>

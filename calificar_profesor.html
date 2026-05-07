@@ -210,7 +210,7 @@
                     <h2 class="ca-detalle__titulo">Trabajo del Alumno</h2>
                     <div class="ca-detalle__contenido" id="ca-detalle-contenido">
                         <textarea class="ca-detalle__textarea" id="ca-detalle-textarea"
-                            placeholder="Escribe aquí el contenido del trabajo..." rows="8"></textarea>
+                            placeholder="Respuesta del alumno..." rows="8" readonly></textarea>
                         <div class="ca-detalle__archivos" id="ca-archivos-desktop">
                             <div class="ca-archivo-chip" data-nombre="Documento.pdf">
                                 <svg class="ca-archivo__icono" viewBox="0 0 24 24" fill="none" aria-hidden="true">
@@ -218,7 +218,6 @@
                                         stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
                                 </svg>
                                 <span class="ca-archivo-chip__nombre">Documento.pdf</span>
-                                <button class="ca-archivo-chip__eliminar" aria-label="Eliminar Documento.pdf">&times;</button>
                             </div>
                             <div class="ca-archivo-chip" data-nombre="Documento.pdf">
                                 <svg class="ca-archivo__icono" viewBox="0 0 24 24" fill="none" aria-hidden="true">
@@ -226,18 +225,7 @@
                                         stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
                                 </svg>
                                 <span class="ca-archivo-chip__nombre">Documento.pdf</span>
-                                <button class="ca-archivo-chip__eliminar" aria-label="Eliminar Documento.pdf">&times;</button>
                             </div>
-                        </div>
-                        <div class="ca-detalle__acciones">
-                            <label class="ca-btn-adjuntar" id="ca-btn-adjuntar">
-                                <svg class="ca-btn-adjuntar__icono" viewBox="0 0 24 24" fill="none" aria-hidden="true">
-                                    <path d="M21.44 11.05l-9.19 9.19a6 6 0 01-8.49-8.49l9.19-9.19a4 4 0 015.66 5.66l-9.2 9.19a2 2 0 01-2.83-2.83l8.49-8.48"
-                                        stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                                </svg>
-                                Adjuntar archivo
-                                <input type="file" class="ca-input-archivo" id="ca-input-archivo" multiple hidden>
-                            </label>
                         </div>
                         <!-- Calificar -->
                         <div class="ca-calificar" id="ca-calificar-desktop">
@@ -246,8 +234,11 @@
                                 <input type="number" class="ca-calificar__input" id="ca-nota-input"
                                     min="0" max="10" step="0.1" value="0" placeholder="0">
                                 <span class="ca-calificar__sobre">/10</span>
-                                <button class="ca-calificar__btn" id="ca-btn-calificar" type="button">Calificar</button>
                             </div>
+                            <label class="ca-calificar__label ca-calificar__label--comentario" for="ca-comentario-input">Comentario para el alumno</label>
+                            <textarea class="ca-calificar__comentario" id="ca-comentario-input"
+                                placeholder="Escribe un comentario para el alumno..." rows="4"></textarea>
+                            <button class="ca-calificar__btn ca-calificar__btn--publicar" id="ca-btn-calificar" type="button">Publicar nota</button>
                         </div>
                     </div>
                 </div>
@@ -331,28 +322,25 @@
                 div.className = 'ca-inline-detalle';
                 div.innerHTML =
                     '<button class="ca-inline-detalle__cerrar" aria-label="Cerrar">&times;</button>' +
-                    '<textarea class="ca-detalle__textarea" rows="5" placeholder="Escribe aquí...">' + textoDemo + '</textarea>' +
+                    '<textarea class="ca-detalle__textarea" rows="5" placeholder="Respuesta del alumno..." readonly>' + textoDemo + '</textarea>' +
                     '<div class="ca-detalle__archivos ca-archivos-inline">' +
                     crearChipHTML('Documento.pdf') + crearChipHTML('Documento.pdf') +
                     '</div>' +
-                    '<label class="ca-btn-adjuntar ca-btn-adjuntar--inline">' +
-                    '<svg class="ca-btn-adjuntar__icono" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M21.44 11.05l-9.19 9.19a6 6 0 01-8.49-8.49l9.19-9.19a4 4 0 015.66 5.66l-9.2 9.19a2 2 0 01-2.83-2.83l8.49-8.48" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>' +
-                    'Adjuntar archivo<input type="file" class="ca-input-archivo" multiple hidden>' +
-                    '</label>' +
                     '<div class="ca-calificar ca-calificar--inline">' +
                     '<label class="ca-calificar__label">Calificación</label>' +
                     '<div class="ca-calificar__fila">' +
                     '<input type="number" class="ca-calificar__input ca-nota-inline" min="0" max="10" step="0.1" value="0" placeholder="0">' +
                     '<span class="ca-calificar__sobre">/10</span>' +
-                    '<button class="ca-calificar__btn ca-btn-calificar-inline" type="button">Calificar</button>' +
-                    '</div></div>';
+                    '</div>' +
+                    '<label class="ca-calificar__label ca-calificar__label--comentario">Comentario para el alumno</label>' +
+                    '<textarea class="ca-calificar__comentario ca-comentario-inline" placeholder="Escribe un comentario para el alumno..." rows="4"></textarea>' +
+                    '<button class="ca-calificar__btn ca-calificar__btn--publicar ca-btn-calificar-inline" type="button">Publicar nota</button>' +
+                    '</div>';
                 /* Inserta el div a continuación del <li> del alumno seleccionado */
                 li.parentNode.insertBefore(div, li.nextSibling);
                 div.querySelector('.ca-inline-detalle__cerrar').addEventListener('click', function () {
                     div.remove();
                 });
-                inicializarEliminaciones(div);
-                inicializarFileInput(div);
             }
 
             for (var i = 0; i < alumnos.length; i++) {
@@ -401,7 +389,6 @@
                 return '<div class="ca-archivo-chip" data-nombre="' + nombre + '">' +
                     '<svg class="ca-archivo__icono" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M21.44 11.05l-9.19 9.19a6 6 0 01-8.49-8.49l9.19-9.19a4 4 0 015.66 5.66l-9.2 9.19a2 2 0 01-2.83-2.83l8.49-8.48" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>' +
                     '<span class="ca-archivo-chip__nombre">' + nombre + '</span>' +
-                    '<button class="ca-archivo-chip__eliminar" aria-label="Eliminar ' + nombre + '">&times;</button>' +
                     '</div>';
             }
 
@@ -419,25 +406,27 @@
                 inicializarFileInput(panelDesktop);
             }
 
-            /* -- Calificar: desktop -- */
+            /* -- Publicar nota: desktop -- */
             var btnCalificar = document.getElementById('ca-btn-calificar');
             var notaInput = document.getElementById('ca-nota-input');
             if (btnCalificar && notaInput) {
                 btnCalificar.addEventListener('click', function () {
-                    aplicarNota(notaInput.value);
+                    var comentario = document.getElementById('ca-comentario-input');
+                    aplicarNota(notaInput.value, comentario ? comentario.value : '');
                 });
             }
 
-            /* -- Calificar: inline (delegado) -- */
-            /* Se usa delegación al documento porque los botones inline se crean dinámicamente */
+            /* -- Publicar nota: inline (delegado) -- */
             document.addEventListener('click', function (e) {
                 var btn = e.target.closest('.ca-btn-calificar-inline');
                 if (!btn) return;
-                var input = btn.closest('.ca-calificar').querySelector('.ca-nota-inline');
-                if (input) aplicarNota(input.value);
+                var calificar = btn.closest('.ca-calificar');
+                var input = calificar.querySelector('.ca-nota-inline');
+                var comentario = calificar.querySelector('.ca-comentario-inline');
+                if (input) aplicarNota(input.value, comentario ? comentario.value : '');
             });
 
-            function aplicarNota(valor) {
+            function aplicarNota(valor, comentario) {
                 var nota = parseFloat(valor);
                 if (isNaN(nota) || nota < 0 || nota > 10) {
                     alert('Introduce una nota válida entre 0 y 10.');
@@ -447,12 +436,16 @@
                 if (!activo) return;
                 var badge = activo.querySelector('.ca-alumno__nota');
                 if (badge) {
-                    /* toFixed(1) asegura un decimal; replace usa coma decimal (notación española) */
                     badge.textContent = nota.toFixed(1).replace('.', ',') + '/10';
                 }
             }
         }());
     </script>
+
+    <!-- ══ [DEMO AUTH] ─ borrar junto con auth-demo.js cuando se implemente la BD ══ -->
+    <script src="auth-demo.js"></script>
+    <script>AuthDemo.inicializar({ rol: 'profesor' });</script>
+    <!-- ══════════════════════════════════════════════════════════════════════════ -->
 
 </body>
 </html>
