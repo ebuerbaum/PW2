@@ -87,12 +87,11 @@
         </div>
     </footer>
 
-    <!-- ══ [DEMO AUTH] ─ borrar junto con auth-demo.js cuando se implemente la BD ══ -->
+    <!-- auth-demo.js: login simulado; sustituir por API -->
     <script src="auth-demo.js"></script>
-    <!-- ══════════════════════════════════════════════════════════════════════════ -->
 
     <script>
-        /* Toggle mostrar / ocultar contraseña */
+        // Mostrar u ocultar la contraseña al pulsar el icono.
         var toggleBtn = document.getElementById('toggle-pwd');
         var pwdInput  = document.getElementById('login-password');
         var iconEye   = document.getElementById('icon-eye');
@@ -100,17 +99,14 @@
 
         if (toggleBtn && pwdInput) {
             toggleBtn.addEventListener('click', function () {
-                /* Si ya es texto, volvemos a ocultarlo; si es password, lo mostramos */
                 var visible = pwdInput.type === 'text';
                 pwdInput.type = visible ? 'password' : 'text';
-                /* Intercambia el icono de ojo abierto / tachado según el estado */
                 iconEye.style.display = visible ? '' : 'none';
                 iconOff.style.display = visible ? 'none' : '';
                 toggleBtn.setAttribute('aria-label', visible ? 'Mostrar contraseña' : 'Ocultar contraseña');
             });
         }
 
-        /* Validación básica del formulario */
         var loginForm = document.getElementById('login-form');
         var feedback  = document.getElementById('login-feedback');
 
@@ -131,9 +127,7 @@
                     return;
                 }
 
-                /* [DEMO AUTH] ── reemplazar con llamada a la API real ──────────
-                   Borrar este bloque y <script src="auth-demo.js"> cuando
-                   se implemente la BD. Restaurar: window.location.href = '...'; */
+                // Comprueba contra la lista demo de auth-demo.js (luego será fetch al servidor).
                 var usuario = (window.AuthDemo)
                     ? AuthDemo.validar(email, pwd)
                     : null;
@@ -144,7 +138,6 @@
                     feedback.textContent = 'Correo o contraseña incorrectos.';
                     feedback.hidden = false;
                 }
-                /* ── fin [DEMO AUTH] ──────────────────────────────────────── */
             });
         }
     </script>

@@ -261,7 +261,7 @@
 
     <script src="script.js" defer></script>
     <script>
-        /* IIFE: aisla las variables de este módulo del ámbito global */
+        // Calificar: elegir alumno, adjuntos y nota (layout distinto en móvil).
         (function () {
             /* -- Perfil popup -- */
             var perfilBtn   = document.getElementById('rt-perfil-btn');
@@ -442,10 +442,9 @@
         }());
     </script>
 
-    <!-- ══ [DEMO AUTH] ─ borrar junto con auth-demo.js cuando se implemente la BD ══ -->
+    <!-- auth-demo: quitar cuando haya login real -->
     <script src="auth-demo.js"></script>
     <script>AuthDemo.inicializar({ rol: 'profesor' });</script>
-    <!-- ══════════════════════════════════════════════════════════════════════════ -->
 
 </body>
 </html>
