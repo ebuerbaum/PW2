@@ -225,10 +225,6 @@
                                         <span class="rt-tarjeta__nombre">Tarea 1</span>
                                         <span class="rt-tarjeta__fecha">17/04 23:55</span>
                                     </div>
-                                    <div class="rt-tarjeta__estado">
-                                        <span class="rt-tarjeta__etiqueta">Entregada</span>
-                                        <span class="rt-tarjeta__nota">8,4/10</span>
-                                    </div>
                                 </a>
                             </li>
                         </ul>
@@ -622,6 +618,11 @@
                     activarTab(tabTrabajo, panelTrabajo, tabTablon, panelTablon);
                     sincronizarMobTab('trabajo');
                 });
+            }
+
+            /* Si en la URL viene el hash #trabajo, activa esa pestaña automáticamente */
+            if (window.location.hash === '#trabajo' && tabTrabajo) {
+                tabTrabajo.click();
             }
 
             /* -- Comentarios del tablón -- */
