@@ -21,7 +21,9 @@
         <h1 class="rt-topbar__titulo">Notas</h1>
 
         <div class="rt-topbar__acciones">
-            <button class="rt-topbar__icono-btn" aria-label="Notificaciones" id="ca-btn-notif">
+            <!-- Muro de Anuncios -->
+            <div class="ma-wrapper">
+                <button id="ma-btn-notif" aria-expanded="false" aria-controls="ma-panel" class="rt-topbar__icono-btn" aria-label="Notificaciones">
                 <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
                     <path d="M18 8A6 6 0 006 8c0 7-3 9-3 9h18s-3-2-3-9" stroke="currentColor" stroke-width="2"
                         stroke-linecap="round" stroke-linejoin="round"/>
@@ -29,6 +31,46 @@
                         stroke-linecap="round" stroke-linejoin="round"/>
                 </svg>
             </button>
+                <span class="ma-badge" id="ma-badge" aria-label="3 notificaciones sin leer">3</span>
+                <div class="ma-panel" id="ma-panel" role="dialog" aria-label="Notificaciones" aria-modal="false">
+                    <div class="ma-panel__cabecera">
+                        <h2 class="ma-panel__titulo">Notificaciones</h2>
+                        <button class="ma-panel__cerrar" id="ma-btn-cerrar" aria-label="Cerrar notificaciones">&#x2715;</button>
+                    </div>
+                    <ul class="ma-lista" id="ma-lista" aria-live="polite">
+                        <li>
+                            <div class="ma-notif ma-notif--no-leida">
+                                <span class="ma-notif__punto ma-notif__punto--tarea"></span>
+                                <div class="ma-notif__cuerpo">
+                                    <h3 class="ma-notif__titulo">Nueva Tarea</h3>
+                                    <p class="ma-notif__desc">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean euismod bibendum</p>
+                                </div>
+                            </div>
+                        </li>
+                        <li>
+                            <div class="ma-notif ma-notif--no-leida">
+                                <span class="ma-notif__punto ma-notif__punto--examen"></span>
+                                <div class="ma-notif__cuerpo">
+                                    <h3 class="ma-notif__titulo">Examen</h3>
+                                    <p class="ma-notif__desc">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean euismod bibendum laoreet. Proin gravida dolor sit amet lacus</p>
+                                </div>
+                            </div>
+                        </li>
+                        <li>
+                            <div class="ma-notif ma-notif--no-leida">
+                                <span class="ma-notif__punto ma-notif__punto--mensaje"></span>
+                                <div class="ma-notif__cuerpo">
+                                    <h3 class="ma-notif__titulo">Comunicado del Profesor</h3>
+                                    <p class="ma-notif__desc">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean euismod bibendum laoreet. Proin gravida dolor sit amet lacus accumsan</p>
+                                </div>
+                            </div>
+                        </li>
+                    </ul>
+                    <div class="ma-panel__pie">
+                        <button class="ma-panel__marcar-todo" id="ma-marcar-todo">Marcar todo como leído</button>
+                    </div>
+                </div>
+            </div>
             <button class="rt-topbar__icono-btn" aria-label="Ayuda" id="ca-btn-ayuda">
                 <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
                     <circle cx="12" cy="12" r="10" stroke="currentColor" stroke-width="2"/>

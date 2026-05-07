@@ -217,3 +217,101 @@ function mostrarFeedback(texto, tipo) {
 
 }());
 
+// ==========================================
+// Muro de Anuncios (Notificaciones)
+// ==========================================
+(function () {
+    var btnNotif = document.getElementById('ma-btn-notif');
+    var panelNotif = document.getElementById('ma-panel');
+    var btnCerrar = document.getElementById('ma-btn-cerrar');
+    var btnMarcarTodo = document.getElementById('ma-marcar-todo');
+    var badge = document.getElementById('ma-badge');
+    var notificaciones = document.querySelectorAll('.ma-notif');
+
+    if (!btnNotif || !panelNotif) return;
+
+    function abrirPanel() {
+        panelNotif.classList.add('ma-panel--visible');
+        btnNotif.setAttribute('aria-expanded', 'true');
+    }
+
+    function cerrarPanel() {
+        panelNotif.classList.remove('ma-panel--visible');
+        btnNotif.setAttribute('aria-expanded', 'false');
+    }
+
+    // Toggle
+    btnNotif.addEventListener('click', function (e) {
+        e.stopPropagation();
+        if (panelNotif.classList.contains('ma-panel--visible')) {
+            cerrarPanel();
+        } else {
+            abrirPanel();
+        }
+    });
+
+    // Cerrar con el botón X
+    if (btnCerrar) {
+        btnCerrar.addEventListener('click', function (e) {
+            e.stopPropagation();
+            cerrarPanel();
+            btnNotif.focus();
+        });
+    }
+
+    // Cerrar al hacer clic fuera del panel
+    document.addEventListener('click', function (e) {
+        if (panelNotif.classList.contains('ma-panel--visible') && !panelNotif.contains(e.target)) {
+            cerrarPanel();
+        }
+    });
+
+    // Evitar que clics dentro del panel lo cierren
+    panelNotif.addEventListener('click', function (e) {
+        e.stopPropagation();
+    });
+
+    // Cerrar con Escape
+    document.addEventListener('keydown', function (e) {
+        if (e.key === 'Escape' && panelNotif.classList.contains('ma-panel--visible')) {
+            cerrarPanel();
+            btnNotif.focus();
+        }
+    });
+
+    function actualizarBadge() {
+        if (!badge) return;
+        var noLeidas = document.querySelectorAll('.ma-notif--no-leida').length;
+        if (noLeidas > 0) {
+            badge.textContent = noLeidas;
+            badge.setAttribute('aria-label', noLeidas + ' notificaciones sin leer');
+            badge.classList.remove('ma-badge--oculto');
+        } else {
+            badge.classList.add('ma-badge--oculto');
+        }
+    }
+
+    // Marcar una notificación como leída al hacer clic en ella
+    notificaciones.forEach(function (notif) {
+        notif.addEventListener('click', function () {
+            if (this.classList.contains('ma-notif--no-leida')) {
+                this.classList.remove('ma-notif--no-leida');
+                actualizarBadge();
+            }
+        });
+    });
+
+    // Marcar todas como leídas
+    if (btnMarcarTodo) {
+        btnMarcarTodo.addEventListener('click', function () {
+            notificaciones.forEach(function (notif) {
+                notif.classList.remove('ma-notif--no-leida');
+            });
+            actualizarBadge();
+        });
+    }
+
+    // Inicializar badge
+    actualizarBadge();
+})();
+

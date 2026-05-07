@@ -2169,15 +2169,19 @@ p {
     display: flex;
   }
 
-  /* Título centrado */
+  /* Ocultar el título de la página en móvil para dejar espacio a los iconos */
   .rt-topbar__titulo {
-    text-align: center;
-    font-size: 1.35rem;
-    flex: 1;
+    display: none;
   }
 
-  /* Ocultar acciones de escritorio */
+  /* Mostrar contenedor de acciones en móvil y empujarlo a la derecha */
   .rt-topbar__acciones {
+    display: flex;
+    margin-left: auto;
+  }
+
+  /* Ocultar perfil de usuario (avatar y texto) en el header móvil */
+  .rt-perfil-wrapper {
     display: none;
   }
 
@@ -4759,4 +4763,223 @@ p {
   .gu-lista-columna.oculto-movil { display: none; }
   /* En móvil el panel de detalles ocupa toda la pantalla como una modal a pantalla completa */
   .gu-detalles-columna.activo-movil { display: flex; position: fixed; top: 0; left: 0; right: 0; bottom: 0; z-index: 200; background: #ffffff; overflow-y: auto; width: 100%; box-sizing: border-box; flex-direction: column; }
+}
+
+/* =============================================
+   MURO DE ANUNCIOS – Panel de Notificaciones
+   (Compartido por todas las páginas con header DOA)
+   ============================================= */
+
+/* ── Contenedor relativo del botón + panel ── */
+.ma-wrapper {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+}
+
+/* ── Botón campana (reutiliza rt-topbar__icono-btn) ── */
+/* El botón ya tiene estilos; solo añadimos el badge */
+
+/* ── Badge de notificaciones pendientes ── */
+.ma-badge {
+  position: absolute;
+  top: 2px;
+  right: 2px;
+  min-width: 16px;
+  height: 16px;
+  padding: 0 4px;
+  background-color: var(--color-acento);
+  color: var(--color-blanco);
+  font-family: var(--fuente-titular);
+  font-weight: 800;
+  font-size: 0.6rem;
+  line-height: 16px;
+  border-radius: 999px;
+  text-align: center;
+  pointer-events: none;
+  box-shadow: 0 1px 4px rgba(255, 140, 0, 0.5);
+  transition: transform 0.2s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+.ma-badge--oculto {
+  display: none;
+}
+
+/* ── Panel principal ── */
+.ma-panel {
+  position: absolute;
+  top: calc(100% + 12px);
+  right: 0;
+  width: 340px;
+  background-color: var(--color-blanco);
+  border-radius: var(--radio-tarjeta);
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.14), 0 2px 8px rgba(0, 0, 0, 0.06);
+  border: 1px solid #e4e6ea;
+  z-index: 400;
+  overflow: hidden;
+  /* Animación de entrada */
+  opacity: 0;
+  transform: translateY(-8px) scale(0.97);
+  pointer-events: none;
+  transition: opacity 0.22s ease, transform 0.22s cubic-bezier(0.34, 1.4, 0.64, 1);
+}
+
+.ma-panel--visible {
+  opacity: 1;
+  transform: translateY(0) scale(1);
+  pointer-events: auto;
+}
+
+/* ── Cabecera del panel ── */
+.ma-panel__cabecera {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 16px 20px;
+  border-bottom: 1px solid #eef0f3;
+}
+
+/* H2 – Nunito Bold */
+.ma-panel__titulo {
+  font-family: var(--fuente-titular);
+  font-weight: 700;
+  font-size: 1.05rem;
+  color: var(--color-texto-oscuro);
+  margin: 0;
+}
+
+/* Botón cerrar (×) */
+.ma-panel__cerrar {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 28px;
+  height: 28px;
+  background: transparent;
+  border: none;
+  border-radius: 50%;
+  cursor: pointer;
+  color: var(--color-texto-oscuro);
+  font-size: 1.5rem;
+  line-height: 1;
+  transition: background-color 0.15s, color 0.15s;
+  flex-shrink: 0;
+  font-family: var(--fuente-titular);
+}
+
+.ma-panel__cerrar:hover {
+  background-color: var(--color-neutro);
+  color: var(--color-texto-oscuro);
+}
+
+/* ── Lista de notificaciones ── */
+.ma-lista {
+  list-style: none;
+  padding: 12px;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  max-height: 360px;
+  overflow-y: auto;
+}
+
+/* Scroll suave */
+.ma-lista::-webkit-scrollbar {
+  width: 4px;
+}
+.ma-lista::-webkit-scrollbar-track {
+  background: transparent;
+}
+.ma-lista::-webkit-scrollbar-thumb {
+  background: #d1d5db;
+  border-radius: 999px;
+}
+
+/* ── Tarjeta de notificación ── */
+.ma-notif {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  padding: 14px 16px;
+  background-color: var(--color-blanco);
+  border: 1px solid #eef0f3;
+  border-radius: var(--radio-tarjeta);
+  cursor: pointer;
+  transition: background-color 0.15s, box-shadow 0.15s, transform 0.1s;
+}
+
+.ma-notif:hover {
+  background-color: #f8f9fb;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
+  transform: translateY(-1px);
+}
+
+.ma-notif--no-leida {
+  background-color: #ffffff;
+  border-color: #e4e6ea;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+}
+
+.ma-notif--no-leida:hover {
+  background-color: #f8f9fb;
+}
+
+/* ── Cuerpo de la tarjeta ── */
+.ma-notif__cuerpo {
+  flex: 1;
+  min-width: 0;
+}
+
+/* H3 – Roboto */
+.ma-notif__titulo {
+  font-family: var(--fuente-cuerpo);
+  font-weight: 500;
+  font-size: 0.95rem;
+  color: var(--color-texto-oscuro);
+  margin: 0 0 4px;
+  line-height: 1.3;
+}
+
+.ma-notif__desc {
+  font-family: var(--fuente-cuerpo);
+  font-size: 0.8125rem;
+  color: var(--color-texto);
+  margin: 0;
+  line-height: 1.5;
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+/* ── Punto de color (tipo de notificación) ── */
+.ma-notif__punto {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  flex-shrink: 0;
+  margin-top: 6px;
+}
+
+.ma-notif__punto--tarea    { background-color: var(--color-acento); }
+.ma-notif__punto--examen   { background-color: var(--color-secundario); }
+.ma-notif__punto--mensaje  { background-color: var(--color-exito); }
+.ma-notif__punto--aviso    { background-color: var(--color-principal); }
+
+/* ── Pie del panel ── */
+.ma-panel__pie {
+  display: none;
+}
+
+/* ── Animación de "rebote" del badge al llegar nueva notif ── */
+@keyframes ma-badge-pop {
+  0%   { transform: scale(1); }
+  45%  { transform: scale(1.45); }
+  70%  { transform: scale(0.9); }
+  100% { transform: scale(1); }
+}
+
+.ma-badge--pop {
+  animation: ma-badge-pop 0.4s cubic-bezier(0.36, 0.07, 0.19, 0.97) both;
 }
