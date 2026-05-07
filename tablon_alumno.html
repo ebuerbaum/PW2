@@ -512,8 +512,7 @@
 
     <script src="script.js" defer></script>
     <script>
-    <script>
-        // Menú usuario, acordeones de recursos y pestañas (móvil y escritorio).
+        // IIFE: aisla las variables de este módulo del ámbito global
         (function () {
 
             var perfilBtn   = document.getElementById('rt-perfil-btn');
@@ -594,6 +593,11 @@
                     activarTab(tabTrabajo, panelTrabajo, tabTablon, panelTablon);
                     sincronizarMobTab('trabajo');
                 });
+            }
+
+            /* Si en la URL viene el hash #trabajo, activa esa pestaña automáticamente */
+            if (window.location.hash === '#trabajo' && tabTrabajo) {
+                tabTrabajo.click();
             }
 
             document.querySelectorAll('.tablon-comentarios').forEach(function (bloque) {
