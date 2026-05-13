@@ -230,56 +230,54 @@
     </div>
 
     <script src="js/script.js" defer></script>
-    <script>
+    <script defer>
         /* Funcionalidad básica de la vista */
-        document.addEventListener('DOMContentLoaded', function() {
-            var hamburger  = document.getElementById('rt-hamburger');
-            var mobileMenu = document.getElementById('rt-mobile-menu');
-            if (hamburger && mobileMenu) {
-                hamburger.addEventListener('click', function () {
-                    var abierto = !mobileMenu.hidden;
-                    mobileMenu.hidden = abierto;
-                    hamburger.setAttribute('aria-expanded', String(!abierto));
-                });
-            }
+        var hamburger  = document.getElementById('rt-hamburger');
+        var mobileMenu = document.getElementById('rt-mobile-menu');
+        if (hamburger && mobileMenu) {
+            hamburger.addEventListener('click', function () {
+                var abierto = !mobileMenu.hidden;
+                mobileMenu.hidden = abierto;
+                hamburger.setAttribute('aria-expanded', String(!abierto));
+            });
+        }
 
-            var perfilBtn = document.getElementById('rt-perfil-btn');
-            var perfilPopup = document.getElementById('rt-perfil-popup');
-            if (perfilBtn && perfilPopup) {
-                perfilBtn.addEventListener('click', function (e) {
-                    e.stopPropagation();
-                    var abierto = !perfilPopup.hidden;
-                    perfilPopup.hidden = abierto;
-                    perfilBtn.setAttribute('aria-expanded', String(!abierto));
-                });
-                document.addEventListener('click', function () {
-                    perfilPopup.hidden = true;
-                    perfilBtn.setAttribute('aria-expanded', 'false');
-                });
-                perfilPopup.addEventListener('click', function (e) { e.stopPropagation(); });
-            }
+        var perfilBtn = document.getElementById('rt-perfil-btn');
+        var perfilPopup = document.getElementById('rt-perfil-popup');
+        if (perfilBtn && perfilPopup) {
+            perfilBtn.addEventListener('click', function (e) {
+                e.stopPropagation();
+                var abierto = !perfilPopup.hidden;
+                perfilPopup.hidden = abierto;
+                perfilBtn.setAttribute('aria-expanded', String(!abierto));
+            });
+            document.addEventListener('click', function () {
+                perfilPopup.hidden = true;
+                perfilBtn.setAttribute('aria-expanded', 'false');
+            });
+            perfilPopup.addEventListener('click', function (e) { e.stopPropagation(); });
+        }
 
-            /* Funcionalidad de adjuntar archivos */
-            var fileInput = document.getElementById('ct-input-archivos');
-            var fileListContainer = document.getElementById('ct-lista-archivos');
-            if (fileInput && fileListContainer) {
-                fileInput.addEventListener('change', function(e) {
-                    fileListContainer.innerHTML = '';
-                    var files = e.target.files;
-                    for (var i = 0; i < files.length; i++) {
-                        var chip = document.createElement('div');
-                        chip.className = 'ct-archivo-chip';
-                        chip.innerHTML = 
-                            '<svg viewBox="0 0 24 24" fill="none" width="16" height="16" aria-hidden="true">' +
-                                '<path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>' +
-                                '<polyline points="14 2 14 8 20 8" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>' +
-                            '</svg>' +
-                            '<span class="ct-archivo-chip__nombre" title="' + files[i].name + '">' + files[i].name + '</span>';
-                        fileListContainer.appendChild(chip);
-                    }
-                });
-            }
-        });
+        /* Funcionalidad de adjuntar archivos */
+        var fileInput = document.getElementById('ct-input-archivos');
+        var fileListContainer = document.getElementById('ct-lista-archivos');
+        if (fileInput && fileListContainer) {
+            fileInput.addEventListener('change', function(e) {
+                fileListContainer.innerHTML = '';
+                var files = e.target.files;
+                for (var i = 0; i < files.length; i++) {
+                    var chip = document.createElement('div');
+                    chip.className = 'ct-archivo-chip';
+                    chip.innerHTML = 
+                        '<svg viewBox="0 0 24 24" fill="none" width="16" height="16" aria-hidden="true">' +
+                            '<path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>' +
+                            '<polyline points="14 2 14 8 20 8" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>' +
+                        '</svg>' +
+                        '<span class="ct-archivo-chip__nombre" title="' + files[i].name + '">' + files[i].name + '</span>';
+                    fileListContainer.appendChild(chip);
+                }
+            });
+        }
     </script>
 </body>
 </html>
