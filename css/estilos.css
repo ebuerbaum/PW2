@@ -292,32 +292,43 @@ p {
   padding-inline: var(--esp-xl);
 }
 
-/* Grid: 1fr (logo izq) | auto (nav centrado) | 1fr (hamburger dcha) */
+/* Grid: logo | nav (centro) | zona LOGIN/perfil | hamburger */
 .barra-nav__interior {
   display: grid;
-  grid-template-columns: 1fr auto 1fr;
+  grid-template-columns: auto minmax(0, 1fr) auto auto;
   align-items: center;
   gap: var(--esp-md);
 }
 
 .barra-nav__logo {
+  grid-column: 1;
   justify-self: start;
-}
-
-.barra-nav__interior>nav {
-  display: flex;
-  justify-content: center;
-}
-
-.hamburger {
-  justify-self: end;
-  grid-column: 3;
-}
-
-.barra-nav__logo {
   display: flex;
   align-items: center;
   flex-shrink: 0;
+}
+
+.barra-nav__interior>nav {
+  grid-column: 2;
+  display: flex;
+  justify-content: center;
+  min-width: 0;
+}
+
+/* Evita que los estilos genéricos de Contacto/Desktop (bloque líneas ~825+)
+   pisen la posición de la barra GTi: el hamburger va en la última columna. */
+.barra-nav .hamburger {
+  justify-self: end;
+  grid-column: 4;
+}
+
+/* LOGIN / perfil a la derecha del menú centrado */
+.gti-nav-perfil {
+  grid-column: 3;
+  justify-self: end;
+  position: relative;
+  display: flex;
+  align-items: center;
 }
 
 .barra-nav__logo img {
@@ -430,6 +441,155 @@ p {
 .barra-nav__dropdown a[aria-current="page"] {
   background-color: var(--color-neutro);
   color: var(--color-principal);
+}
+
+/* —— Navbar GTI: botón LOGIN y desplegable de perfil (index / contacto / info DOA) —— */
+
+.gti-btn-login {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  padding: 8px 16px;
+  border-radius: var(--radio-boton);
+  border: 1.5px solid var(--color-principal);
+  background-color: var(--color-blanco);
+  color: var(--color-principal);
+  font-family: var(--fuente-titular);
+  font-weight: 700;
+  font-size: 0.8125rem;
+  letter-spacing: 0.04em;
+  line-height: 1;
+  white-space: nowrap;
+  cursor: pointer;
+  transition:
+    background-color 0.15s ease,
+    color 0.15s ease,
+    border-color 0.15s ease,
+    box-shadow 0.15s ease;
+}
+
+.gti-btn-login svg {
+  width: 18px;
+  height: 18px;
+  flex-shrink: 0;
+}
+
+.gti-btn-login:hover {
+  background-color: var(--color-principal);
+  border-color: var(--color-principal);
+  color: var(--color-blanco);
+}
+
+.gti-perfil-wrapper {
+  position: relative;
+}
+
+.gti-perfil-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  padding: 0;
+  border: 1px solid #e5e7eb;
+  border-radius: 999px;
+  background: var(--color-blanco);
+  color: var(--color-texto-oscuro);
+  cursor: pointer;
+  transition:
+    border-color 0.15s,
+    box-shadow 0.15s,
+    background-color 0.15s;
+}
+
+.gti-perfil-btn:hover {
+  border-color: var(--color-principal);
+  background: rgba(7, 135, 240, 0.06);
+}
+
+.gti-perfil-btn svg {
+  width: 20px;
+  height: 20px;
+}
+
+.gti-perfil-popup {
+  position: absolute;
+  top: calc(100% + 10px);
+  right: 0;
+  width: 240px;
+  background: var(--color-blanco);
+  border: 1px solid #e4e6ea;
+  border-radius: 14px;
+  box-shadow: 0 10px 28px rgba(0, 0, 0, 0.12);
+  padding: var(--esp-md);
+  z-index: 260;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.gti-perfil-popup[hidden] {
+  display: none;
+}
+
+.gti-perfil-popup__cabecera {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+}
+
+.gti-perfil-popup__avatar {
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  background: #e5e7eb;
+  color: #6b7280;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.gti-perfil-popup__avatar svg {
+  width: 24px;
+  height: 24px;
+}
+
+.gti-perfil-popup__nombre {
+  font-family: var(--fuente-titular);
+  font-weight: 700;
+  font-size: 0.95rem;
+  color: var(--color-texto-oscuro);
+  line-height: 1.25;
+  word-break: break-word;
+}
+
+.gti-perfil-popup__logout {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 10px 16px;
+  width: 100%;
+  border: none;
+  border-radius: 8px;
+  background: var(--color-principal);
+  color: var(--color-blanco);
+  font-family: var(--fuente-titular);
+  font-weight: 700;
+  font-size: 0.85rem;
+  cursor: pointer;
+  transition: opacity 0.15s, filter 0.15s;
+}
+
+.gti-perfil-popup__logout:hover {
+  filter: brightness(1.05);
+}
+
+.gti-perfil-popup__logout svg {
+  width: 18px;
+  height: 18px;
+  flex-shrink: 0;
 }
 
 /* =============================================
@@ -1599,7 +1759,7 @@ p {
 }
 
 /* ===========================================================
-   LANDING PAGE (index.html) – Responsive
+   LANDING PAGE (index.php) – Responsive
    =========================================================== */
 
 /* --- Tablet (≤ 900px): cuadrícula de 2 columnas --- */
@@ -1614,9 +1774,8 @@ p {
 /* --- Móvil (≤ 640px) --- */
 @media (max-width: 640px) {
 
-  /* Navbar: ocultar menú y botón login, mostrar hamburguesa */
-  .barra-nav__menu,
-  .barra-nav__btn-login {
+  /* Navbar: ocultar menú escritorio; LOGIN/perfil + hamburguesa siguen visibles */
+  .barra-nav__menu {
     display: none;
   }
 
@@ -5001,4 +5160,267 @@ p {
 
 .ma-badge--pop {
   animation: ma-badge-pop 0.4s cubic-bezier(0.36, 0.07, 0.19, 0.97) both;
+}
+
+/* =============================================
+   LOGIN DOA — LAYOUT CON PANEL DE CREDENCIALES
+   Estos estilos adaptan la página login_doa.php
+   para mostrar el formulario + el panel lateral
+   de credenciales de prueba en paralelo.
+   ============================================= */
+
+/*
+  .login-main--con-panel:
+  En desktop → dos columnas (formulario | panel credenciales).
+  En móvil   → columna única, panel debajo del form.
+*/
+.login-main--con-panel {
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  justify-content: center;
+  gap: 32px;
+  padding: 40px 24px;
+  min-height: calc(100vh - 140px);
+  flex-wrap: wrap;
+}
+
+/* Columna del formulario: mantiene el ancho original */
+.login-columna-form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  flex: 0 0 auto;
+  width: 100%;
+  max-width: 400px;
+}
+
+/* =============================================
+   PANEL DE CREDENCIALES DOA
+   ============================================= */
+
+/*
+  Panel lateral derecho en desktop.
+  Se convierte en acordeón en móvil.
+*/
+.doa-cred-panel {
+  flex: 1 1 340px;
+  max-width: 420px;
+  background-color: var(--color-blanco);
+  border-radius: var(--radio-tarjeta);
+  box-shadow: 0 4px 24px rgba(7, 135, 240, 0.09);
+  border: 1px solid #e4e6ea;
+  overflow: hidden;
+  /* Alinear con la parte superior del formulario */
+  align-self: flex-start;
+  /* Suave entrada */
+  animation: credPanelEntrada 0.35s ease both;
+}
+
+@keyframes credPanelEntrada {
+  from { opacity: 0; transform: translateY(12px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+/* ── Cabecera del panel ── */
+.doa-cred-panel__cabecera {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 18px 20px 16px;
+  background: linear-gradient(135deg, var(--color-principal) 0%, var(--color-secundario) 100%);
+  color: var(--color-blanco);
+}
+
+.doa-cred-panel__icono {
+  width: 32px;
+  height: 32px;
+  flex-shrink: 0;
+  color: var(--color-blanco);
+  opacity: 0.9;
+}
+
+.doa-cred-panel__titulo {
+  font-family: var(--fuente-titular);
+  font-weight: 700;
+  font-size: 1rem;
+  color: var(--color-blanco);
+  margin: 0;
+}
+
+.doa-cred-panel__desc {
+  font-size: 0.78rem;
+  color: rgba(255, 255, 255, 0.85);
+  margin: 2px 0 0;
+  line-height: 1.4;
+}
+
+/* ── Grupos por rol ── */
+.doa-cred-grupo {
+  padding: 12px 16px 8px;
+  border-bottom: 1px solid #f0f2f5;
+}
+
+.doa-cred-grupo:last-child {
+  border-bottom: none;
+}
+
+/* Etiqueta de rol (badge) */
+.doa-cred-grupo__etiqueta {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  font-family: var(--fuente-titular);
+  font-weight: 700;
+  font-size: 0.72rem;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  padding: 3px 10px 3px 7px;
+  border-radius: 999px;
+  margin-bottom: 10px;
+  /* Default: color alumno (azul principal) */
+  background-color: rgba(7, 135, 240, 0.10);
+  color: var(--color-principal);
+}
+
+.doa-cred-grupo__etiqueta svg {
+  width: 13px;
+  height: 13px;
+  flex-shrink: 0;
+}
+
+/* Variante Profesores (teal) */
+.doa-cred-grupo__etiqueta--profesor {
+  background-color: rgba(0, 194, 203, 0.12);
+  color: #008a90;
+}
+
+/* Variante Secretaría (naranja) */
+.doa-cred-grupo__etiqueta--secretaria {
+  background-color: rgba(255, 140, 0, 0.12);
+  color: #c46a00;
+}
+
+/* ── Fila individual de usuario ── */
+.doa-cred-fila {
+  margin-bottom: 10px;
+}
+
+.doa-cred-fila__cabecera {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  margin-bottom: 4px;
+}
+
+.doa-cred-fila__cabecera .doa-cred-nombre {
+  flex: 1;
+  min-width: 0;
+}
+
+.doa-cred-fila__meta {
+  margin: 0;
+  font-size: 0.72rem;
+  color: #6b7280;
+  line-height: 1.35;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 4px 6px;
+}
+
+.doa-cred-fila__meta .doa-cred-valor {
+  flex: unset;
+  padding: 1px 5px;
+}
+
+.doa-cred-datos {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+/* Nombre del usuario */
+.doa-cred-nombre {
+  font-family: var(--fuente-titular);
+  font-weight: 700;
+  font-size: 0.8rem;
+  color: var(--color-texto-oscuro);
+  line-height: 1.2;
+}
+
+/* Fila con el valor + botón copiar */
+.doa-cred-campo {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+/* Valor (email o contraseña) */
+.doa-cred-valor {
+  font-family: 'Courier New', Courier, monospace;
+  font-size: 0.78rem;
+  color: var(--color-texto);
+  background-color: #f4f5f7;
+  padding: 2px 7px;
+  border-radius: 4px;
+  flex: 1;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  min-width: 0;
+}
+
+/* La contraseña se muestra en un tono más oscuro para distinguirla */
+.doa-cred-pwd {
+  color: var(--color-texto-oscuro);
+  letter-spacing: 0.05em;
+}
+
+/* Autocompletar credenciales (login DOA) */
+.btn-autocompletar-doalogin {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 5px 10px;
+  background-color: var(--color-blanco);
+  border: 1.5px solid var(--color-principal);
+  border-radius: 6px;
+  font-family: var(--fuente-titular);
+  font-size: 0.68rem;
+  font-weight: 700;
+  color: var(--color-principal);
+  cursor: pointer;
+  transition: background-color 0.15s, color 0.15s;
+  white-space: nowrap;
+  flex-shrink: 0;
+}
+
+.btn-autocompletar-doalogin:hover {
+  background-color: var(--color-principal);
+  color: var(--color-blanco);
+}
+
+/* =============================================
+   RESPONSIVE — Panel de credenciales en móvil
+   En pantallas pequeñas, el panel se coloca
+   debajo del formulario en columna única.
+   ============================================= */
+@media (max-width: 800px) {
+  .login-main--con-panel {
+    flex-direction: column;
+    align-items: center;
+    padding: 24px 16px;
+    gap: 24px;
+  }
+
+  .login-columna-form {
+    max-width: 100%;
+  }
+
+  .doa-cred-panel {
+    max-width: 100%;
+    width: 100%;
+  }
 }

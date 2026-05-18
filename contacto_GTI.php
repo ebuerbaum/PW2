@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="es">
 
 <head>
@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="GTI – Contáctanos para más información sobre nuestros productos.">
     <title>Contáctanos | GTI</title>
-    <link rel="stylesheet" href="css/estilos.css">
+    <link rel="stylesheet" href="css/estilos.css?v=3">
 </head>
 
 <body>
@@ -14,24 +14,74 @@
     <header class="barra-nav">
         <div class="contenedor barra-nav__interior">
 
-            <a href="index.html" class="barra-nav__logo">
+            <a href="index.php" class="barra-nav__logo">
                 <img src="img/logo-gti-removebg-preview.png" alt="GTI – Grado en Tecnologías Interactivas">
             </a>
 
             <nav aria-label="Menú principal">
                 <ul class="barra-nav__menu">
                     <li class="barra-nav__item">
-                        <a href="index.html" class="barra-nav__enlace">
+                        <a href="index.php" class="barra-nav__enlace">
                             Productos <span class="barra-nav__flecha" aria-hidden="true">▾</span>
                         </a>
                         <ul class="barra-nav__dropdown">
-                            <li><a href="infoDoa_GTI.html">DOA</a></li>
+                            <li><a href="infoDoa_GTI.php">DOA</a></li>
                         </ul>
                     </li>
-                    <li><a href="index.html#testimonios">Testimonios</a></li>
-                    <li><a href="contacto_GTI.html" aria-current="page">Contáctanos</a></li>
+                    <li><a href="index.php#testimonios">Testimonios</a></li>
+                    <li><a href="contacto_GTI.php" aria-current="page">Contáctanos</a></li>
                 </ul>
             </nav>
+            <!--
+                ÁREA DE PERFIL / LOGIN en la navbar GTI
+                ─────────────────────────────────────────
+                • Sin sesión GTI → #gti-btn-login (enlace «LOGIN»)
+                • Con sesión GTI → #gti-perfil-wrapper (desplegable: nombre + cerrar sesión)
+                Requiere auth-gti.js antes de script.js.
+            -->
+            <div class="gti-nav-perfil">
+
+                <!-- Estado SIN sesión -->
+                <a id="gti-btn-login" href="login_GTI.php?redirect=contacto_GTI.php" class="gti-btn-login">
+                    <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                        <circle cx="12" cy="8" r="4" stroke="currentColor" stroke-width="2"/>
+                        <path d="M4 20c0-4 3.6-7 8-7s8 3 8 7" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                    </svg>
+                    LOGIN
+                </a>
+
+                <!-- Estado CON sesión (oculto por defecto) -->
+                <div class="gti-perfil-wrapper" id="gti-perfil-wrapper" style="display:none">
+                    <button class="gti-perfil-btn" id="gti-perfil-btn" aria-expanded="false" aria-controls="gti-perfil-popup" aria-label="Perfil de usuario">
+                        <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                            <circle cx="12" cy="8" r="4" stroke="currentColor" stroke-width="2"/>
+                            <path d="M4 20c0-4 3.6-7 8-7s8 3 8 7" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                        </svg>
+                    </button>
+                    <div class="gti-perfil-popup" id="gti-perfil-popup" hidden>
+                        <div class="gti-perfil-popup__cabecera">
+                            <div class="gti-perfil-popup__avatar" aria-hidden="true">
+                                <svg viewBox="0 0 24 24" fill="none">
+                                    <circle cx="12" cy="8" r="4" stroke="currentColor" stroke-width="2"/>
+                                    <path d="M4 20c0-4 3.6-7 8-7s8 3 8 7" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                                </svg>
+                            </div>
+                            <div style="min-width:0">
+                                <p class="gti-perfil-popup__nombre" id="gti-popup-nombre">Usuario</p>
+                            </div>
+                        </div>
+                        <button class="gti-perfil-popup__logout" id="gti-btn-logout">
+                            <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                                <path d="M9 21H5a2 2 0 01-2-2V5a2 2 0 012-2h4" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                <polyline points="16 17 21 12 16 7" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                <line x1="21" y1="12" x2="9" y2="12" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                            </svg>
+                            Cerrar sesión
+                        </button>
+                    </div>
+                </div>
+
+            </div>
 
             <button class="hamburger" aria-label="Abrir menú" aria-expanded="false">
                 <span class="hamburger-line"></span>
@@ -43,9 +93,9 @@
 
         <nav id="mobile-menu" class="mobile-menu" hidden aria-label="Menú móvil">
             <ul class="mobile-nav-list">
-                <li><a class="mobile-nav-link" href="infoDoa_GTI.html">DOA</a></li>
-                <li><a class="mobile-nav-link" href="index.html#testimonios">Testimonios</a></li>
-                <li><a class="mobile-nav-link mobile-nav-link--active" href="contacto_GTI.html"
+                <li><a class="mobile-nav-link" href="infoDoa_GTI.php">DOA</a></li>
+                <li><a class="mobile-nav-link" href="index.php#testimonios">Testimonios</a></li>
+                <li><a class="mobile-nav-link mobile-nav-link--active" href="contacto_GTI.php"
                        aria-current="page">Contáctanos</a></li>
             </ul>
         </nav>
@@ -115,13 +165,14 @@
     <!-- ============ FOOTER ============ -->
     <footer class="pie-pagina">
         <div class="contenedor pie-pagina__interior">
-            <a href="index.html" class="pie-pagina__logo">
+            <a href="index.php" class="pie-pagina__logo">
                 <img src="img/logo-gti-removebg-preview.png" alt="GTI – Grado en Tecnologías Interactivas">
             </a>
             <p class="pie-pagina__derechos">Todos los derechos reservados 2026&copy;</p>
         </div>
     </footer>
 
+    <script src="js/auth-gti.js" defer></script>
     <script src="js/script.js" defer></script>
 </body>
 

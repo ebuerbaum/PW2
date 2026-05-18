@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="es">
 
 <head>
@@ -14,8 +14,8 @@
 
     <!-- Barra superior -->
     <header class="rt-barra-superior">
-        <a href="crearAsignaturas_secretaria.html" class="rt-barra-superior__logo-movil" aria-label="DOA – Inicio">
-            <img src="img/logoPrincipal_monocromático.png" alt="DOA – Gestión Educativa Inteligente"
+        <a href="crearAsignaturas_secretaria.php" class="rt-barra-superior__logo-movil" aria-label="DOA – Inicio">
+            <img src="img/logoPrincipal_monocromatico.png" alt="DOA – Gestión Educativa Inteligente"
                 style="height: 48px; width: auto;">
         </a>
 
@@ -66,8 +66,8 @@
                             <p class="rt-perfil-emergente__rol">Secretaría</p>
                         </div>
                     </div>
-                    <a href="recuperar-contrasena.html" class="rt-perfil-emergente__cambiar">Cambiar contraseña</a>
-                    <a href="login_doa.html" class="rt-perfil-emergente__cerrar-sesion">
+                    <a href="recuperar-contrasena.php" class="rt-perfil-emergente__cambiar">Cambiar contraseña</a>
+                    <a href="login_doa.php" class="rt-perfil-emergente__cerrar-sesion">
                         <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
                             <path d="M9 21H5a2 2 0 01-2-2V5a2 2 0 012-2h4" stroke="currentColor" stroke-width="2"
                                 stroke-linecap="round" stroke-linejoin="round" />
@@ -93,11 +93,11 @@
     <!-- MENÚ MÓVIL -->
     <div id="rt-menu-movil" class="menu-movil rt-menu-movil" hidden>
         <ul class="lista-nav-movil">
-            <li><a href="crearAsignaturas_secretaria.html" class="enlace-nav-movil enlace-nav-movil--activo"
+            <li><a href="crearAsignaturas_secretaria.php" class="enlace-nav-movil enlace-nav-movil--activo"
                     aria-current="page">Clases</a></li>
-            <li><a href="gestion_usuarios_secretaria.html" class="enlace-nav-movil">Gestión de usuarios</a></li>
+            <li><a href="gestion_usuarios_secretaria.php" class="enlace-nav-movil">Gestión de usuarios</a></li>
             <li><a href="#" class="enlace-nav-movil">Comunicados</a></li>
-            <li><a href="login_doa.html" class="enlace-nav-movil enlace-nav-movil--sesion">Logout</a></li>
+            <li><a href="login_doa.php" class="enlace-nav-movil enlace-nav-movil--sesion">Logout</a></li>
         </ul>
     </div>
 
@@ -110,7 +110,7 @@
                 <ul class="rt-barra-lateral__menu">
                     <li>
                         <!-- enlace activo en esta página -->
-                        <a href="crearAsignaturas_secretaria.html"
+                        <a href="crearAsignaturas_secretaria.php"
                             class="rt-barra-lateral__enlace rt-barra-lateral__enlace--activo"
                             aria-current="page">
                             <svg class="rt-barra-lateral__icono" viewBox="0 0 24 24" fill="none" aria-hidden="true">
@@ -123,7 +123,7 @@
                         </a>
                     </li>
                     <li>
-                        <a href="gestion_usuarios_secretaria.html" class="rt-barra-lateral__enlace">
+                        <a href="gestion_usuarios_secretaria.php" class="rt-barra-lateral__enlace">
                             <svg class="rt-barra-lateral__icono" viewBox="0 0 24 24" fill="none" stroke="currentColor"
                                 stroke-width="2" aria-hidden="true">
                                 <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path>
@@ -148,7 +148,7 @@
             </nav>
 
             <div class="rt-barra-lateral__pie">
-                <a href="login_doa.html" class="rt-barra-lateral__cerrar-sesion">
+                <a href="login_doa.php" class="rt-barra-lateral__cerrar-sesion">
                     <svg class="rt-barra-lateral__icono" viewBox="0 0 24 24" fill="none" aria-hidden="true">
                         <path d="M9 21H5a2 2 0 01-2-2V5a2 2 0 012-2h4" stroke="currentColor" stroke-width="2"
                             stroke-linecap="round" stroke-linejoin="round" />
@@ -241,8 +241,8 @@
 
             <footer class="pie-pagina rt-pie">
                 <div class="contenedor pie-pagina__interior">
-                    <a href="index.html" class="pie-pagina__logo">
-                        <img src="img/logoPrincipal_monocromático.png" alt="Logo DOA">
+                    <a href="index.php" class="pie-pagina__logo">
+                        <img src="img/logoPrincipal_monocromatico.png" alt="Logo DOA">
                     </a>
                     <p class="pie-pagina__derechos">Todos los derechos reservados 2026&copy;</p>
                 </div>
@@ -482,6 +482,9 @@
                     var el = document.createElement('div');
                     el.className = 'gu-elemento' + (asig.id === idDropdownOpen ? ' activo' : '');
                     el.setAttribute('data-id', String(asig.id));
+                    el.setAttribute('tabindex', '0');
+                    el.setAttribute('role', 'button');
+                    el.setAttribute('aria-label', 'Editar asignatura ' + asig.nombre);
                     el.innerHTML =
                         '<div class="gu-elemento-informacion">' +
                             '<div class="gu-elemento-nombre">' + asig.nombre + '</div>' +
@@ -490,17 +493,22 @@
                                 '<span class="' + badgeCls + '">Grupo ' + asig.grupo + '</span>' +
                             '</div>' +
                         '</div>' +
-                        '<button class="gu-boton-editar" aria-label="Editar ' + asig.nombre + '">' +
+                        '<span class="gu-boton-editar" aria-hidden="true">' +
                             '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"' +
                             ' stroke-linecap="round" stroke-linejoin="round">' +
                                 '<path d="M12 20h9"/>' +
                                 '<path d="M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4L16.5 3.5z"/>' +
                             '</svg>' +
-                        '</button>';
+                        '</span>';
 
-                    el.querySelector('.gu-boton-editar').addEventListener('click', function (e) {
-                        e.stopPropagation();
+                    el.addEventListener('click', function () {
                         toggleDropdown(asig.id, el);
+                    });
+                    el.addEventListener('keydown', function (e) {
+                        if (e.key === 'Enter' || e.key === ' ') {
+                            e.preventDefault();
+                            toggleDropdown(asig.id, el);
+                        }
                     });
 
                     lista.appendChild(el);

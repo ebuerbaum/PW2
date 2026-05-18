@@ -14,8 +14,8 @@
          TOPBAR – ancho completo
          ============================================================ -->
     <header class="rt-topbar">
-        <a href="home_DOA.html" class="rt-topbar__logo-mobile" aria-label="DOA – Inicio">
-            <img src="img/logoPrincipal_monocromático.png" alt="DOA – Gestión Educativa Inteligente">
+        <a href="home_DOA.php" class="rt-topbar__logo-mobile" aria-label="DOA – Inicio">
+            <img src="img/logoPrincipal_monocromatico.png" alt="DOA – Gestión Educativa Inteligente">
         </a>
 
         <h1 class="rt-topbar__titulo">Notas</h1>
@@ -109,8 +109,8 @@
                             <p class="rt-perfil-popup__rol">Profesor</p>
                         </div>
                     </div>
-                    <a href="recuperar-contrasena.html" class="rt-perfil-popup__cambiar">Cambiar contraseña</a>
-                    <a href="login_doa.html" class="rt-perfil-popup__logout">
+                    <a href="recuperar-contrasena.php" class="rt-perfil-popup__cambiar">Cambiar contraseña</a>
+                    <a href="login_doa.php" class="rt-perfil-popup__logout">
                         <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
                             <path d="M9 21H5a2 2 0 01-2-2V5a2 2 0 012-2h4" stroke="currentColor" stroke-width="2"
                                 stroke-linecap="round" stroke-linejoin="round"/>
@@ -136,9 +136,9 @@
     <!-- MENÚ MÓVIL -->
     <div id="ca-mobile-menu" class="mobile-menu rt-mobile-menu" hidden>
         <ul class="mobile-nav-list">
-            <li><a href="home_DOA.html" class="mobile-nav-link mobile-nav-link--active" aria-current="page">Clases</a></li>
-            <li><a href="calendario_profesor.html" class="mobile-nav-link">Calendario</a></li>
-            <li><a href="login_doa.html" class="mobile-nav-link mobile-nav-link--login">Logout</a></li>
+            <li><a href="home_DOA.php" class="mobile-nav-link mobile-nav-link--active" aria-current="page">Clases</a></li>
+            <li><a href="calendario_profesor.php" class="mobile-nav-link">Calendario</a></li>
+            <li><a href="login_doa.php" class="mobile-nav-link mobile-nav-link--login">Logout</a></li>
         </ul>
     </div>
 
@@ -152,7 +152,7 @@
             <nav class="rt-sidebar__nav" aria-label="Secciones del aula">
                 <ul class="rt-sidebar__menu">
                     <li>
-                        <a href="home_DOA.html" class="rt-sidebar__link rt-sidebar__link--active" aria-current="page">
+                        <a href="home_DOA.php" class="rt-sidebar__link rt-sidebar__link--active" aria-current="page">
                             <svg class="rt-sidebar__icon" viewBox="0 0 24 24" fill="none" aria-hidden="true">
                                 <rect x="3" y="4" width="18" height="16" rx="2" stroke="currentColor" stroke-width="2"/>
                                 <path d="M7 8h10M7 12h6" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
@@ -161,7 +161,7 @@
                         </a>
                     </li>
                     <li>
-                        <a href="calendario_profesor.html" class="rt-sidebar__link">
+                        <a href="calendario_profesor.php" class="rt-sidebar__link">
                             <svg class="rt-sidebar__icon" viewBox="0 0 24 24" fill="none" aria-hidden="true">
                                 <rect x="3" y="5" width="18" height="16" rx="2" stroke="currentColor" stroke-width="2"/>
                                 <path d="M3 10h18" stroke="currentColor" stroke-width="2"/>
@@ -174,7 +174,7 @@
             </nav>
 
             <div class="rt-sidebar__footer">
-                <a href="login_doa.html" class="rt-sidebar__logout" id="ca-logout-btn">
+                <a href="login_doa.php" class="rt-sidebar__logout" id="ca-logout-btn">
                     <svg class="rt-sidebar__icon" viewBox="0 0 24 24" fill="none" aria-hidden="true">
                         <path d="M9 21H5a2 2 0 01-2-2V5a2 2 0 012-2h4" stroke="currentColor" stroke-width="2"
                             stroke-linecap="round" stroke-linejoin="round"/>
@@ -195,7 +195,7 @@
             
             <main class="rt-contenido" id="rt-contenido" style="padding-top: 30px;">
                 <div class="ct-cabecera">
-                    <button class="ct-btn-volver" onclick="window.location.href='tablon_profesor.html#trabajo'" aria-label="Volver">
+                    <button class="ct-btn-volver" onclick="window.location.href='tablon_profesor.php#trabajo'" aria-label="Volver">
                         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" width="24" height="24">
                             <line x1="19" y1="12" x2="5" y2="12"/>
                             <polyline points="12 19 5 12 12 5"/>
@@ -210,7 +210,7 @@
                 </nav>
 
                 <section class="rt-panel" id="dt-panel-tarea" role="tabpanel" aria-labelledby="dt-tab-tarea">
-                    <form class="ct-layout" action="tablon_profesor.html#trabajo">
+                    <form class="ct-layout" action="tablon_profesor.php#trabajo">
                         
                     
                     <!-- Columna Izquierda -->
@@ -359,7 +359,7 @@
             <!-- FOOTER -->
             <footer class="pie-pagina rt-footer">
                 <div class="contenedor pie-pagina__interior">
-                    <a href="index.html" class="pie-pagina__logo">
+                    <a href="index.php" class="pie-pagina__logo">
                         <img src="img/logo-gti-removebg-preview.png" alt="GTI – Grado en Tecnologías Interactivas">
                     </a>
                     <p class="pie-pagina__derechos">Todos los derechos reservados 2026&copy;</p>

@@ -9,10 +9,12 @@
 </head>
 <body class="rt-body">
 
-    <!-- Barra superior -->
+    <!-- ============================================================
+         TOPBAR – ancho completo
+         ============================================================ -->
     <header class="rt-topbar">
-        <a href="home_DOA.html" class="rt-topbar__logo-mobile" aria-label="DOA – Inicio">
-            <img src="img/logoPrincipal_monocromático.png" alt="DOA – Gestión Educativa Inteligente">
+        <a href="home_DOA.php" class="rt-topbar__logo-mobile" aria-label="DOA – Inicio">
+            <img src="img/logoPrincipal_monocromatico.png" alt="DOA – Gestión Educativa Inteligente">
         </a>
 
         <div class="rt-topbar__spacer" aria-hidden="true"></div>
@@ -106,8 +108,8 @@
                             <p class="rt-perfil-popup__rol">Estudiante</p>
                         </div>
                     </div>
-                    <a href="recuperar-contrasena.html" class="rt-perfil-popup__cambiar">Cambiar contraseña</a>
-                    <a href="login_doa.html" class="rt-perfil-popup__logout">
+                    <a href="recuperar-contrasena.php" class="rt-perfil-popup__cambiar">Cambiar contraseña</a>
+                    <a href="login_doa.php" class="rt-perfil-popup__logout">
                         <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
                             <path d="M9 21H5a2 2 0 01-2-2V5a2 2 0 012-2h4" stroke="currentColor" stroke-width="2"
                                   stroke-linecap="round" stroke-linejoin="round"/>
@@ -133,13 +135,15 @@
     <!-- MENÚ MÓVIL -->
     <div id="rt-mobile-menu" class="mobile-menu rt-mobile-menu" hidden>
         <ul class="mobile-nav-list">
-            <li><a href="home_DOA.html" class="mobile-nav-link">Clases</a></li>
-            <li><a href="calendario_alumno.html" class="mobile-nav-link mobile-nav-link--active" aria-current="page">Calendario</a></li>
-            <li><a href="login_doa.html" class="mobile-nav-link mobile-nav-link--login">Logout</a></li>
+            <li><a href="home_DOA.php" class="mobile-nav-link">Clases</a></li>
+            <li><a href="calendario_profesor.php" class="mobile-nav-link mobile-nav-link--active" aria-current="page">Calendario</a></li>
+            <li><a href="login_doa.php" class="mobile-nav-link mobile-nav-link--login">Logout</a></li>
         </ul>
     </div>
 
-    <!-- Layout: menú lateral + contenido -->
+    <!-- ============================================================
+         LAYOUT: SIDEBAR + CONTENIDO
+         ============================================================ -->
     <div class="rt-page-wrapper">
 
         <!-- SIDEBAR -->
@@ -147,7 +151,7 @@
             <nav class="rt-sidebar__nav" aria-label="Secciones del aula">
                 <ul class="rt-sidebar__menu">
                     <li>
-                        <a href="home_DOA.html" class="rt-sidebar__link">
+                        <a href="home_DOA.php" class="rt-sidebar__link">
                             <svg class="rt-sidebar__icon" viewBox="0 0 24 24" fill="none" aria-hidden="true">
                                 <rect x="3" y="4" width="18" height="16" rx="2" stroke="currentColor" stroke-width="2"/>
                                 <path d="M7 8h10M7 12h6" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
@@ -156,7 +160,7 @@
                         </a>
                     </li>
                     <li>
-                        <a href="calendario_alumno.html" class="rt-sidebar__link rt-sidebar__link--active" aria-current="page">
+                        <a href="calendario_profesor.php" class="rt-sidebar__link rt-sidebar__link--active" aria-current="page">
                             <svg class="rt-sidebar__icon" viewBox="0 0 24 24" fill="none" aria-hidden="true">
                                 <rect x="3" y="5" width="18" height="16" rx="2" stroke="currentColor" stroke-width="2"/>
                                 <path d="M3 10h18" stroke="currentColor" stroke-width="2"/>
@@ -169,7 +173,7 @@
             </nav>
 
             <div class="rt-sidebar__footer">
-                <a href="login_doa.html" class="rt-sidebar__logout">
+                <a href="login_doa.php" class="rt-sidebar__logout">
                     <svg class="rt-sidebar__icon" viewBox="0 0 24 24" fill="none" aria-hidden="true">
                         <path d="M9 21H5a2 2 0 01-2-2V5a2 2 0 012-2h4" stroke="currentColor" stroke-width="2"
                               stroke-linecap="round" stroke-linejoin="round"/>
@@ -208,7 +212,7 @@
                             </button>
                         </div>
 
-                        <!-- Leyenda tipos de evento -->
+                        <!-- Leyenda (sin toggle) -->
                         <div class="cal-header__der">
                             <div class="cal-leyenda" aria-label="Leyenda">
                                 <span class="cal-leyenda__item">
@@ -227,7 +231,7 @@
                         </div>
                     </div>
 
-                    <!-- Mes (pantallas anchas) -->
+                    <!-- Vista MES (escritorio) -->
                     <div class="cal-mes" id="cal-mes">
                         <table class="cal-grid" role="grid" aria-label="Calendario mensual">
                             <thead>
@@ -258,7 +262,7 @@
 
             <footer class="pie-pagina rt-footer">
                 <div class="contenedor pie-pagina__interior">
-                    <a href="index.html" class="pie-pagina__logo">
+                    <a href="index.php" class="pie-pagina__logo">
                         <img src="img/logo-gti-removebg-preview.png" alt="GTI – Grado en Tecnologías Interactivas">
                     </a>
                     <p class="pie-pagina__derechos">Todos los derechos reservados 2026&copy;</p>
@@ -271,14 +275,15 @@
 
     <!-- Barra inferior móvil -->
     <nav class="rt-bottom-tabs" aria-label="Navegación inferior">
-        <a href="home_DOA.html" class="rt-bottom-tab">Clases</a>
-        <a href="calendario_alumno.html" class="rt-bottom-tab rt-bottom-tab--activo" aria-current="page">Calendario</a>
+        <a href="home_DOA.php" class="rt-bottom-tab">Clases</a>
+        <a href="calendario_profesor.php" class="rt-bottom-tab rt-bottom-tab--activo" aria-current="page">Calendario</a>
     </nav>
 
     <script>
-        // Todo en una función para no llenar el scope global.
+        /* IIFE: aisla las variables del calendario del ámbito global */
         (function () {
-            // Ejemplo mayo 2026; clave = fecha en formato año-mes-día.
+            /* ─── Datos de eventos (Mayo 2026) ─── */
+            /* Clave del objeto: "AAAA-MM-DD" → facilita la búsqueda por fecha exacta */
             var EVENTS = {
                 '2026-05-04': [{ texto: 'Entrega Prov.', tipo: 'tarea' }],
                 '2026-05-07': [{ texto: 'Reunión equipo', tipo: 'evento' }],
@@ -300,17 +305,22 @@
             ];
             var DIAS_SEMANA_CORTO = ['Lun','Mar','Mié','Jue','Vie','Sáb','Dom'];
 
+            /* Estado */
             var hoy         = new Date();
             var mesActual   = new Date(hoy.getFullYear(), hoy.getMonth(), 1);
             var semanaActual = obtenerLunesDeSemana(hoy);
 
+            /* ─── Helpers ─── */
+            /* Añade un cero a la izquierda si el número es de un solo dígito */
             function pad(n) { return n < 10 ? '0' + n : '' + n; }
 
+            /* Construye la clave "AAAA-MM-DD" usada en el objeto EVENTS */
             function claveEvento(y, m, d) {
                 return y + '-' + pad(m + 1) + '-' + pad(d);
             }
 
-            // Lunes de la semana de una fecha (calendario tipo ISO).
+            /* Calcula el lunes de la semana a la que pertenece "fecha"
+               getDay() devuelve 0 (domingo)…6 (sábado); ajustamos para semana ISO (lunes=0) */
             function obtenerLunesDeSemana(fecha) {
                 var d   = new Date(fecha);
                 var dow = d.getDay();
@@ -332,6 +342,7 @@
                 return span;
             }
 
+            /* ─── Vista MES ─── */
             function renderizarMes() {
                 var anio = mesActual.getFullYear();
                 var mes  = mesActual.getMonth();
@@ -339,9 +350,11 @@
                 document.getElementById('cal-titulo').textContent =
                     NOMBRES_MESES[mes] + ' ' + anio;
 
+                /* getDay() devuelve 0=domingo; convertimos a índice lunes=0 … domingo=6 */
                 var primerDia = new Date(anio, mes, 1).getDay();
                 primerDia = (primerDia === 0) ? 6 : primerDia - 1;
 
+                /* new Date(año, mes+1, 0) → último día del mes actual */
                 var diasEnMes      = new Date(anio, mes + 1, 0).getDate();
                 var diasMesAnterior = new Date(anio, mes, 0).getDate();
 
@@ -349,6 +362,7 @@
                 cuerpo.innerHTML = '';
 
                 var dia = 1, diaSig = 1;
+                /* Número total de celdas redondeado a múltiplo de 7 para filas completas */
                 var totalCeldas = Math.ceil((primerDia + diasEnMes) / 7) * 7;
 
                 for (var i = 0; i < totalCeldas; i++) {
@@ -357,14 +371,16 @@
                     var fila = cuerpo.lastElementChild;
                     var td   = document.createElement('td');
                     var col  = i % 7;
-                    var finde = col >= 5;
+                    var finde = col >= 5; /* columnas 5 y 6 = sábado y domingo */
 
+                    /* Celdas del mes anterior (relleno izquierdo) */
                     if (i < primerDia) {
                         var numPrev = diasMesAnterior - primerDia + i + 1;
                         td.classList.add('cal-otro-mes');
                         if (finde) td.classList.add('cal-weekend-cell');
                         td.innerHTML = '<span class="cal-dia-num">' + numPrev + '</span>';
 
+                    /* Días del mes actual */
                     } else if (dia <= diasEnMes) {
                         if (finde) td.classList.add('cal-weekend-cell');
                         var hoyAhora = (anio === hoy.getFullYear() && mes === hoy.getMonth() && dia === hoy.getDate());
@@ -381,6 +397,7 @@
                         }
                         dia++;
 
+                    /* Celdas del mes siguiente (relleno derecho) */
                     } else {
                         td.classList.add('cal-otro-mes');
                         if (finde) td.classList.add('cal-weekend-cell');
@@ -392,11 +409,13 @@
                 }
             }
 
+            /* ─── Vista SEMANA VERTICAL (móvil) ─── */
             function renderizarSemanaVertical() {
                 var inicio = new Date(semanaActual);
                 var fin    = new Date(semanaActual);
                 fin.setDate(fin.getDate() + 6);
 
+                /* Título: "5 – 11 May 2026" */
                 document.getElementById('cal-titulo').textContent =
                     inicio.getDate() + ' – ' + fin.getDate() + ' ' +
                     NOMBRES_MESES[fin.getMonth()] + ' ' + fin.getFullYear();
@@ -404,14 +423,17 @@
                 var contenedor = document.getElementById('cal-semana-vertical');
                 contenedor.innerHTML = '';
 
+                /* Itera los 7 días de la semana a partir del lunes */
                 for (var i = 0; i < 7; i++) {
                     var d     = new Date(semanaActual);
                     d.setDate(d.getDate() + i);
                     var finde = i >= 5;
 
+                    /* Fila del día */
                     var fila = document.createElement('div');
                     fila.className = 'cal-dia-fila' + (finde ? ' cal-dia-fila--finde' : '');
 
+                    /* Cabecera izquierda: nombre + número */
                     var cab = document.createElement('div');
                     cab.className = 'cal-dia-fila__cabecera';
 
@@ -426,6 +448,7 @@
                     cab.appendChild(nombre);
                     cab.appendChild(num);
 
+                    /* Área de eventos */
                     var areaEventos = document.createElement('div');
                     areaEventos.className = 'cal-dia-fila__eventos';
 
@@ -442,8 +465,11 @@
                 }
             }
 
+            /* ─── Control de vista según viewport ─── */
+            /* matchMedia permite detectar y reaccionar a cambios de tamaño de pantalla */
             var mq = window.matchMedia('(max-width: 720px)');
 
+            /* Muestra la vista de mes (escritorio) o semana vertical (móvil) según el viewport */
             function actualizarVista(esMobil) {
                 var elMes     = document.getElementById('cal-mes');
                 var elSemanaV = document.getElementById('cal-semana-vertical');
@@ -459,12 +485,15 @@
                 }
             }
 
+            /* Escuchar cambios de tamaño */
             if (mq.addEventListener) {
                 mq.addEventListener('change', function (e) { actualizarVista(e.matches); });
             } else {
-                mq.addListener(function (e) { actualizarVista(e.matches); });
+                mq.addListener(function (e) { actualizarVista(e.matches); }); /* fallback Safari antiguo */
             }
 
+            /* ─── Navegación ─── */
+            /* Los botones anterior/siguiente navegan semana o mes según la vista activa */
             document.getElementById('cal-prev').addEventListener('click', function () {
                 if (mq.matches) {
                     semanaActual.setDate(semanaActual.getDate() - 7);
@@ -485,6 +514,7 @@
                 }
             });
 
+            /* ─── Perfil popup ─── */
             var perfilBtn   = document.getElementById('rt-perfil-btn');
             var perfilPopup = document.getElementById('rt-perfil-popup');
             if (perfilBtn && perfilPopup) {
@@ -501,6 +531,7 @@
                 perfilPopup.addEventListener('click', function (e) { e.stopPropagation(); });
             }
 
+            /* ─── Hamburguesa ─── */
             var hamburger  = document.getElementById('rt-hamburger');
             var mobileMenu = document.getElementById('rt-mobile-menu');
             if (hamburger && mobileMenu) {
@@ -517,14 +548,16 @@
                 });
             }
 
+            /* ─── Render inicial ─── */
             actualizarVista(mq.matches);
 
         }());
     </script>
 
-    <!-- auth-demo: quitar cuando haya login real -->
+    <!-- ══ [DEMO AUTH] ─ borrar junto con auth-demo.js cuando se implemente la BD ══ -->
     <script src="js/auth-demo.js"></script>
-    <script>AuthDemo.inicializar({ rol: 'alumno' });</script>
+    <script>AuthDemo.inicializar({ rol: 'profesor' });</script>
+    <!-- ══════════════════════════════════════════════════════════════════════════ -->
 
     <script src="js/script.js" defer></script>
 </body>

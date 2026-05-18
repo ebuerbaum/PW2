@@ -12,8 +12,8 @@
          TOPBAR – ancho completo
          ============================================================ -->
     <header class="rt-topbar">
-        <a href="home_DOA.html" class="rt-topbar__logo-mobile" aria-label="DOA – Inicio">
-            <img src="img/logoPrincipal_monocromático.png" alt="DOA – Gestión Educativa Inteligente">
+        <a href="home_DOA.php" class="rt-topbar__logo-mobile" aria-label="DOA – Inicio">
+            <img src="img/logoPrincipal_monocromatico.png" alt="DOA – Gestión Educativa Inteligente">
         </a>
 
         <h1 class="rt-topbar__titulo">Matemáticas</h1>
@@ -107,8 +107,8 @@
                             <p class="rt-perfil-popup__rol">Estudiante</p>
                         </div>
                     </div>
-                    <a href="recuperar-contrasena.html" class="rt-perfil-popup__cambiar">Cambiar contraseña</a>
-                    <a href="login_doa.html" class="rt-perfil-popup__logout">
+                    <a href="recuperar-contrasena.php" class="rt-perfil-popup__cambiar">Cambiar contraseña</a>
+                    <a href="login_doa.php" class="rt-perfil-popup__logout">
                         <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
                             <path d="M9 21H5a2 2 0 01-2-2V5a2 2 0 012-2h4" stroke="currentColor" stroke-width="2"
                                 stroke-linecap="round" stroke-linejoin="round"/>
@@ -134,9 +134,9 @@
     <!-- MENÚ MÓVIL -->
     <div id="rt-mobile-menu" class="mobile-menu rt-mobile-menu" hidden>
         <ul class="mobile-nav-list">
-            <li><a href="home_DOA.html" class="mobile-nav-link mobile-nav-link--active" aria-current="page">Clases</a></li>
-            <li><a href="calendario_alumno.html" class="mobile-nav-link">Calendario</a></li>
-            <li><a href="login_doa.html" class="mobile-nav-link mobile-nav-link--login">Logout</a></li>
+            <li><a href="home_DOA.php" class="mobile-nav-link mobile-nav-link--active" aria-current="page">Clases</a></li>
+            <li><a href="calendario_alumno.php" class="mobile-nav-link">Calendario</a></li>
+            <li><a href="login_doa.php" class="mobile-nav-link mobile-nav-link--login">Logout</a></li>
         </ul>
     </div>
 
@@ -150,7 +150,7 @@
             <nav class="rt-sidebar__nav" aria-label="Secciones del aula">
                 <ul class="rt-sidebar__menu">
                     <li>
-                        <a href="home_DOA.html" class="rt-sidebar__link rt-sidebar__link--active" aria-current="page">
+                        <a href="home_DOA.php" class="rt-sidebar__link rt-sidebar__link--active" aria-current="page">
                             <svg class="rt-sidebar__icon" viewBox="0 0 24 24" fill="none" aria-hidden="true">
                                 <rect x="3" y="4" width="18" height="16" rx="2" stroke="currentColor" stroke-width="2"/>
                                 <path d="M7 8h10M7 12h6" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
@@ -159,7 +159,7 @@
                         </a>
                     </li>
                     <li>
-                        <a href="calendario_alumno.html" class="rt-sidebar__link">
+                        <a href="calendario_alumno.php" class="rt-sidebar__link">
                             <svg class="rt-sidebar__icon" viewBox="0 0 24 24" fill="none" aria-hidden="true">
                                 <rect x="3" y="5" width="18" height="16" rx="2" stroke="currentColor" stroke-width="2"/>
                                 <path d="M3 10h18" stroke="currentColor" stroke-width="2"/>
@@ -172,7 +172,7 @@
             </nav>
 
             <div class="rt-sidebar__footer">
-                <a href="login_doa.html" class="rt-sidebar__logout">
+                <a href="login_doa.php" class="rt-sidebar__logout">
                     <svg class="rt-sidebar__icon" viewBox="0 0 24 24" fill="none" aria-hidden="true">
                         <path d="M9 21H5a2 2 0 01-2-2V5a2 2 0 012-2h4" stroke="currentColor" stroke-width="2"
                             stroke-linecap="round" stroke-linejoin="round"/>
@@ -196,7 +196,7 @@
                     <!-- Cabecera de la tarjeta -->
                     <div class="et-tarjeta__cabecera">
                         <h2 class="et-tarjeta__titulo">Tarea 1</h2>
-                        <a href="tablon_alumno.html#trabajo" class="et-btn-cerrar" aria-label="Volver al tablón">
+                        <a href="tablon_alumno.php#trabajo" class="et-btn-cerrar" aria-label="Volver al tablón">
                             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"
                                 stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
                                 <line x1="18" y1="6" x2="6" y2="18"/>
@@ -266,8 +266,8 @@
 
             <footer class="pie-pagina rt-footer">
                 <div class="contenedor pie-pagina__interior">
-                    <a href="index.html" class="pie-pagina__logo">
-                        <img src="img/logoPrincipal_monocromático.png" alt="Logo DOA">
+                    <a href="index.php" class="pie-pagina__logo">
+                        <img src="img/logoPrincipal_monocromatico.png" alt="Logo DOA">
                     </a>
                     <p class="pie-pagina__derechos">Todos los derechos reservados 2026&copy;</p>
                 </div>
@@ -330,7 +330,7 @@
             }
             alert('Tarea entregada correctamente.');
             /* Redirige al tablón tras confirmar la entrega */
-            window.location.href = 'tablon_alumno.html#trabajo';
+            window.location.href = 'tablon_alumno.php#trabajo';
         });
     </script>
 

@@ -12,8 +12,8 @@
 
     <!-- Barra superior -->
     <header class="rt-barra-superior">
-        <a href="home_DOA.html" class="rt-barra-superior__logo-movil" aria-label="DOA – Inicio">
-            <img src="img/logoPrincipal_monocromático.png" alt="DOA – Gestión Educativa Inteligente"
+        <a href="home_DOA.php" class="rt-barra-superior__logo-movil" aria-label="DOA – Inicio">
+            <img src="img/logoPrincipal_monocromatico.png" alt="DOA – Gestión Educativa Inteligente"
                 style="height: 48px; width: auto;">
         </a>
 
@@ -64,8 +64,8 @@
                             <p class="rt-perfil-emergente__rol">Secretaría</p>
                         </div>
                     </div>
-                    <a href="recuperar-contrasena.html" class="rt-perfil-emergente__cambiar">Cambiar contraseña</a>
-                    <a href="login_doa.html" class="rt-perfil-emergente__cerrar-sesion">
+                    <a href="recuperar-contrasena.php" class="rt-perfil-emergente__cambiar">Cambiar contraseña</a>
+                    <a href="login_doa.php" class="rt-perfil-emergente__cerrar-sesion">
                         <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
                             <path d="M9 21H5a2 2 0 01-2-2V5a2 2 0 012-2h4" stroke="currentColor" stroke-width="2"
                                 stroke-linecap="round" stroke-linejoin="round" />
@@ -91,11 +91,11 @@
     <!-- MENÚ MÓVIL -->
     <div id="rt-menu-movil" class="menu-movil rt-menu-movil" hidden>
         <ul class="lista-nav-movil">
-            <li><a href="crearAsignaturas_secretaria.html" class="enlace-nav-movil">Clases</a></li>
-            <li><a href="gestion_usuarios_secretaria.html" class="enlace-nav-movil enlace-nav-movil--activo"
+            <li><a href="crearAsignaturas_secretaria.php" class="enlace-nav-movil">Clases</a></li>
+            <li><a href="gestion_usuarios_secretaria.php" class="enlace-nav-movil enlace-nav-movil--activo"
                     aria-current="page">Gestión de usuarios</a></li>
             <li><a href="#" class="enlace-nav-movil">Comunicados</a></li>
-            <li><a href="login_doa.html" class="enlace-nav-movil enlace-nav-movil--sesion">Logout</a></li>
+            <li><a href="login_doa.php" class="enlace-nav-movil enlace-nav-movil--sesion">Logout</a></li>
         </ul>
     </div>
 
@@ -107,7 +107,7 @@
             <nav class="rt-barra-lateral__navegacion" aria-label="Secciones del aula">
                 <ul class="rt-barra-lateral__menu">
                     <li>
-                        <a href="crearAsignaturas_secretaria.html" class="rt-barra-lateral__enlace">
+                        <a href="crearAsignaturas_secretaria.php" class="rt-barra-lateral__enlace">
                             <svg class="rt-barra-lateral__icono" viewBox="0 0 24 24" fill="none" aria-hidden="true">
                                 <rect x="3" y="4" width="18" height="16" rx="2" stroke="currentColor"
                                     stroke-width="2" />
@@ -118,7 +118,7 @@
                         </a>
                     </li>
                     <li>
-                        <a href="gestion_usuarios_secretaria.html" class="rt-barra-lateral__enlace rt-barra-lateral__enlace--activo"
+                        <a href="gestion_usuarios_secretaria.php" class="rt-barra-lateral__enlace rt-barra-lateral__enlace--activo"
                             aria-current="page">
                             <svg class="rt-barra-lateral__icono" viewBox="0 0 24 24" fill="none" stroke="currentColor"
                                 stroke-width="2" aria-hidden="true">
@@ -145,7 +145,7 @@
             </nav>
 
             <div class="rt-barra-lateral__pie">
-                <a href="login_doa.html" class="rt-barra-lateral__cerrar-sesion">
+                <a href="login_doa.php" class="rt-barra-lateral__cerrar-sesion">
                     <svg class="rt-barra-lateral__icono" viewBox="0 0 24 24" fill="none" aria-hidden="true">
                         <path d="M9 21H5a2 2 0 01-2-2V5a2 2 0 012-2h4" stroke="currentColor" stroke-width="2"
                             stroke-linecap="round" stroke-linejoin="round" />
@@ -299,8 +299,8 @@
 
             <footer class="pie-pagina rt-pie">
                 <div class="contenedor pie-pagina__interior">
-                    <a href="index.html" class="pie-pagina__logo">
-                        <img src="img/logoPrincipal_monocromático.png" alt="Logo DOA">
+                    <a href="index.php" class="pie-pagina__logo">
+                        <img src="img/logoPrincipal_monocromatico.png" alt="Logo DOA">
                     </a>
                     <p class="pie-pagina__derechos">Todos los derechos reservados 2026&copy;</p>
                 </div>

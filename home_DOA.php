@@ -14,8 +14,8 @@
          TOPBAR – ancho completo
          ============================================================ -->
     <header class="rt-topbar">
-        <a href="home_DOA.html" class="rt-topbar__logo-mobile" aria-label="DOA – Inicio">
-            <img src="img/logoPrincipal_monocromático.png" alt="DOA – Gestión Educativa Inteligente">
+        <a href="home_DOA.php" class="rt-topbar__logo-mobile" aria-label="DOA – Inicio">
+            <img src="img/logoPrincipal_monocromatico.png" alt="DOA – Gestión Educativa Inteligente">
         </a>
 
 
@@ -110,8 +110,8 @@
                             <p class="rt-perfil-popup__rol">Estudiante</p>
                         </div>
                     </div>
-                    <a href="recuperar-contrasena.html" class="rt-perfil-popup__cambiar">Cambiar contraseña</a>
-                    <a href="login_doa.html" class="rt-perfil-popup__logout">
+                    <a href="recuperar-contrasena.php" class="rt-perfil-popup__cambiar">Cambiar contraseña</a>
+                    <a href="login_doa.php" class="rt-perfil-popup__logout">
                         <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
                             <path d="M9 21H5a2 2 0 01-2-2V5a2 2 0 012-2h4" stroke="currentColor" stroke-width="2"
                                 stroke-linecap="round" stroke-linejoin="round" />
@@ -137,10 +137,10 @@
     <!-- MENÚ MÓVIL -->
     <div id="rt-mobile-menu" class="mobile-menu rt-mobile-menu" hidden>
         <ul class="mobile-nav-list">
-            <li><a href="home_DOA.html" class="mobile-nav-link mobile-nav-link--active" aria-current="page">Clases</a>
+            <li><a href="home_DOA.php" class="mobile-nav-link mobile-nav-link--active" aria-current="page">Clases</a>
             </li>
-            <li><a href="calendario_alumno.html" class="mobile-nav-link">Calendario</a></li>
-            <li><a href="login_doa.html" class="mobile-nav-link mobile-nav-link--login">Logout</a></li>
+            <li><a href="calendario_alumno.php" class="mobile-nav-link">Calendario</a></li>
+            <li><a href="login_doa.php" class="mobile-nav-link mobile-nav-link--login">Logout</a></li>
         </ul>
     </div>
 
@@ -154,7 +154,7 @@
             <nav class="rt-sidebar__nav" aria-label="Secciones del aula">
                 <ul class="rt-sidebar__menu">
                     <li>
-                        <a href="home_DOA.html" class="rt-sidebar__link rt-sidebar__link--active" aria-current="page">
+                        <a href="home_DOA.php" class="rt-sidebar__link rt-sidebar__link--active" aria-current="page">
                             <svg class="rt-sidebar__icon" viewBox="0 0 24 24" fill="none" aria-hidden="true">
                                 <rect x="3" y="4" width="18" height="16" rx="2" stroke="currentColor"
                                     stroke-width="2" />
@@ -165,7 +165,7 @@
                         </a>
                     </li>
                     <li>
-                        <a href="calendario_alumno.html" class="rt-sidebar__link">
+                        <a href="calendario_alumno.php" class="rt-sidebar__link">
                             <svg class="rt-sidebar__icon" viewBox="0 0 24 24" fill="none" aria-hidden="true">
                                 <rect x="3" y="5" width="18" height="16" rx="2" stroke="currentColor"
                                     stroke-width="2" />
@@ -179,7 +179,7 @@
             </nav>
 
             <div class="rt-sidebar__footer">
-                <a href="login_doa.html" class="rt-sidebar__logout">
+                <a href="login_doa.php" class="rt-sidebar__logout">
                     <svg class="rt-sidebar__icon" viewBox="0 0 24 24" fill="none" aria-hidden="true">
                         <path d="M9 21H5a2 2 0 01-2-2V5a2 2 0 012-2h4" stroke="currentColor" stroke-width="2"
                             stroke-linecap="round" stroke-linejoin="round" />
@@ -219,7 +219,7 @@
                             </p>
                             <div class="mc-tarjeta__pie">
                                 <span class="mc-tarjeta__fecha">23 Mar</span>
-                                <a href="tablon_alumno.html" class="mc-tarjeta__ver-curso">Ver curso</a>
+                                <a href="tablon_alumno.php" class="mc-tarjeta__ver-curso">Ver curso</a>
                             </div>
                         </div>
                     </article>
@@ -324,7 +324,7 @@
 
             <footer class="pie-pagina rt-footer">
                 <div class="contenedor pie-pagina__interior">
-                    <a href="index.html" class="pie-pagina__logo">
+                    <a href="index.php" class="pie-pagina__logo">
                         <img src="img/logo-gti-removebg-preview.png" alt="GTI – Grado en Tecnologías Interactivas">
                     </a>
                     <p class="pie-pagina__derechos">Todos los derechos reservados 2026&copy;</p>
@@ -346,16 +346,16 @@
             if (!u) return;
 
             if (u.rol === 'secretaria') {
-                window.location.href = 'gestion_usuarios_secretaria.html';
+                window.location.href = 'gestion_usuarios_secretaria.php';
                 return;
             }
 
             if (u.rol === 'profesor') {
 
                 /* ── Actualizar enlaces de Calendario para profesor ── */
-                var enlacesCalendario = document.querySelectorAll('a[href="calendario_alumno.html"]');
+                var enlacesCalendario = document.querySelectorAll('a[href="calendario_alumno.php"]');
                 for (var j = 0; j < enlacesCalendario.length; j++) {
-                    enlacesCalendario[j].setAttribute('href', 'calendario_profesor.html');
+                    enlacesCalendario[j].setAttribute('href', 'calendario_profesor.php');
                 }
 
                 var titulo = document.querySelector('.mc-titulo');
@@ -365,7 +365,7 @@
 
                 var verLinks = document.querySelectorAll('.mc-tarjeta__ver-curso');
                 for (var i = 0; i < verLinks.length; i++) {
-                    verLinks[i].setAttribute('href', 'tablon_profesor.html');
+                    verLinks[i].setAttribute('href', 'tablon_profesor.php');
                     verLinks[i].textContent = 'Ver tablón';
                 }
             }

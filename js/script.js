@@ -1,4 +1,4 @@
-// Página de contacto y recuperar contraseña (recuperar-contrasena.html comparte parte de este archivo).
+// Página de contacto y recuperar contraseña (recuperar-contrasena.php comparte parte de este archivo).
 
 // — Menú móvil (GTI) —
 var botonMenu = document.querySelector('.hamburger');
@@ -314,4 +314,139 @@ function mostrarFeedback(texto, tipo) {
     // Inicializar badge
     actualizarBadge();
 })();
+
+
+// ==========================================
+// Botón condicional GTI (infoDoa_GTI.php)
+// ==========================================
+// Lee la sesión GTI de sessionStorage (gestionada por auth-gti.js).
+// Si hay sesión activa → muestra "Acceder a la Demo".
+// Si no la hay       → muestra "Regístrate y prueba DOA gratis".
+(function () {
+    var btnRegistro = document.getElementById('btn-registro-gti');
+    var btnDemo     = document.getElementById('btn-acceder-demo');
+
+    /* Si ninguno de los dos botones existe, no estamos en infoDoa_GTI.php */
+    if (!btnRegistro && !btnDemo) return;
+
+    /**
+     * Comprueba si hay sesión GTI activa leyendo sessionStorage
+     * con la misma clave que usa auth-gti.js ('gti_sesion').
+     */
+    function gtiComprobarSesion() {
+        var sesionGTI = null;
+        try {
+            sesionGTI = JSON.parse(sessionStorage.getItem('gti_sesion'));
+        } catch (e) {
+            sesionGTI = null;
+        }
+
+        if (sesionGTI) {
+            /* Usuario autenticado en GTI: mostrar botón de demo */
+            if (btnRegistro) btnRegistro.style.display = 'none';
+            if (btnDemo)     btnDemo.style.display     = '';
+        } else {
+            /* Sin sesión GTI: mostrar botón de captación */
+            if (btnRegistro) btnRegistro.style.display = '';
+            if (btnDemo)     btnDemo.style.display     = 'none';
+        }
+    }
+
+    /* Ejecutar al cargar la página */
+    gtiComprobarSesion();
+}());
+
+
+// ==========================================
+// Login DOA: botones "Autocompletar" en el panel lateral
+// ==========================================
+(function () {
+    document.addEventListener('click', function (e) {
+        var btn = e.target.closest && e.target.closest('.btn-autocompletar-doalogin');
+        if (!btn) return;
+
+        var email = btn.getAttribute('data-email');
+        var pwd   = btn.getAttribute('data-password');
+        var em    = document.getElementById('login-email');
+        var pw    = document.getElementById('login-password');
+        var fb    = document.getElementById('login-feedback');
+
+        if (em && email !== null) em.value = email;
+        if (pw && pwd !== null) pw.value = pwd;
+        if (fb) {
+            fb.hidden = true;
+            fb.textContent = '';
+        }
+        if (em) em.focus();
+    });
+})();
+
+
+// ==========================================
+// Header GTI: LOGIN vs desplegable de perfil (AuthGTI)
+// ==========================================
+(function () {
+    var wrap = document.querySelector('.gti-nav-perfil');
+    if (!wrap) return;
+
+    var btnLogin   = document.getElementById('gti-btn-login');
+    var perfilWrap = document.getElementById('gti-perfil-wrapper');
+    var perfilBtn  = document.getElementById('gti-perfil-btn');
+    var popup      = document.getElementById('gti-perfil-popup');
+    var logoutBtn  = document.getElementById('gti-btn-logout');
+    var nombreEl   = document.getElementById('gti-popup-nombre');
+
+    function cerrarPopupPerfil() {
+        if (popup) popup.hidden = true;
+        if (perfilBtn) perfilBtn.setAttribute('aria-expanded', 'false');
+    }
+
+    function actualizarBarraGTI() {
+        if (!window.AuthGTI) return;
+
+        var usuario = AuthGTI.getUsuario();
+        if (usuario) {
+            if (btnLogin) btnLogin.style.display = 'none';
+            if (perfilWrap) perfilWrap.style.display = '';
+            if (nombreEl) nombreEl.textContent = usuario.nombre || 'Usuario';
+        } else {
+            if (btnLogin) btnLogin.style.display = '';
+            if (perfilWrap) {
+                perfilWrap.style.display = 'none';
+                cerrarPopupPerfil();
+            }
+        }
+    }
+
+    if (!window.AuthGTI) {
+        console.warn('[GTI] auth-gti.js no está cargado: el estado del header puede ser incorrecto.');
+        return;
+    }
+
+    actualizarBarraGTI();
+
+    if (perfilBtn && popup) {
+        perfilBtn.addEventListener('click', function (e) {
+            e.stopPropagation();
+            var abierto = !popup.hidden;
+            popup.hidden = abierto;
+            perfilBtn.setAttribute('aria-expanded', String(!abierto));
+        });
+        popup.addEventListener('click', function (e) {
+            e.stopPropagation();
+        });
+    }
+
+    document.addEventListener('click', cerrarPopupPerfil);
+    document.addEventListener('keydown', function (e) {
+        if (e.key === 'Escape') cerrarPopupPerfil();
+    });
+
+    if (logoutBtn) {
+        logoutBtn.addEventListener('click', function () {
+            AuthGTI.cerrarSesion();
+        });
+    }
+})();
+
 

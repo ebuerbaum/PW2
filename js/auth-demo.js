@@ -1,4 +1,4 @@
-(function (global) {
+﻿(function (global) {
     'use strict';
 
     // Usuarios de prueba (luego vendrá la base de datos).
@@ -9,7 +9,7 @@
             nombre:   'Juan Hernández',
             rol:      'alumno',
             rolTexto: 'Estudiante',
-            inicio:   'home_DOA.html'
+            inicio:   'home_DOA.php'
         },
         {
             email:    'profesor@correo.com',
@@ -17,7 +17,7 @@
             nombre:   'María García',
             rol:      'profesor',
             rolTexto: 'Profesora',
-            inicio:   'home_DOA.html'
+            inicio:   'home_DOA.php'
         },
         {
             email:    'secretaria@correo.com',
@@ -25,7 +25,7 @@
             nombre:   'Gloria Paz',
             rol:      'secretaria',
             rolTexto: 'Secretaría',
-            inicio:   'gestion_usuarios_secretaria.html'
+            inicio:   'gestion_usuarios_secretaria.php'
         },
         {
             email:    'l.simdre@epsg.upv.es',
@@ -33,7 +33,7 @@
             nombre:   'Lief Simants Dredge',
             rol:      'alumno',
             rolTexto: 'Estudiante',
-            inicio:   'home_DOA.html'
+            inicio:   'home_DOA.php'
         },
         {
             email:    'm.kirkam@epsg.upv.es',
@@ -41,7 +41,7 @@
             nombre:   'Merline Kirdsch Kampshell',
             rol:      'alumno',
             rolTexto: 'Estudiante',
-            inicio:   'home_DOA.html'
+            inicio:   'home_DOA.php'
         },
         {
             email:    'd.rawabc@epsg.upv.es',
@@ -49,7 +49,7 @@
             nombre:   'Debora Rawstorne',
             rol:      'alumno',
             rolTexto: 'Estudiante',
-            inicio:   'home_DOA.html'
+            inicio:   'home_DOA.php'
         },
         {
             email:    'k.poumai@upv.es',
@@ -57,7 +57,7 @@
             nombre:   'Kevan Pounds Mainston',
             rol:      'profesor',
             rolTexto: 'Profesor',
-            inicio:   'home_DOA.html'
+            inicio:   'home_DOA.php'
         },
         {
             email:    'l.prista@upv.es',
@@ -65,7 +65,7 @@
             nombre:   'Luelle Pridmore Starsmeare',
             rol:      'profesor',
             rolTexto: 'Profesora',
-            inicio:   'home_DOA.html'
+            inicio:   'home_DOA.php'
         },
         {
             email:    'e.mermiz@upv.es',
@@ -73,7 +73,7 @@
             nombre:   'Eolande Merriton Mizzi',
             rol:      'profesor',
             rolTexto: 'Profesora',
-            inicio:   'home_DOA.html'
+            inicio:   'home_DOA.php'
         },
         {
             email:    'o.breshe@upv.es',
@@ -81,7 +81,7 @@
             nombre:   'Ondrea Brezlaw Sherwill',
             rol:      'secretaria',
             rolTexto: 'PAS',
-            inicio:   'gestion_usuarios_secretaria.html'
+            inicio:   'gestion_usuarios_secretaria.php'
         },
         {
             email:    'b.maltho@upv.es',
@@ -89,7 +89,7 @@
             nombre:   'Brooke Malimoe Thomerson',
             rol:      'secretaria',
             rolTexto: 'PAS',
-            inicio:   'gestion_usuarios_secretaria.html'
+            inicio:   'gestion_usuarios_secretaria.php'
         }
     ];
 
@@ -130,19 +130,19 @@
 
         cerrarSesion: function () {
             sessionStorage.removeItem(CLAVE);
-            global.location.href = 'login_doa.html';
+            global.location.href = 'login_doa.php';
         },
 
         requireLogin: function () {
             if (!this.getUsuario()) {
-                global.location.href = 'login_doa.html';
+                global.location.href = 'login_doa.php';
             }
         },
 
         requireRol: function (rolEsperado) {
             var u = this.getUsuario();
             if (!u || u.rol !== rolEsperado) {
-                global.location.href = 'login_doa.html';
+                global.location.href = 'login_doa.php';
             }
         },
 

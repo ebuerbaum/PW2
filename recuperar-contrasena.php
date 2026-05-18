@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="es">
 
 <head>
@@ -81,7 +81,7 @@
     <!-- ===== FOOTER ===== -->
     <footer class="pie-pagina">
         <div class="contenedor pie-pagina__interior">
-            <a href="index.html" class="pie-pagina__logo">
+            <a href="index.php" class="pie-pagina__logo">
                 <img src="img/logo-gti-removebg-preview.png" alt="GTI – Grado en Tecnologías Interactivas">
             </a>
             <p class="pie-pagina__derechos">Todos los derechos reservados 2026&copy;</p>
@@ -121,7 +121,7 @@
             </div>
             <h2 id="rc-popup-cambio-titulo" class="rc-popup__titulo">¡Contraseña cambiada!</h2>
             <p class="rc-popup__mensaje">Tu contraseña se ha actualizado correctamente. Ya puedes iniciar sesión.</p>
-            <a href="login_doa.html" class="rc-popup__btn rc-popup__btn--link">Ir al inicio de sesión</a>
+            <a href="login_doa.php" class="rc-popup__btn rc-popup__btn--link">Ir al inicio de sesión</a>
         </div>
     </div>
 

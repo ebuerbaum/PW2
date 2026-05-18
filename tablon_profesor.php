@@ -13,8 +13,8 @@
          TOPBAR – ancho completo
          ============================================================ -->
     <header class="rt-topbar">
-        <a href="home_DOA.html" class="rt-topbar__logo-mobile" aria-label="DOA – Inicio">
-            <img src="img/logoPrincipal_monocromático.png" alt="DOA – Gestión Educativa Inteligente">
+        <a href="home_DOA.php" class="rt-topbar__logo-mobile" aria-label="DOA – Inicio">
+            <img src="img/logoPrincipal_monocromatico.png" alt="DOA – Gestión Educativa Inteligente">
         </a>
 
         <h1 class="rt-topbar__titulo">Matemáticas</h1>
@@ -108,8 +108,8 @@
                             <p class="rt-perfil-popup__rol">Profesor</p>
                         </div>
                     </div>
-                    <a href="recuperar-contrasena.html" class="rt-perfil-popup__cambiar">Cambiar contraseña</a>
-                    <a href="login_doa.html" class="rt-perfil-popup__logout">
+                    <a href="recuperar-contrasena.php" class="rt-perfil-popup__cambiar">Cambiar contraseña</a>
+                    <a href="login_doa.php" class="rt-perfil-popup__logout">
                         <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
                             <path d="M9 21H5a2 2 0 01-2-2V5a2 2 0 012-2h4" stroke="currentColor" stroke-width="2"
                                 stroke-linecap="round" stroke-linejoin="round"/>
@@ -135,9 +135,9 @@
     <!-- MENÚ MÓVIL -->
     <div id="rt-mobile-menu" class="mobile-menu rt-mobile-menu" hidden>
         <ul class="mobile-nav-list">
-            <li><a href="home_DOA.html" class="mobile-nav-link mobile-nav-link--active" aria-current="page">Clases</a></li>
-            <li><a href="calendario_profesor.html" class="mobile-nav-link">Calendario</a></li>
-            <li><a href="login_doa.html" class="mobile-nav-link mobile-nav-link--login">Logout</a></li>
+            <li><a href="home_DOA.php" class="mobile-nav-link mobile-nav-link--active" aria-current="page">Clases</a></li>
+            <li><a href="calendario_profesor.php" class="mobile-nav-link">Calendario</a></li>
+            <li><a href="login_doa.php" class="mobile-nav-link mobile-nav-link--login">Logout</a></li>
         </ul>
     </div>
 
@@ -151,7 +151,7 @@
             <nav class="rt-sidebar__nav" aria-label="Secciones del aula">
                 <ul class="rt-sidebar__menu">
                     <li>
-                        <a href="home_DOA.html" class="rt-sidebar__link rt-sidebar__link--active" aria-current="page">
+                        <a href="home_DOA.php" class="rt-sidebar__link rt-sidebar__link--active" aria-current="page">
                             <svg class="rt-sidebar__icon" viewBox="0 0 24 24" fill="none" aria-hidden="true">
                                 <rect x="3" y="4" width="18" height="16" rx="2" stroke="currentColor" stroke-width="2"/>
                                 <path d="M7 8h10M7 12h6" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
@@ -160,7 +160,7 @@
                         </a>
                     </li>
                     <li>
-                        <a href="calendario_profesor.html" class="rt-sidebar__link">
+                        <a href="calendario_profesor.php" class="rt-sidebar__link">
                             <svg class="rt-sidebar__icon" viewBox="0 0 24 24" fill="none" aria-hidden="true">
                                 <rect x="3" y="5" width="18" height="16" rx="2" stroke="currentColor" stroke-width="2"/>
                                 <path d="M3 10h18" stroke="currentColor" stroke-width="2"/>
@@ -173,7 +173,7 @@
             </nav>
 
             <div class="rt-sidebar__footer">
-                <a href="login_doa.html" class="rt-sidebar__logout" id="rt-logout-btn">
+                <a href="login_doa.php" class="rt-sidebar__logout" id="rt-logout-btn">
                     <svg class="rt-sidebar__icon" viewBox="0 0 24 24" fill="none" aria-hidden="true">
                         <path d="M9 21H5a2 2 0 01-2-2V5a2 2 0 012-2h4" stroke="currentColor" stroke-width="2"
                             stroke-linecap="round" stroke-linejoin="round"/>
@@ -214,7 +214,7 @@
                                 </button>
                                 <ul class="rt-crear-menu" id="rt-crear-menu" hidden role="menu">
                                     <li role="none">
-                                        <a href="crear_tarea_profesor.html" class="rt-crear-opcion" role="menuitem" style="text-decoration: none; color: inherit;">
+                                        <a href="crear_tarea_profesor.php" class="rt-crear-opcion" role="menuitem" style="text-decoration: none; color: inherit;">
                                             <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
                                                 <path d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
                                                 <rect x="9" y="3" width="6" height="4" rx="1" stroke="currentColor" stroke-width="2"/>
@@ -224,7 +224,7 @@
                                         </a>
                                     </li>
                                     <li role="none">
-                                        <a href="crear_examen_profesor.html" class="rt-crear-opcion" role="menuitem" style="text-decoration: none; color: inherit;">
+                                        <a href="crear_examen_profesor.php" class="rt-crear-opcion" role="menuitem" style="text-decoration: none; color: inherit;">
                                             <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
                                                 <path d="M12 20h9M16.5 3.5a2.121 2.121 0 013 3L7 19l-4 1 1-4L16.5 3.5z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
                                             </svg>
@@ -232,7 +232,7 @@
                                         </a>
                                     </li>
                                     <li role="none">
-                                        <a href="crear_recursos_profesor.html" class="rt-crear-opcion" role="menuitem" style="text-decoration: none; color: inherit;">
+                                        <a href="crear_recursos_profesor.php" class="rt-crear-opcion" role="menuitem" style="text-decoration: none; color: inherit;">
                                             <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
                                                 <path d="M4 19.5A2.5 2.5 0 016.5 17H20" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
                                                 <path d="M6.5 2H20v20H6.5A2.5 2.5 0 014 19.5v-15A2.5 2.5 0 016.5 2z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
@@ -246,7 +246,7 @@
                         <div class="rt-seccion__linea"></div>
                         <ul class="rt-lista" aria-label="Lista de tareas">
                             <li>
-                                <a href="detalle_tarea_profesor.html" class="rt-tarjeta" id="rt-tarea-2">
+                                <a href="detalle_tarea_profesor.php" class="rt-tarjeta" id="rt-tarea-2">
                                     <div class="rt-tarjeta__info">
                                         <span class="rt-tarjeta__nombre">Tarea 2</span>
                                         <span class="rt-tarjeta__fecha">19/04 23:55</span>
@@ -254,7 +254,7 @@
                                 </a>
                             </li>
                             <li>
-                                <a href="detalle_tarea_profesor.html" class="rt-tarjeta" id="rt-tarea-3">
+                                <a href="detalle_tarea_profesor.php" class="rt-tarjeta" id="rt-tarea-3">
                                     <div class="rt-tarjeta__info">
                                         <span class="rt-tarjeta__nombre">Tarea 3</span>
                                         <span class="rt-tarjeta__fecha">20/04 08:30</span>
@@ -262,7 +262,7 @@
                                 </a>
                             </li>
                             <li>
-                                <a href="detalle_tarea_profesor.html" class="rt-tarjeta" id="rt-tarea-1">
+                                <a href="detalle_tarea_profesor.php" class="rt-tarjeta" id="rt-tarea-1">
                                     <div class="rt-tarjeta__info">
                                         <span class="rt-tarjeta__nombre">Tarea 1</span>
                                         <span class="rt-tarjeta__fecha">17/04 23:55</span>
@@ -502,7 +502,7 @@
             <!-- FOOTER -->
             <footer class="pie-pagina rt-footer">
                 <div class="contenedor pie-pagina__interior">
-                    <a href="index.html" class="pie-pagina__logo">
+                    <a href="index.php" class="pie-pagina__logo">
                         <img src="img/logo-gti-removebg-preview.png" alt="GTI – Grado en Tecnologías Interactivas">
                     </a>
                     <p class="pie-pagina__derechos">Todos los derechos reservados 2026&copy;</p>
